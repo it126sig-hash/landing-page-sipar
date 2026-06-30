@@ -20,10 +20,10 @@ const meta = {
   whatsapp: {
     number: '6282118992299',
     templates: {
-      konsultasi: 'Halo, saya ingin konsultasi & survey lokasi {project}.',
-      simulasi:   'Halo, saya mau tanya simulasi cicilan flat {project}.',
-      survey:     'Halo, saya ingin booking survey lokasi {project}.',
-      type:       'Halo, saya tertarik dengan {type} di {project}. Boleh info lengkap & harga?',
+      konsultasi: 'Halo, saya lihat informasi di website dan saya ingin konsultasi & survey lokasi {project}.',
+      simulasi:   'Halo, saya lihat informasi di website dan saya mau tanya simulasi cicilan flat {project}.',
+      survey:     'Halo, saya lihat informasi di website dan saya ingin booking survey lokasi {project}.',
+      type:       'Halo, saya lihat informasi di website dan saya tertarik dengan {type} di {project}. Boleh info lengkap & harga?',
     },
   },
   nav: [

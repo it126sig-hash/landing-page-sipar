@@ -10,6 +10,7 @@ function mergeSpecs(defaultSpecs, specsOverride) {
 
 export function useContent() {
   const project = content.meta.projectName;
+  const withBase = (path) => useRuntimeConfig().app.baseURL.replace(/\/$/, '') + path;
 
   const wa = (key, vars = {}) => {
     const tpl = content.meta.whatsapp.templates[key];
@@ -19,9 +20,15 @@ export function useContent() {
 
   const houseTypes = content.houseTypes.map(t => ({
     ...t,
+    gallery: t.gallery.map(withBase),
     specs: mergeSpecs(content.defaultSpecs, t.specsOverride),
     waLink: wa('type', { type: t.name }),
   }));
 
-  return { content, wa, houseTypes };
+  return {
+    content: { ...content, meta: { ...content.meta, logo: withBase(content.meta.logo) } },
+    wa,
+    houseTypes,
+    withBase,
+  };
 }

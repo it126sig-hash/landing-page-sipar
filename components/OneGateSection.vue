@@ -1,7 +1,7 @@
 <script setup>
 import { useContent } from '~/composables/useContent';
 
-const { content } = useContent();
+const { content, withBase } = useContent();
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const { content } = useContent();
         </div>
       </div>
       <div class="order-1 lg:order-2">
-        <img src="/assets/images/signgate.webp" alt="One Gate System Cluster"
+        <img :src="withBase('/assets/images/signgate.webp')" alt="One Gate System Cluster"
           class="aspect-[5/4] w-full rounded-2xl object-cover" />
       </div>
     </div>
