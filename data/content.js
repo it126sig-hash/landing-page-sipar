@@ -14,7 +14,7 @@ const formatPhoneNumber = (num) => {
 const meta = {
   projectName: 'Sanggar Indah Parahyangan',
   developer: 'Sanggar Indah Group',
-  logo: '/assets/images/logo.png',
+  logo: '/assets/images/logo.webp',
   tagline: 'Hunian nyaman dekat Kota Baru Parahyangan',
   priceFrom: 'Mulai 160 Juta-an',
   whatsapp: {
@@ -81,15 +81,15 @@ export default {
   houseTypes: [
     { id: '22-60', name: 'Tipe 22/60', lb: '22', lt: '60', kt: '1', km: '1',
       tag: 'Paling Terjangkau', priceFrom: '160 Jt-an',
-      gallery: ['/assets/images/2260-denah.png', '/assets/images/2260-3d-ilustrasi.jpg'],
+      gallery: ['/assets/images/2260-denah.webp', '/assets/images/2260-3d-ilustrasi.webp'],
       specsOverride: [] },
     { id: '26-72', name: 'Tipe 26/72', lb: '26', lt: '72', kt: '2', km: '1',
       tag: 'Favorit Keluarga', priceFrom: '—',
-      gallery: ['/assets/images/2672-denah.jpeg', '/assets/images/2672-3d-ilustrasi.png'],
+      gallery: ['/assets/images/2672-denah.webp', '/assets/images/2672-3d-ilustrasi.webp'],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }] },
     { id: '31-72', name: 'Tipe 31/72', lb: '31', lt: '72', kt: '2', km: '1',
       tag: 'Paling Lega', priceFrom: '—',
-      gallery: ['/assets/images/3672-denah.png', '/assets/images/3672-3d-ilustrasi.png'],
+      gallery: ['/assets/images/3672-denah.webp', '/assets/images/3672-3d-ilustrasi.webp'],
       specsOverride: [] },
   ],
 

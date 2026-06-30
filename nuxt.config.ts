@@ -4,7 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
   app: {
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
+      htmlAttrs: { class: 'scroll-smooth' },
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

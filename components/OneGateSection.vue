@@ -21,7 +21,7 @@ const { content } = useContent();
         </div>
       </div>
       <div class="order-1 lg:order-2">
-        <img src="/assets/images/signgate.png" alt="One Gate System Cluster"
+        <img src="/assets/images/signgate.webp" alt="One Gate System Cluster"
           class="aspect-[5/4] w-full rounded-2xl object-cover" />
       </div>
     </div>

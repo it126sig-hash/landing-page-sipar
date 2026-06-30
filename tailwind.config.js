@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  safelist: ['scroll-smooth'],
   theme: {
     extend: {
       colors: {
