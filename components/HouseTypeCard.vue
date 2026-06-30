@@ -1,14 +1,18 @@
 <script setup>
+import { useLightbox } from '~/composables/useLightbox';
+
 defineProps({
   type: { type: Object, required: true },
 });
 const emit = defineEmits(['select']);
+const { openLightbox } = useLightbox();
 </script>
 
 <template>
   <div class="overflow-hidden rounded-[20px] border-2 border-cream-light bg-white shadow-[0_12px_30px_-24px_rgba(28,74,42,0.5)] transition-transform duration-200 hover:-translate-y-1">
     <div class="group relative overflow-hidden">
-      <img :src="type.gallery[1]" :alt="type.name" class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+      <img :src="type.gallery[1]" :alt="type.name" class="h-48 w-full cursor-pointer object-cover transition-transform duration-300 group-hover:scale-105"
+        @click="openLightbox(type.gallery[1], type.name)" />
       <span class="absolute left-3 top-3 rounded-lg bg-orange px-[11px] py-[5px] font-jakarta text-xs font-bold text-white">
         {{ type.tag }}
       </span>

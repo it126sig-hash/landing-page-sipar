@@ -1,7 +1,9 @@
 <script setup>
 import { useContent } from '~/composables/useContent';
+import { useLightbox } from '~/composables/useLightbox';
 
 const { content, withBase } = useContent();
+const { openLightbox } = useLightbox();
 </script>
 
 <template>
@@ -22,7 +24,8 @@ const { content, withBase } = useContent();
       </div>
       <div class="order-1 lg:order-2">
         <img :src="withBase('/assets/images/signgate.webp')" alt="One Gate System Cluster"
-          class="aspect-[5/4] w-full rounded-2xl object-cover" />
+          class="aspect-[5/4] w-full cursor-pointer rounded-2xl object-cover"
+          @click="openLightbox(withBase('/assets/images/signgate.webp'), 'One Gate System Cluster')" />
       </div>
     </div>
   </SectionShell>

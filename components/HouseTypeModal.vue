@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { useLightbox } from '~/composables/useLightbox';
 
 const props = defineProps({
   type: { type: Object, default: null },
@@ -7,6 +8,7 @@ const props = defineProps({
 const emit = defineEmits(['close']);
 
 const dialogRef = ref(null);
+const { openLightbox } = useLightbox();
 
 function onKeydown(e) {
   if (e.key === 'Escape') emit('close');
@@ -73,8 +75,10 @@ watch(() => props.type, (t) => {
           </div>
 
           <div class="mt-6 grid gap-4 sm:grid-cols-2">
-            <img :src="type.gallery[1]" :alt="`Fasad ${type.name}`" class="aspect-[4/3] w-full rounded-xl object-cover" />
-            <img :src="type.gallery[0]" :alt="`Denah ${type.name}`" class="aspect-[4/3] w-full rounded-xl object-cover" />
+            <img :src="type.gallery[1]" :alt="`Fasad ${type.name}`" class="aspect-[4/3] w-full cursor-pointer rounded-xl object-cover"
+              @click="openLightbox(type.gallery[1], `Fasad ${type.name}`)" />
+            <img :src="type.gallery[0]" :alt="`Denah ${type.name}`" class="aspect-[4/3] w-full cursor-pointer rounded-xl object-cover"
+              @click="openLightbox(type.gallery[0], `Denah ${type.name}`)" />
           </div>
 
           <div class="mt-6">
