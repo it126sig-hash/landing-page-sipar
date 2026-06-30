@@ -1,27 +1,42 @@
-export default {
-  meta: {
-    projectName: 'Sanggar Indah Parahyangan',
-    developer: 'Sanggar Indah Group',
-    logo: '/assets/images/logo.png',
-    tagline: 'Hunian nyaman dekat Kota Baru Parahyangan',
-    priceFrom: 'Mulai 160 Juta-an',
-    whatsapp: {
-      number: '6285795903747',
-      templates: {
-        konsultasi: 'Halo, saya ingin konsultasi & survey lokasi {project}.',
-        simulasi:   'Halo, saya mau tanya simulasi cicilan flat {project}.',
-        survey:     'Halo, saya ingin booking survey lokasi {project}.',
-        type:       'Halo, saya tertarik dengan {type} di {project}. Boleh info lengkap & harga?',
-      },
+// Helper to format phone number to 08xx-xxxx-xxxx
+const formatPhoneNumber = (num) => {
+  let str = num.toString();
+  if (str.startsWith('62')) {
+    str = '0' + str.slice(2);
+  }
+  const match = str.match(/^(\d{4})(\d{4})(\d{4,5})$/);
+  if (match) {
+    return `${match[1]}-${match[2]}-${match[3]}`;
+  }
+  return str;
+};
+
+const meta = {
+  projectName: 'Sanggar Indah Parahyangan',
+  developer: 'Sanggar Indah Group',
+  logo: '/assets/images/logo.png',
+  tagline: 'Hunian nyaman dekat Kota Baru Parahyangan',
+  priceFrom: 'Mulai 160 Juta-an',
+  whatsapp: {
+    number: '6282118992299',
+    templates: {
+      konsultasi: 'Halo, saya ingin konsultasi & survey lokasi {project}.',
+      simulasi:   'Halo, saya mau tanya simulasi cicilan flat {project}.',
+      survey:     'Halo, saya ingin booking survey lokasi {project}.',
+      type:       'Halo, saya tertarik dengan {type} di {project}. Boleh info lengkap & harga?',
     },
-    nav: [
-      { id: 'alasan', label: 'Alasan' },
-      { id: 'cicilan', label: 'Cicilan' },
-      { id: 'tipe', label: 'Tipe Rumah' },
-      { id: 'lokasi', label: 'Lokasi' },
-      { id: 'faq', label: 'FAQ' },
-    ],
   },
+  nav: [
+    { id: 'alasan', label: 'Alasan' },
+    { id: 'cicilan', label: 'Cicilan' },
+    { id: 'tipe', label: 'Tipe Rumah' },
+    { id: 'lokasi', label: 'Lokasi' },
+    { id: 'faq', label: 'FAQ' },
+  ],
+};
+
+export default {
+  meta,
 
   // ponytail: lokasi & alasan punya angka/tempat berbeda secara sengaja
   // (lihat docs design) — jangan disatukan jadi satu sumber turunan lagi.
@@ -121,13 +136,13 @@ export default {
   finalCta: {
     headline: 'Wujudkan Rumah Impian Anda Sekarang',
     chips: ['Cicilan Flat', 'One Gate System', 'Dekat KBP', 'Dekat KCIC'],
-    phoneDisplay: 'WhatsApp Marketing · 0857-9590-3747',
+    phoneDisplay: 'WhatsApp Marketing · ' + formatPhoneNumber(meta.whatsapp.number),
   },
 
   footer: {
     address: ['Jl. Banyakniaga Kaler No. 27', 'Kota Baru Parahyangan'],
     email: 'sanggarindahgroup@gmail.com',
     instagram: '@sanggar_indah_parahyangan',
-    phoneDisplay: 'WA: 0857-9590-3747',
+    phoneDisplay: 'WA: ' + formatPhoneNumber(meta.whatsapp.number),
   },
 };
