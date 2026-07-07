@@ -37,7 +37,7 @@ onUnmounted(() => ctx?.revert());
 </script>
 
 <template>
-  <section :id="id" ref="sectionRef" class="scroll-mt-16 px-4 py-20 sm:px-5 sm:py-24 lg:px-10 lg:py-32"
+  <section :id="id" ref="sectionRef" class="flex flex-col justify-center scroll-mt-16 px-4 py-20 sm:px-5 sm:py-24 lg:px-10 lg:py-32"
     :class="[bg, fullHeight ? 'min-h-dvh sm:min-h-0' : '']">
     <div class="mx-auto max-w-[1200px]">
       <slot />
