@@ -38,7 +38,7 @@ const meta = {
 const locations = [
   { id: 'ikea', time: '15', place: 'IKEA',                  sub: 'Pusat kawasan & bisnis Bandung Barat.' },
   { id: 'tol',  time: '20', place: 'Tol Padalarang',        sub: 'Akses cepat ke seluruh Bandung Raya.' },
-  { id: 'kcic', time: '30', place: 'Stasiun KCIC Whoosh',   sub: 'Kereta cepat menuju Jakarta.' },
+  { id: 'kcic', time: '25', place: 'Stasiun KCIC Whoosh',   sub: 'Kereta cepat menuju Jakarta.' },
 ];
 
 export default {
@@ -89,7 +89,7 @@ export default {
       tag: 'Favorit Keluarga', priceFrom: '200 Jt-an',
       gallery: ['/assets/images/2672-denah.webp', '/assets/images/2672-3d-ilustrasi.webp'],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }] },
-    { id: '31-72', name: 'Tipe 31/72', lb: '31', lt: '72', kt: '2', km: '1',
+    { id: '36-72', name: 'Tipe 36/72', lb: '36', lt: '72', kt: '2', km: '1',
       tag: 'Paling Lega', priceFrom: '300 Jt-an',
       gallery: ['/assets/images/3672-denah.webp', '/assets/images/3672-3d-ilustrasi.webp'],
       specsOverride: [] },
@@ -97,7 +97,7 @@ export default {
 
   oneGate: [
     { id: 'akses',    title: 'Akses Masuk Terkontrol',   desc: 'Satu pintu gerbang untuk lingkungan yang lebih aman dan tertata.' },
-    { id: 'aman',     title: 'Keamanan Setara Perumahan Komersial',      desc: ' Fasilitas one gate system dengan harga tetap terjangkau (subsidi).' },
+    { id: 'aman',     title: 'Keamanan Setara Perumahan Komersial',      desc: ' Fasilitas one gate system dengan harga tetap terjangkau.' },
     { id: 'privasi',  title: ' Anak Lebih Leluasa Bermain di Luar', desc: 'Lingkungan eksklusif membuat keluarga lebih tenang dan nyaman.' },
     { id: 'keluarga', title: 'Nilai Investasi Lebih Terjaga',    desc: ' Cluster bergerbang lebih diminati, harga jual tetap kompetitif.' },
   ],
@@ -121,9 +121,9 @@ export default {
   ],
 
   demand: [
-    { id: 'd1', stat: '15 mnt', title: 'Magnet Kota Baru Parahyangan', desc: 'Pertumbuhan hunian & bisnis di KBP menaikkan minat kawasan.' },
-    { id: 'd2', stat: 'Whoosh', title: 'Efek Kereta Cepat',            desc: 'Kehadiran KCIC mempercepat pertumbuhan nilai properti.' },
-    { id: 'd3', stat: '1 Jt-an',title: 'Subsidi Rasa Komersil',        desc: 'Harga subsidi dengan kualitas komersil, incaran keluarga muda.' },
+    { id: 'd1', stat: '15 mnt', title: 'Berdampingan dengan KBP', desc: 'Dekat kawasan hunian & bisnis yang terus tumbuh, mendongkrak nilai properti sekitarnya.' },
+    { id: 'd2', stat: 'Whoosh', title: 'Efek Kereta Cepat',            desc: 'Kehadiran KCIC Whoosh mempercepat kenaikan nilai properti di kawasan ini.' },
+    { id: 'd3', stat: '1 Jt-an',title: 'Rasa Komersil, Harga Subsidi',        desc: 'Cicilan mulai 1 jutaan dengan kualitas setara perumahan komersil.' },
   ],
 
   faqs: [
