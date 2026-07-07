@@ -5,7 +5,7 @@ const { content } = useContent();
 </script>
 
 <template>
-  <SectionShell bg="bg-gradient-to-br from-forest-deep to-[#143A20]">
+  <SectionShell bg="bg-gradient-to-br from-forest-deep to-[#143A20]" :full-height="false">
     <div class="flex flex-col items-center gap-6 text-center">
       <h2 class="font-sora text-3xl font-extrabold text-white sm:text-4xl">{{ content.finalCta.headline }}</h2>
       <div class="flex flex-wrap justify-center gap-2.5">

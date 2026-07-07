@@ -46,7 +46,7 @@ onUnmounted(() => ctx?.revert());
 
 <template>
   <section class="relative flex min-h-screen items-center overflow-hidden px-4 py-16 sm:px-5 lg:px-10">
-    <div class="absolute inset-0 bg-[url('/assets/images/hero.webp')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-[url('/assets/images/hero-mobile.webp')] bg-cover bg-center sm:bg-[url('/assets/images/hero.webp')]"></div>
     <div class="absolute inset-0 bg-forest-deep/90 lg:bg-forest-deep/50 lg:bg-gradient-to-r lg:from-forest-deep/70 lg:via-forest-deep/35 lg:to-forest-deep/0"></div>
 
     <div class="relative mx-auto grid w-full max-w-[1200px] gap-10 pb-8 lg:grid-cols-2 lg:items-center">

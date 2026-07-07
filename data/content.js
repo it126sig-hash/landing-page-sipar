@@ -35,6 +35,12 @@ const meta = {
   ],
 };
 
+const locations = [
+  { id: 'ikea', time: '15', place: 'IKEA',                  sub: 'Pusat kawasan & bisnis Bandung Barat.' },
+  { id: 'tol',  time: '20', place: 'Tol Padalarang',        sub: 'Akses cepat ke seluruh Bandung Raya.' },
+  { id: 'kcic', time: '30', place: 'Stasiun KCIC Whoosh',   sub: 'Kereta cepat menuju Jakarta.' },
+];
+
 export default {
   meta,
 
@@ -48,11 +54,7 @@ export default {
     { id: 'invest',  num: '5', title: 'Potensi Nilai Bertumbuh',      desc: 'Berada di kawasan berkembang dengan prospek kenaikan nilai.' },
   ],
 
-  locations: [
-    { id: 'ikea', time: '15', place: 'IKEA',                  sub: 'Pusat kawasan & bisnis Bandung Barat.' },
-    { id: 'tol',  time: '20', place: 'Tol Padalarang',        sub: 'Akses cepat ke seluruh Bandung Raya.' },
-    { id: 'kcic', time: '25', place: 'Stasiun KCIC Whoosh',   sub: 'Kereta cepat menuju Jakarta.' },
-  ],
+  locations,
 
   hero: {
     badge: 'Cluster Subsidi Pertama di Saguling',
@@ -62,8 +64,8 @@ export default {
     chips: [
       { id: 'gate', label: 'One Gate System' },
       { id: 'kbp', label: '15 mnt ke KBP' },
-      { id: 'tol', label: '20 mnt ke Tol' },
-      { id: 'kcic', label: '30 mnt ke KCIC' },
+      { id: 'tol', label: `${locations.find(loc => loc.id === 'tol')?.time || 20} mnt ke Tol` },
+      { id: 'kcic', label: `${locations.find(loc => loc.id === 'kcic')?.time || 30} mnt ke KCIC` },
     ],
   },
 
@@ -94,10 +96,10 @@ export default {
   ],
 
   oneGate: [
-    { id: 'akses',    title: 'Akses Masuk Terkontrol',   desc: 'Satu pintu gerbang dengan pengawasan terpusat.' },
-    { id: 'aman',     title: 'Keamanan Lebih Baik',      desc: 'Lingkungan terjaga 24 jam, lebih tenang.' },
-    { id: 'privasi',  title: 'Privasi Penghuni Terjaga', desc: 'Hanya warga & tamu terdaftar yang masuk.' },
-    { id: 'keluarga', title: 'Nyaman untuk Keluarga',    desc: 'Lingkungan eksklusif, aman untuk anak.' },
+    { id: 'akses',    title: 'Akses Masuk Terkontrol',   desc: 'Satu pintu gerbang untuk lingkungan yang lebih aman dan tertata.' },
+    { id: 'aman',     title: 'Keamanan Setara Perumahan Komersial',      desc: ' Fasilitas one gate system dengan harga tetap terjangkau (subsidi).' },
+    { id: 'privasi',  title: ' Anak Lebih Leluasa Bermain di Luar', desc: 'Lingkungan eksklusif membuat keluarga lebih tenang dan nyaman.' },
+    { id: 'keluarga', title: 'Nilai Investasi Lebih Terjaga',    desc: ' Cluster bergerbang lebih diminati, harga jual tetap kompetitif.' },
   ],
 
   installment: {

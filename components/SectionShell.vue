@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 defineProps({
   id: { type: String, default: null },
   bg: { type: String, default: 'bg-white' },
+  fullHeight: { type: Boolean, default: true },
 });
 
 // --- tunable reveal constants ---
@@ -36,7 +37,8 @@ onUnmounted(() => ctx?.revert());
 </script>
 
 <template>
-  <section :id="id" ref="sectionRef" class="scroll-mt-16 px-4 py-20 sm:px-5 sm:py-24 lg:px-10 lg:py-32" :class="bg">
+  <section :id="id" ref="sectionRef" class="scroll-mt-16 px-4 py-20 sm:px-5 sm:py-24 lg:px-10 lg:py-32"
+    :class="[bg, fullHeight ? 'min-h-dvh sm:min-h-0' : '']">
     <div class="mx-auto max-w-[1200px]">
       <slot />
     </div>
