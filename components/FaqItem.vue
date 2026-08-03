@@ -11,7 +11,7 @@ const emit = defineEmits(['toggle']);
     <button
       type="button"
       :aria-expanded="open"
-      class="flex w-full items-center justify-between px-5 py-[18px] text-left font-jakarta font-semibold text-forest-deep transition-colors hover:text-orange focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-forest-deep/10"
+      class="flex w-full items-center justify-between px-5 py-[18px] text-left font-body text-size-5 font-semibold text-forest-deep transition-colors hover:text-orange focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-forest-deep/10"
       @click="emit('toggle', faq.id)"
     >
       {{ faq.question }}
@@ -22,6 +22,6 @@ const emit = defineEmits(['toggle']);
         {{ open ? '−' : '+' }}
       </span>
     </button>
-    <p v-if="open" class="px-5 pb-5 font-jakarta text-sm leading-relaxed text-charcoal-gray">{{ faq.answer }}</p>
+    <p v-if="open" class="px-5 pb-5 font-body text-sm leading-relaxed text-charcoal-gray">{{ faq.answer }}</p>
   </div>
 </template>

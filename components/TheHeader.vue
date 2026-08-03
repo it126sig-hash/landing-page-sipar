@@ -1,35 +1,159 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useContent } from '~/composables/useContent';
 
 const { content } = useContent();
+const isSidebarOpen = ref(false);
+const isScrolled = ref(false);
+
+const checkScroll = () => {
+  if (typeof window === 'undefined') return;
+  isScrolled.value = window.scrollY > 100;
+};
+
+onMounted(() => {
+  checkScroll();
+  window.addEventListener('scroll', checkScroll, { passive: true });
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkScroll);
+});
+
+const closeSidebar = () => {
+  isSidebarOpen.value = false;
+};
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 border-b border-cream-light bg-off-white/90 backdrop-blur-md">
-    <div class="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-4 sm:px-5 lg:px-10">
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <div class="mx-auto flex h-16 w-full items-center justify-between px-4 md:px-20">
+      <!-- Logo Left -->
       <a href="#" class="flex items-center gap-3">
-        <img :src="content.meta.logo" :alt="`Logo ${content.meta.projectName}`" class="h-10 w-10 object-contain" />
+        <img :src="content.meta.logo" :alt="`Logo ${content.meta.projectName}`" class="h-12 w-12 object-contain" />
         <span class="flex flex-col leading-tight">
-          <strong class="font-sora text-base font-bold text-forest-deep">Sanggar Indah</strong>
-          <span class="font-sora text-[0.66rem] font-semibold tracking-[0.26em] text-orange">PARAHYANGAN</span>
+          <span class="font-body text-sm text-black">Sanggar Indah</span>
+          <span class="font-display text-xl font-semibold text-black tracking-tight">PARAHYANGAN</span>
         </span>
       </a>
 
-      <!-- ponytail: nav links disembunyikan di mobile (tanpa hamburger), tambah jika ada permintaan menu mobile -->
-      <nav class="hidden items-center gap-2 md:flex">
-        <a
-          v-for="item in content.meta.nav"
-          :key="item.id"
-          :href="`#${item.id}`"
-          class="rounded px-3 py-2 font-jakarta text-forest-medium transition-colors hover:text-forest-deep focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-forest-deep/10"
-        >
-          {{ item.label }}
+      <!-- Center Empty Space -->
+      <div class="flex-1"></div>
+
+      <!-- Navigation Right (Desktop) -->
+      <nav
+        class="hidden items-center gap-8 lg:flex transition-[margin] duration-500 ease-in-out"
+        :class="isScrolled ? 'mr-0' : 'mr-[154px]'"
+      >
+        <a href="#tentang" class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors">
+          Tentang Kami
+        </a>
+        <a href="#tipe" class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors">
+          Tipe Rumah
+        </a>
+        <a href="#lokasi" class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors">
+          Lokasi
         </a>
       </nav>
 
-      <WhatsAppButton message-key="konsultasi" variant="primary" class="!rounded-full !px-4 !py-2 text-sm">
-        <span class="h-2 w-2 rounded-full bg-white"></span>WhatsApp
-      </WhatsAppButton>
+      <!-- Hamburger Button (Mobile & Tablet) -->
+      <button
+        type="button"
+        class="flex items-center justify-center p-2 rounded-lg text-black hover:bg-gray-100 focus:outline-none lg:hidden ml-4"
+        aria-label="Buka Menu"
+        @click="isSidebarOpen = true"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
+
+    <!-- Mobile & Tablet Sidebar Drawer -->
+    <Teleport to="body">
+      <!-- Backdrop Overlay -->
+      <Transition
+        enter-active-class="transition-opacity duration-300 ease-linear"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition-opacity duration-300 ease-linear"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="isSidebarOpen"
+          class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden"
+          @click="closeSidebar"
+        ></div>
+      </Transition>
+
+      <!-- Drawer Content -->
+      <Transition
+        enter-active-class="transition-transform duration-300 ease-in-out"
+        enter-from-class="translate-x-full"
+        enter-to-class="translate-x-0"
+        leave-active-class="transition-transform duration-300 ease-in-out"
+        leave-from-class="translate-x-0"
+        leave-to-class="translate-x-full"
+      >
+        <div
+          v-if="isSidebarOpen"
+          class="fixed inset-y-0 right-0 z-50 w-72 max-w-[80vw] bg-white shadow-2xl flex flex-col justify-between p-6 lg:hidden"
+        >
+          <div>
+            <!-- Header Sidebar (Logo & Close Button) -->
+            <div class="flex items-center justify-between pb-6 border-b border-gray-100">
+              <span class="font-display text-lg font-bold text-[#142b20]">SIPAR</span>
+              <button
+                type="button"
+                class="p-2 text-gray-500 hover:text-black rounded-lg focus:outline-none"
+                aria-label="Tutup Menu"
+                @click="closeSidebar"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex flex-col gap-5 pt-6">
+              <a
+                href="#tentang"
+                class="font-body text-lg font-medium text-black hover:text-[#c9a84c] transition-colors"
+                @click="closeSidebar"
+              >
+                Tentang Kami
+              </a>
+              <a
+                href="#tipe"
+                class="font-body text-lg font-medium text-black hover:text-[#c9a84c] transition-colors"
+                @click="closeSidebar"
+              >
+                Tipe Rumah
+              </a>
+              <a
+                href="#lokasi"
+                class="font-body text-lg font-medium text-black hover:text-[#c9a84c] transition-colors"
+                @click="closeSidebar"
+              >
+                Lokasi
+              </a>
+            </nav>
+          </div>
+
+          <!-- Bottom Sidebar Content -->
+          <div class="pt-6 border-t border-gray-100">
+            <WhatsAppButton
+              message-key="konsultasi"
+              class="w-full justify-center !bg-[#142b20] !text-white hover:!bg-[#0f1f17] !py-3 !text-base !rounded-lg"
+              @click="closeSidebar"
+            >
+              Hubungi WhatsApp
+            </WhatsAppButton>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </header>
 </template>

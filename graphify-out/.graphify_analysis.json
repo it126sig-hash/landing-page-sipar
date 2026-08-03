@@ -1,0 +1,507 @@
+{
+  "communities": {
+    "0": [
+      "advantagessection_component",
+      "content_advantages",
+      "content_data",
+      "content_faqs",
+      "content_finalcta",
+      "content_footer",
+      "content_hero",
+      "content_installment",
+      "content_locations",
+      "content_onegate",
+      "content_stats",
+      "faqsection_accordion_state",
+      "faqsection_component",
+      "featurecard_component",
+      "finalctasection_component",
+      "herosection_component",
+      "img_hero",
+      "img_hero_mobile",
+      "img_signgate",
+      "indexvue_page",
+      "installmentsection_component",
+      "investsection_component",
+      "locationsection_component",
+      "onegatessection_component",
+      "rationale_content_seam",
+      "reasonscardssection_component",
+      "thefooter_component",
+      "usecontent_composable"
+    ],
+    "1": [
+      "basebutton_component",
+      "basebutton_variants",
+      "content_meta",
+      "design_buttons",
+      "design_colors",
+      "design_md",
+      "design_typography",
+      "img_design_png",
+      "img_logo",
+      "tailwindconfig_colors",
+      "tailwindconfig_floatpulse",
+      "tailwindconfig_fonts",
+      "tailwindconfig_tokens",
+      "theheader_component",
+      "usecontent_wa",
+      "whatsappbutton_component",
+      "whatsappfloatingbutton_component"
+    ],
+    "2": [
+      "landing_page_sipar_backup_package_dependencies",
+      "landing_page_sipar_backup_package_dependencies_gsap",
+      "landing_page_sipar_backup_package_dependencies_nuxt",
+      "landing_page_sipar_backup_package_dependencies_nuxtjs_tailwindcss",
+      "landing_page_sipar_backup_package_dependencies_vue",
+      "landing_page_sipar_backup_package_dependencies_vue_router",
+      "landing_page_sipar_backup_package_name",
+      "landing_page_sipar_backup_package_private",
+      "landing_page_sipar_backup_package_scripts",
+      "landing_page_sipar_backup_package_scripts_build",
+      "landing_page_sipar_backup_package_scripts_dev",
+      "landing_page_sipar_backup_package_scripts_generate",
+      "landing_page_sipar_backup_package_scripts_postinstall",
+      "landing_page_sipar_backup_package_scripts_preview",
+      "landing_page_sipar_backup_package_type",
+      "package_json"
+    ],
+    "3": [
+      "deploy_workflow",
+      "fase1_setup_doc",
+      "fase2_konten_doc",
+      "fase3_komponen_doc",
+      "fase4_seo_doc",
+      "fase5_deploy_doc",
+      "fase6_qa_doc",
+      "nuxtconfig_baseurl",
+      "prd_analytics_requirement",
+      "prd_content_schema",
+      "prd_doc",
+      "prd_phase2_readiness",
+      "prd_ssg_decision",
+      "progress_doc",
+      "usecontent_withbase"
+    ],
+    "4": [
+      "aboutsection_carousel",
+      "aboutsection_component",
+      "advantagessection_gsap",
+      "content_about",
+      "gsap_plugin",
+      "gsap_scrolltrigger",
+      "loadingscreen_component",
+      "loadingscreen_fadeout",
+      "reasonssection_component",
+      "reasonssection_gsap",
+      "sectionheading_component",
+      "sectionshell_component",
+      "sectionshell_scrollreveal"
+    ],
+    "5": [
+      "badge_component",
+      "content_defaultspecs",
+      "housetypecard_component",
+      "housetypemodal_component",
+      "housetypemodal_keyboard",
+      "housetypessection_component",
+      "housetypessection_modal_state",
+      "productssection_component",
+      "productssection_modal_state",
+      "usecontent_mergeSpecs",
+      "uselightbox_composable",
+      "uselightbox_state"
+    ],
+    "6": [
+      "content_housetypes",
+      "img_2260_3d",
+      "img_2260_denah",
+      "img_2672_3d",
+      "img_2672_denah",
+      "img_3672_3d",
+      "img_3672_denah",
+      "usecontent_housetypes"
+    ],
+    "7": [
+      "appvue_root",
+      "indexvue_seo",
+      "lightbox_component",
+      "nuxtconfig_config",
+      "nuxtconfig_siteurl",
+      "nuxtconfig_tailwindcss_module"
+    ],
+    "8": [
+      "data_content_formatphonenumber",
+      "data_content_js",
+      "data_content_locations",
+      "data_content_meta"
+    ],
+    "9": [
+      "components_aboutsection_clone",
+      "components_aboutsection_items",
+      "components_aboutsection_vue"
+    ],
+    "10": [
+      "components_housetypessection_closemodal",
+      "components_housetypessection_opentype",
+      "components_housetypessection_vue"
+    ],
+    "11": [
+      "components_productssection_closemodal",
+      "components_productssection_opentype",
+      "components_productssection_vue"
+    ],
+    "12": [
+      "composables_usecontent_js",
+      "composables_usecontent_mergespecs",
+      "composables_usecontent_usecontent"
+    ],
+    "13": [
+      "landing_page_sipar_backup_tsconfig_files",
+      "landing_page_sipar_backup_tsconfig_references",
+      "tsconfig_json"
+    ],
+    "14": [
+      "components_loadingscreen_fadeout",
+      "components_loadingscreen_vue"
+    ],
+    "15": [
+      "composables_uselightbox_js",
+      "composables_uselightbox_uselightbox"
+    ],
+    "16": [
+      "kiro_settings_mcp_json",
+      "settings_mcp_mcpservers"
+    ],
+    "17": [
+      "app_vue"
+    ],
+    "18": [
+      "nuxt_config_ts"
+    ],
+    "19": [
+      "tailwind_config_js"
+    ],
+    "20": [
+      "components_advantagessection_vue"
+    ],
+    "21": [
+      "components_badge_vue"
+    ],
+    "22": [
+      "components_basebutton_vue"
+    ],
+    "23": [
+      "components_chip_vue"
+    ],
+    "24": [
+      "components_demandsection_vue"
+    ],
+    "25": [
+      "components_faqitem_vue"
+    ],
+    "26": [
+      "components_faqsection_vue"
+    ],
+    "27": [
+      "components_featurecard_vue"
+    ],
+    "28": [
+      "components_finalctasection_vue"
+    ],
+    "29": [
+      "components_herosection_vue"
+    ],
+    "30": [
+      "components_housetypecard_vue"
+    ],
+    "31": [
+      "components_housetypemodal_vue"
+    ],
+    "32": [
+      "components_installmentsection_vue"
+    ],
+    "33": [
+      "components_investsection_vue"
+    ],
+    "34": [
+      "components_lightbox_vue"
+    ],
+    "35": [
+      "components_locationdetailsection_vue"
+    ],
+    "36": [
+      "components_locationsection_vue"
+    ],
+    "37": [
+      "components_onegatesection_vue"
+    ],
+    "38": [
+      "components_reasonscardssection_vue"
+    ],
+    "39": [
+      "components_reasonssection_vue"
+    ],
+    "40": [
+      "components_sectionheading_vue"
+    ],
+    "41": [
+      "components_sectionshell_vue"
+    ],
+    "42": [
+      "components_specrow_vue"
+    ],
+    "43": [
+      "components_thefooter_vue"
+    ],
+    "44": [
+      "components_theheader_vue"
+    ],
+    "45": [
+      "components_whatsappbutton_vue"
+    ],
+    "46": [
+      "components_whatsappfloatingbutton_vue"
+    ],
+    "47": [
+      "pages_index_vue"
+    ],
+    "48": [
+      "plugins_gsap_client_js"
+    ],
+    "49": [
+      "packagejson_deps"
+    ],
+    "50": [
+      "chip_component"
+    ],
+    "51": [
+      "specrow_component"
+    ],
+    "52": [
+      "faqitem_component"
+    ],
+    "53": [
+      "locationdetailsection_component"
+    ],
+    "54": [
+      "demandsection_component"
+    ],
+    "55": [
+      "design_html"
+    ],
+    "56": [
+      "readme_doc"
+    ],
+    "57": [
+      "robots_txt"
+    ]
+  },
+  "cohesion": {
+    "0": 0.10317460317460317,
+    "1": 0.13970588235294118,
+    "2": 0.125,
+    "3": 0.13333333333333333,
+    "4": 0.15384615384615385,
+    "5": 0.21212121212121213,
+    "6": 0.35714285714285715,
+    "7": 0.3333333333333333,
+    "8": 0.5,
+    "9": 0.6666666666666666,
+    "10": 0.6666666666666666,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 0.6666666666666666,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0
+  },
+  "gods": [
+    {
+      "id": "usecontent_composable",
+      "label": "useContent Composable",
+      "degree": 22
+    },
+    {
+      "id": "content_data",
+      "label": "Content Data Module",
+      "degree": 15
+    },
+    {
+      "id": "indexvue_page",
+      "label": "Index Page",
+      "degree": 10
+    },
+    {
+      "id": "content_housetypes",
+      "label": "House Types Data",
+      "degree": 9
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts",
+      "label": "scripts",
+      "degree": 6
+    },
+    {
+      "id": "productssection_component",
+      "label": "ProductsSection Component",
+      "degree": 6
+    },
+    {
+      "id": "housetypemodal_component",
+      "label": "HouseTypeModal Component",
+      "degree": 6
+    },
+    {
+      "id": "progress_doc",
+      "label": "Project Progress Tracker",
+      "degree": 6
+    },
+    {
+      "id": "uselightbox_composable",
+      "label": "useLightbox Composable",
+      "degree": 5
+    },
+    {
+      "id": "herosection_component",
+      "label": "HeroSection Component",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Full Page Design Mockup (complete landing page wireframe)",
+      "target": "PRD \u2014 Landing Page SIPAR",
+      "source_files": [
+        "docs/design/DESIGN.png",
+        "docs/PRD_Landing_Sanggar_Indah_Parahyangan.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); bridges separate communities; semantically similar concepts with no structural link; peripheral node `Full Page Design Mockup (complete landing page wireframe)` unexpectedly reaches hub `PRD \u2014 Landing Page SIPAR`"
+    },
+    {
+      "source": "Phase 2 DB/API Readiness Strategy",
+      "target": "useContent Composable",
+      "source_files": [
+        "docs/PRD_Landing_Sanggar_Indah_Parahyangan.md",
+        "composables/useContent.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; bridges separate communities; peripheral node `Phase 2 DB/API Readiness Strategy` unexpectedly reaches hub `useContent Composable`"
+    },
+    {
+      "source": "Content Schema (\u00a73.2)",
+      "target": "Content Data Module",
+      "source_files": [
+        "docs/PRD_Landing_Sanggar_Indah_Parahyangan.md",
+        "data/content.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; bridges separate communities; peripheral node `Content Schema (\u00a73.2)` unexpectedly reaches hub `Content Data Module`"
+    },
+    {
+      "source": "Hero Image Mobile (SIPAR signage, vertical crop)",
+      "target": "HeroSection Component",
+      "source_files": [
+        "public/assets/images/hero-mobile.webp",
+        "components/HeroSection.vue"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 image); connects across different repos/directories; peripheral node `Hero Image Mobile (SIPAR signage, vertical crop)` unexpectedly reaches hub `HeroSection Component`"
+    },
+    {
+      "source": "Content-Driven Architecture (seam pattern)",
+      "target": "useContent Composable",
+      "source_files": [
+        "docs/PRD_Landing_Sanggar_Indah_Parahyangan.md",
+        "composables/useContent.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "why": "crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `Content-Driven Architecture (seam pattern)` unexpectedly reaches hub `useContent Composable`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `useContent Composable` connect `Community 0` to `Community 1`, `Community 3`, `Community 4`, `Community 5`, `Community 6`?",
+      "why": "High betweenness centrality (0.165) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Content Data Module` connect `Community 0` to `Community 1`, `Community 3`, `Community 4`, `Community 5`, `Community 6`?",
+      "why": "High betweenness centrality (0.073) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `PRD \u2014 Landing Page SIPAR` connect `Community 3` to `Community 1`?",
+      "why": "High betweenness centrality (0.067) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `type`, `private` to the rest of the system?",
+      "why": "50 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10317460317460317 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13970588235294118 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

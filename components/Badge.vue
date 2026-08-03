@@ -12,7 +12,7 @@ const variants = {
 
 <template>
   <span
-    class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-jakarta font-semibold"
+    class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-body font-semibold"
     :class="variants[variant]"
   >
     {{ label }}

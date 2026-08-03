@@ -11,7 +11,6 @@ useSeoMeta({
   ogDescription: description,
   ogType: 'website',
   ogUrl: siteUrl,
-  // ponytail: pakai logo sebagai og:image sementara, ganti gambar 1200x630 khusus kalau preview WA/Facebook kurang bagus
   ogImage: siteUrl + content.meta.logo,
   twitterCard: 'summary_large_image',
   twitterTitle: title,
@@ -27,14 +26,13 @@ useHead({
   <div>
     <TheHeader />
     <main>
-      <HeroSection />
-      <ReasonsSection />
-      <InstallmentSection />
-      <OneGateSection />
-      <HouseTypesSection />
-      <LocationSection />
-      <InvestSection />
-      <DemandSection />
+      <!-- Hero + About Section Container: 1 screen on mobile/tablet (< lg), standard full hero on desktop (lg:) -->
+      <div class="h-[calc(100vh-64px)] min-h-[580px] flex flex-col justify-between overflow-hidden lg:h-auto lg:min-h-0 lg:block lg:overflow-visible">
+        <HeroSection class="flex-1 lg:flex-none" />
+        <AboutSection class="flex-shrink-0 lg:flex-none" />
+      </div>
+      <ProductsSection />
+      <ReasonsCardsSection />
       <FaqSection />
       <FinalCtaSection />
     </main>

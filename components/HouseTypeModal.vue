@@ -63,8 +63,8 @@ watch(() => props.type, (t) => {
 
           <div class="flex flex-wrap items-start justify-between gap-3 pr-12">
             <div>
-              <p class="font-jakarta text-xs font-bold uppercase tracking-wide text-orange">Detail Unit</p>
-              <h3 class="mt-1 font-sora text-2xl font-extrabold text-forest-deep sm:text-3xl">{{ type.name }}</h3>
+              <p class="font-body text-xs font-bold uppercase tracking-wide text-orange">Detail Unit</p>
+              <h3 class="mt-1 font-display text-size-3 text-forest-deep sm:text-size-2">{{ type.name }}</h3>
             </div>
             <div class="flex flex-wrap gap-2">
               <Badge :label="`LB ${type.lb} m²`" />
@@ -82,11 +82,11 @@ watch(() => props.type, (t) => {
           </div>
 
           <div class="mt-6">
-            <h4 class="font-sora text-base font-bold text-forest-deep">Spesifikasi Teknis</h4>
+            <h4 class="font-display text-size-4 text-forest-deep">Spesifikasi Teknis</h4>
             <div class="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
               <div v-for="spec in type.specs" :key="spec.label" class="rounded-[10px] border border-cream-light bg-white px-3 py-[9px]">
-                <p class="font-jakarta text-xs uppercase tracking-wide text-charcoal-gray">{{ spec.label }}</p>
-                <p class="font-jakarta text-sm font-bold text-forest-deep">{{ spec.value }}</p>
+                <p class="font-body text-xs uppercase tracking-wide text-charcoal-gray">{{ spec.label }}</p>
+                <p class="font-body text-sm font-bold text-forest-deep">{{ spec.value }}</p>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@ watch(() => props.type, (t) => {
           <WhatsAppButton message-key="type" :vars="{ type: type.name }" variant="primary" class="mt-6 w-full sm:w-auto">
             Tanya Unit {{ type.name }} →
           </WhatsAppButton>
-          <p class="mt-4 font-jakarta text-xs text-charcoal-gray">
+          <p class="mt-4 font-body text-xs text-charcoal-gray">
             *Konsumen tidak dapat merubah/merenovasi bangunan sebelum proses serah terima unit.
           </p>
         </div>

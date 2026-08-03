@@ -15,7 +15,7 @@ const variants = {
   <component
     :is="href ? 'a' : 'button'"
     :href="href"
-    class="inline-flex items-center justify-center gap-2 rounded-btn px-5 py-3 font-jakarta font-semibold text-sm transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-forest-deep/10"
+    class="inline-flex items-center justify-center gap-2 rounded-btn px-5 py-3 font-body font-semibold text-sm transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-forest-deep/10"
     :class="variants[variant]"
   >
     <slot />

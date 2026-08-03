@@ -1,0 +1,52 @@
+{
+  "nodes": [
+    {"id": "indexvue_page", "label": "Index Page", "file_type": "code", "source_file": "pages/index.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "indexvue_seo", "label": "SEO Meta Setup", "file_type": "code", "source_file": "pages/index.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "theheader_component", "label": "TheHeader Component", "file_type": "code", "source_file": "components/TheHeader.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "thefooter_component", "label": "TheFooter Component", "file_type": "code", "source_file": "components/TheFooter.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "sectionshell_component", "label": "SectionShell Component", "file_type": "code", "source_file": "components/SectionShell.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "sectionshell_scrollreveal", "label": "SectionShell Scroll Reveal Animation", "file_type": "code", "source_file": "components/SectionShell.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "sectionheading_component", "label": "SectionHeading Component", "file_type": "code", "source_file": "components/SectionHeading.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "basebutton_component", "label": "BaseButton Component", "file_type": "code", "source_file": "components/BaseButton.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "basebutton_variants", "label": "BaseButton Variants (primary/secondary/ghost)", "file_type": "code", "source_file": "components/BaseButton.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "whatsappbutton_component", "label": "WhatsAppButton Component", "file_type": "code", "source_file": "components/WhatsAppButton.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "whatsappfloatingbutton_component", "label": "WhatsApp Floating Button", "file_type": "code", "source_file": "components/WhatsAppFloatingButton.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "badge_component", "label": "Badge Component", "file_type": "code", "source_file": "components/Badge.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "chip_component", "label": "Chip Component", "file_type": "code", "source_file": "components/Chip.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "featurecard_component", "label": "FeatureCard Component", "file_type": "code", "source_file": "components/FeatureCard.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "specrow_component", "label": "SpecRow Component", "file_type": "code", "source_file": "components/SpecRow.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "faqitem_component", "label": "FaqItem Component", "file_type": "code", "source_file": "components/FaqItem.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "loadingscreen_component", "label": "LoadingScreen Component", "file_type": "code", "source_file": "components/LoadingScreen.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "loadingscreen_fadeout", "label": "Loading Screen GSAP FadeOut", "file_type": "code", "source_file": "components/LoadingScreen.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null},
+    {"id": "lightbox_component", "label": "Lightbox Component", "file_type": "code", "source_file": "components/Lightbox.vue", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}
+  ],
+  "edges": [
+    {"source": "indexvue_page", "target": "indexvue_seo", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "pages/index.vue", "source_location": null, "weight": 1.0},
+    {"source": "indexvue_seo", "target": "nuxtconfig_siteurl", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "pages/index.vue", "source_location": null, "weight": 1.0},
+    {"source": "indexvue_page", "target": "usecontent_composable", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "pages/index.vue", "source_location": null, "weight": 1.0},
+    {"source": "theheader_component", "target": "usecontent_composable", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/TheHeader.vue", "source_location": null, "weight": 1.0},
+    {"source": "theheader_component", "target": "whatsappbutton_component", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/TheHeader.vue", "source_location": null, "weight": 1.0},
+    {"source": "thefooter_component", "target": "usecontent_composable", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/TheFooter.vue", "source_location": null, "weight": 1.0},
+    {"source": "sectionshell_component", "target": "sectionshell_scrollreveal", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/SectionShell.vue", "source_location": null, "weight": 1.0},
+    {"source": "sectionshell_scrollreveal", "target": "gsap_scrolltrigger", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/SectionShell.vue", "source_location": null, "weight": 1.0},
+    {"source": "whatsappbutton_component", "target": "basebutton_component", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/WhatsAppButton.vue", "source_location": null, "weight": 1.0},
+    {"source": "whatsappbutton_component", "target": "usecontent_wa", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/WhatsAppButton.vue", "source_location": null, "weight": 1.0},
+    {"source": "whatsappfloatingbutton_component", "target": "usecontent_wa", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/WhatsAppFloatingButton.vue", "source_location": null, "weight": 1.0},
+    {"source": "whatsappfloatingbutton_component", "target": "tailwindconfig_floatpulse", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/WhatsAppFloatingButton.vue", "source_location": null, "weight": 1.0},
+    {"source": "basebutton_component", "target": "basebutton_variants", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/BaseButton.vue", "source_location": null, "weight": 1.0},
+    {"source": "basebutton_variants", "target": "tailwindconfig_colors", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/BaseButton.vue", "source_location": null, "weight": 1.0},
+    {"source": "loadingscreen_component", "target": "loadingscreen_fadeout", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/LoadingScreen.vue", "source_location": null, "weight": 1.0},
+    {"source": "loadingscreen_fadeout", "target": "gsap_plugin", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/LoadingScreen.vue", "source_location": null, "weight": 1.0},
+    {"source": "loadingscreen_component", "target": "usecontent_composable", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/LoadingScreen.vue", "source_location": null, "weight": 1.0},
+    {"source": "lightbox_component", "target": "uselightbox_composable", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "components/Lightbox.vue", "source_location": null, "weight": 1.0},
+    {"source": "appvue_root", "target": "loadingscreen_component", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "app.vue", "source_location": null, "weight": 1.0},
+    {"source": "appvue_root", "target": "lightbox_component", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "app.vue", "source_location": null, "weight": 1.0},
+    {"source": "appvue_root", "target": "whatsappfloatingbutton_component", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "app.vue", "source_location": null, "weight": 1.0},
+    {"source": "sectionshell_component", "target": "sectionheading_component", "relation": "semantically_similar_to", "confidence": "INFERRED", "confidence_score": 0.7, "source_file": "components/SectionShell.vue", "source_location": null, "weight": 0.7}
+  ],
+  "hyperedges": [
+    {"id": "global_layout_shell", "label": "Global Layout Shell (LoadingScreen + Page + WhatsApp Float + Lightbox)", "nodes": ["appvue_root", "loadingscreen_component", "lightbox_component", "whatsappfloatingbutton_component"], "relation": "form", "confidence": "EXTRACTED", "confidence_score": 0.95, "source_file": "app.vue"}
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

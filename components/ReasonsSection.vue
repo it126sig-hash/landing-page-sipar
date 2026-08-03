@@ -46,14 +46,16 @@ onUnmounted(() => ctx?.revert());
     <SectionHeading class="mx-auto text-center" eyebrow="Kenapa SIPAR"
       title="5 Alasan Memilih <br /> Sanggar Indah Parahyangan"
       subtitle="Lokasi strategis, lingkungan aman, dan nilai investasi yang terus bertumbuh." />
-    <div ref="listRef" class="divide-y divide-cream-light rounded-[18px] border border-cream-light bg-off-white sm:hidden">
+    <div ref="listRef"
+      class="divide-y divide-cream-light rounded-[18px] border border-cream-light bg-off-white sm:hidden">
       <div v-for="r in content.reasons" :key="r.id" class="flex items-start gap-4 p-[18px_20px]">
-        <div class="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] bg-mint-pale font-sora text-base font-extrabold text-forest-deep">
+        <div
+          class="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] bg-mint-pale font-display text-base font-extrabold text-forest-deep">
           {{ r.num }}
         </div>
         <div>
-          <h3 class="font-sora text-base font-bold text-forest-deep">{{ r.title }}</h3>
-          <p class="mt-1 font-jakarta text-sm text-charcoal-gray">{{ r.desc }}</p>
+          <h3 class="font-display text-base font-bold text-forest-deep">{{ r.title }}</h3>
+          <p class="mt-1 font-body text-sm text-charcoal-gray">{{ r.desc }}</p>
         </div>
       </div>
     </div>

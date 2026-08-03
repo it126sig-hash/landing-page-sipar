@@ -14,7 +14,7 @@ const { content } = useContent();
     </div>
 
     <div class="mt-10">
-      <h3 class="font-sora text-lg font-bold text-forest-deep">Fasilitas Sekitar</h3>
+      <h3 class="font-display text-lg font-bold text-forest-deep">Fasilitas Sekitar</h3>
       <div class="mt-3 flex flex-wrap gap-2 mx-auto text-center">
         <Chip v-for="(f, i) in content.facilities" :key="i" :label="f" />
       </div>

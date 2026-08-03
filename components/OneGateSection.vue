@@ -16,8 +16,8 @@ const { openLightbox } = useLightbox();
             <span
               class="mt-0.5 flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-lg bg-mint-pale text-xs font-extrabold text-forest-deep">✓</span>
             <div>
-              <div class="font-jakarta text-base font-bold text-forest-deep">{{ g.title }}</div>
-              <div class="font-jakarta text-sm text-charcoal-gray">{{ g.desc }}</div>
+              <div class="font-body text-base font-bold text-forest-deep">{{ g.title }}</div>
+              <div class="font-body text-sm text-charcoal-gray">{{ g.desc }}</div>
             </div>
           </div>
         </div>

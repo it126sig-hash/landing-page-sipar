@@ -1,0 +1,878 @@
+{
+  "nodes": [
+    {
+      "id": "app_vue",
+      "label": "app.vue",
+      "file_type": "code",
+      "source_file": "app.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "nuxt_config_ts",
+      "label": "nuxt.config.ts",
+      "file_type": "code",
+      "source_file": "nuxt.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "package_json",
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_name",
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_type",
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_private",
+      "label": "private",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts",
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts_build",
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts_dev",
+      "label": "dev",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts_generate",
+      "label": "generate",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts_preview",
+      "label": "preview",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_scripts_postinstall",
+      "label": "postinstall",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_dependencies",
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_dependencies_nuxtjs_tailwindcss",
+      "label": "@nuxtjs/tailwindcss",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_dependencies_gsap",
+      "label": "gsap",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_dependencies_nuxt",
+      "label": "nuxt",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_dependencies_vue",
+      "label": "vue",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L16"
+    },
+    {
+      "id": "landing_page_sipar_backup_package_dependencies_vue_router",
+      "label": "vue-router",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17"
+    },
+    {
+      "id": "tailwind_config_js",
+      "label": "tailwind.config.js",
+      "file_type": "code",
+      "source_file": "tailwind.config.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tsconfig_json",
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "landing_page_sipar_backup_tsconfig_files",
+      "label": "files",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "landing_page_sipar_backup_tsconfig_references",
+      "label": "references",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4"
+    },
+    {
+      "id": "kiro_settings_mcp_json",
+      "label": "mcp.json",
+      "file_type": "code",
+      "source_file": ".kiro\\settings\\mcp.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "settings_mcp_mcpservers",
+      "label": "mcpServers",
+      "file_type": "code",
+      "source_file": ".kiro\\settings\\mcp.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "components_aboutsection_vue",
+      "label": "AboutSection.vue",
+      "file_type": "code",
+      "source_file": "components\\AboutSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_aboutsection_items",
+      "label": "items",
+      "file_type": "code",
+      "source_file": "components\\AboutSection.vue",
+      "source_location": "L16"
+    },
+    {
+      "id": "components_aboutsection_clone",
+      "label": "clone",
+      "file_type": "code",
+      "source_file": "components\\AboutSection.vue",
+      "source_location": "L21"
+    },
+    {
+      "id": "components_advantagessection_vue",
+      "label": "AdvantagesSection.vue",
+      "file_type": "code",
+      "source_file": "components\\AdvantagesSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_badge_vue",
+      "label": "Badge.vue",
+      "file_type": "code",
+      "source_file": "components\\Badge.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_basebutton_vue",
+      "label": "BaseButton.vue",
+      "file_type": "code",
+      "source_file": "components\\BaseButton.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_chip_vue",
+      "label": "Chip.vue",
+      "file_type": "code",
+      "source_file": "components\\Chip.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_demandsection_vue",
+      "label": "DemandSection.vue",
+      "file_type": "code",
+      "source_file": "components\\DemandSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_faqitem_vue",
+      "label": "FaqItem.vue",
+      "file_type": "code",
+      "source_file": "components\\FaqItem.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_faqsection_vue",
+      "label": "FaqSection.vue",
+      "file_type": "code",
+      "source_file": "components\\FaqSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_featurecard_vue",
+      "label": "FeatureCard.vue",
+      "file_type": "code",
+      "source_file": "components\\FeatureCard.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_finalctasection_vue",
+      "label": "FinalCtaSection.vue",
+      "file_type": "code",
+      "source_file": "components\\FinalCtaSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_herosection_vue",
+      "label": "HeroSection.vue",
+      "file_type": "code",
+      "source_file": "components\\HeroSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_housetypecard_vue",
+      "label": "HouseTypeCard.vue",
+      "file_type": "code",
+      "source_file": "components\\HouseTypeCard.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_housetypemodal_vue",
+      "label": "HouseTypeModal.vue",
+      "file_type": "code",
+      "source_file": "components\\HouseTypeModal.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_housetypessection_vue",
+      "label": "HouseTypesSection.vue",
+      "file_type": "code",
+      "source_file": "components\\HouseTypesSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_housetypessection_opentype",
+      "label": "openType()",
+      "file_type": "code",
+      "source_file": "components\\HouseTypesSection.vue",
+      "source_location": "L12"
+    },
+    {
+      "id": "components_housetypessection_closemodal",
+      "label": "closeModal()",
+      "file_type": "code",
+      "source_file": "components\\HouseTypesSection.vue",
+      "source_location": "L17"
+    },
+    {
+      "id": "components_installmentsection_vue",
+      "label": "InstallmentSection.vue",
+      "file_type": "code",
+      "source_file": "components\\InstallmentSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_investsection_vue",
+      "label": "InvestSection.vue",
+      "file_type": "code",
+      "source_file": "components\\InvestSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_lightbox_vue",
+      "label": "Lightbox.vue",
+      "file_type": "code",
+      "source_file": "components\\Lightbox.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_loadingscreen_vue",
+      "label": "LoadingScreen.vue",
+      "file_type": "code",
+      "source_file": "components\\LoadingScreen.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_loadingscreen_fadeout",
+      "label": "fadeOut()",
+      "file_type": "code",
+      "source_file": "components\\LoadingScreen.vue",
+      "source_location": "L13"
+    },
+    {
+      "id": "components_locationdetailsection_vue",
+      "label": "LocationDetailSection.vue",
+      "file_type": "code",
+      "source_file": "components\\LocationDetailSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_locationsection_vue",
+      "label": "LocationSection.vue",
+      "file_type": "code",
+      "source_file": "components\\LocationSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_onegatesection_vue",
+      "label": "OneGateSection.vue",
+      "file_type": "code",
+      "source_file": "components\\OneGateSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_productssection_vue",
+      "label": "ProductsSection.vue",
+      "file_type": "code",
+      "source_file": "components\\ProductsSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_productssection_opentype",
+      "label": "openType()",
+      "file_type": "code",
+      "source_file": "components\\ProductsSection.vue",
+      "source_location": "L11"
+    },
+    {
+      "id": "components_productssection_closemodal",
+      "label": "closeModal()",
+      "file_type": "code",
+      "source_file": "components\\ProductsSection.vue",
+      "source_location": "L16"
+    },
+    {
+      "id": "components_reasonscardssection_vue",
+      "label": "ReasonsCardsSection.vue",
+      "file_type": "code",
+      "source_file": "components\\ReasonsCardsSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_reasonssection_vue",
+      "label": "ReasonsSection.vue",
+      "file_type": "code",
+      "source_file": "components\\ReasonsSection.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_sectionheading_vue",
+      "label": "SectionHeading.vue",
+      "file_type": "code",
+      "source_file": "components\\SectionHeading.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_sectionshell_vue",
+      "label": "SectionShell.vue",
+      "file_type": "code",
+      "source_file": "components\\SectionShell.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_specrow_vue",
+      "label": "SpecRow.vue",
+      "file_type": "code",
+      "source_file": "components\\SpecRow.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_thefooter_vue",
+      "label": "TheFooter.vue",
+      "file_type": "code",
+      "source_file": "components\\TheFooter.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_theheader_vue",
+      "label": "TheHeader.vue",
+      "file_type": "code",
+      "source_file": "components\\TheHeader.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_whatsappbutton_vue",
+      "label": "WhatsAppButton.vue",
+      "file_type": "code",
+      "source_file": "components\\WhatsAppButton.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_whatsappfloatingbutton_vue",
+      "label": "WhatsAppFloatingButton.vue",
+      "file_type": "code",
+      "source_file": "components\\WhatsAppFloatingButton.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "composables_usecontent_js",
+      "label": "useContent.js",
+      "file_type": "code",
+      "source_file": "composables\\useContent.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "composables_usecontent_mergespecs",
+      "label": "mergeSpecs()",
+      "file_type": "code",
+      "source_file": "composables\\useContent.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "composables_usecontent_usecontent",
+      "label": "useContent()",
+      "file_type": "code",
+      "source_file": "composables\\useContent.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "composables_uselightbox_js",
+      "label": "useLightbox.js",
+      "file_type": "code",
+      "source_file": "composables\\useLightbox.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "composables_uselightbox_uselightbox",
+      "label": "useLightbox()",
+      "file_type": "code",
+      "source_file": "composables\\useLightbox.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "data_content_js",
+      "label": "content.js",
+      "file_type": "code",
+      "source_file": "data\\content.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "data_content_formatphonenumber",
+      "label": "formatPhoneNumber()",
+      "file_type": "code",
+      "source_file": "data\\content.js",
+      "source_location": "L2"
+    },
+    {
+      "id": "data_content_meta",
+      "label": "meta",
+      "file_type": "code",
+      "source_file": "data\\content.js",
+      "source_location": "L14"
+    },
+    {
+      "id": "data_content_locations",
+      "label": "locations",
+      "file_type": "code",
+      "source_file": "data\\content.js",
+      "source_location": "L37"
+    },
+    {
+      "id": "pages_index_vue",
+      "label": "index.vue",
+      "file_type": "code",
+      "source_file": "pages\\index.vue",
+      "source_location": "L1"
+    },
+    {
+      "id": "plugins_gsap_client_js",
+      "label": "gsap.client.js",
+      "file_type": "code",
+      "source_file": "plugins\\gsap.client.js",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "package_json",
+      "target": "landing_page_sipar_backup_package_name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "landing_page_sipar_backup_package_type",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "landing_page_sipar_backup_package_private",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "landing_page_sipar_backup_package_scripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_scripts",
+      "target": "landing_page_sipar_backup_package_scripts_build",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_scripts",
+      "target": "landing_page_sipar_backup_package_scripts_dev",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_scripts",
+      "target": "landing_page_sipar_backup_package_scripts_generate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_scripts",
+      "target": "landing_page_sipar_backup_package_scripts_preview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_scripts",
+      "target": "landing_page_sipar_backup_package_scripts_postinstall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "landing_page_sipar_backup_package_dependencies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies",
+      "target": "landing_page_sipar_backup_package_dependencies_nuxtjs_tailwindcss",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies_nuxtjs_tailwindcss",
+      "target": "nuxtjs_tailwindcss",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies",
+      "target": "landing_page_sipar_backup_package_dependencies_gsap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies_gsap",
+      "target": "gsap",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies",
+      "target": "landing_page_sipar_backup_package_dependencies_nuxt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies_nuxt",
+      "target": "nuxt",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies",
+      "target": "landing_page_sipar_backup_package_dependencies_vue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies_vue",
+      "target": "vue",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies",
+      "target": "landing_page_sipar_backup_package_dependencies_vue_router",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "landing_page_sipar_backup_package_dependencies_vue_router",
+      "target": "vue_router",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "tsconfig_json",
+      "target": "landing_page_sipar_backup_tsconfig_files",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tsconfig_json",
+      "target": "landing_page_sipar_backup_tsconfig_references",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "kiro_settings_mcp_json",
+      "target": "settings_mcp_mcpservers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".kiro\\settings\\mcp.json",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "components_aboutsection_vue",
+      "target": "components_aboutsection_items",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\AboutSection.vue",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "components_aboutsection_vue",
+      "target": "components_aboutsection_clone",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\AboutSection.vue",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "components_housetypessection_vue",
+      "target": "components_housetypessection_opentype",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\HouseTypesSection.vue",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "components_housetypessection_vue",
+      "target": "components_housetypessection_closemodal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\HouseTypesSection.vue",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "components_loadingscreen_vue",
+      "target": "components_loadingscreen_fadeout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\LoadingScreen.vue",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "components_productssection_vue",
+      "target": "components_productssection_opentype",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ProductsSection.vue",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "components_productssection_vue",
+      "target": "components_productssection_closemodal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components\\ProductsSection.vue",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "composables_usecontent_js",
+      "target": "content",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "composables\\useContent.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "composables_usecontent_js",
+      "target": "composables_usecontent_mergespecs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composables\\useContent.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "composables_usecontent_js",
+      "target": "composables_usecontent_usecontent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composables\\useContent.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "composables_uselightbox_js",
+      "target": "composables_uselightbox_uselightbox",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composables\\useLightbox.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "data_content_js",
+      "target": "data_content_formatphonenumber",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "data\\content.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "data_content_js",
+      "target": "data_content_meta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "data\\content.js",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "data_content_js",
+      "target": "data_content_locations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "data\\content.js",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "plugins_gsap_client_js",
+      "target": "gsap",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "plugins\\gsap.client.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "plugins_gsap_client_js",
+      "target": "scrolltrigger",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "plugins\\gsap.client.js",
+      "source_location": "L2",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
