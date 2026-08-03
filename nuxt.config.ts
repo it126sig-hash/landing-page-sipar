@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       // ponytail: placeholder sampai domain produksi fix, override via NUXT_PUBLIC_SITE_URL
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://sanggarindahparahyangan.com',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://it126sig-hash.github.io/landing-page-sipar/',
     },
   },
   app: {

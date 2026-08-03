@@ -1,5 +1,5 @@
 <template>
-  <section class="relative bg-gradient-to-b from-white via-[#fffef5] to-white py-12 md:py-16">
+  <section id="lokasi" class="relative bg-gradient-to-b from-white via-[#fffef5] to-white py-12 md:py-16">
     <div class="container mx-auto px-4 md:px-20">
       <!-- Part 1: Kenapa Harus -->
       <h2 class="font-display font-semibold text-3xl md:text-4xl text-center text-[#142b20] mb-10">

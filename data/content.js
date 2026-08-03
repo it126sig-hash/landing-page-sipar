@@ -82,7 +82,7 @@ export default {
       tag: 'Subsidi', subtitle: 'Untuk pasutri baru', priceFrom: '160 Jt-an',
       thumbnail: '/assets/images/rumah/tipe 2260.webp',
       gallery: ['/assets/images/rumah/galeri/2260-denah.webp', '/assets/images/rumah/galeri/2260-3d-ilustrasi.webp'],
-      specsOverride: [] },
+      specsOverride: [{ label: 'Listrik', value: '900 VA' }] },
     { id: '26-72', name: 'Tipe 26/72', lb: '26', lt: '72', kt: '2', km: '1',
       tag: 'Komersil', subtitle: 'Untuk keluarga kecil', priceFrom: '200 Jt-an',
       thumbnail: '/assets/images/rumah/tipe 2672.webp',
@@ -92,7 +92,7 @@ export default {
       tag: 'Komersil', subtitle: 'Untuk keluarga yang sedang bertumbuh', priceFrom: '300 Jt-an',
       thumbnail: '/assets/images/rumah/tipe 3672.webp',
       gallery: ['/assets/images/rumah/galeri/3672-denah.webp', '/assets/images/rumah/galeri/3672-3d-ilustrasi.webp'],
-      specsOverride: [] },
+      specsOverride: [{ label: 'Listrik', value: '1300 VA' }] },
   ],
 
   oneGate: [

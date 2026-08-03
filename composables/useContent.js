@@ -20,13 +20,26 @@ export function useContent() {
 
   const houseTypes = content.houseTypes.map(t => ({
     ...t,
+    thumbnail: t.thumbnail ? withBase(t.thumbnail) : t.thumbnail,
     gallery: t.gallery.map(withBase),
     specs: mergeSpecs(content.defaultSpecs, t.specsOverride),
     waLink: wa('type', { type: t.name }),
   }));
 
   return {
-    content: { ...content, meta: { ...content.meta, logo: withBase(content.meta.logo) } },
+    content: { 
+      ...content, 
+      meta: { ...content.meta, logo: withBase(content.meta.logo) },
+      about: { 
+        ...content.about, 
+        awards: content.about.awards.map(a => ({ ...a, image: withBase(a.image) })) 
+      },
+      advantages: content.advantages.map(a => ({ ...a, image: withBase(a.image) })),
+      locationSection: { 
+        ...content.locationSection, 
+        mapImage: withBase(content.locationSection.mapImage) 
+      }
+    },
     wa,
     houseTypes,
     withBase,
