@@ -28,7 +28,7 @@ function closeModal() {
 
       <!-- House Types Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-        <div v-for="(t, index) in houseTypes" :key="t.id" class="flex flex-col">
+        <div v-for="(t, index) in houseTypes" :key="t.id" class="flex flex-col h-full">
           <!-- Image - Rectangle aspect ratio, use 3D render -->
           <div class="w-full aspect-[4/3] bg-gray-100 rounded-lg mb-4 overflow-hidden">
             <img v-if="t.thumbnail || (t.gallery && t.gallery.length)" :src="t.thumbnail || t.gallery[1] || t.gallery[0]" :alt="t.name"
@@ -36,7 +36,7 @@ function closeModal() {
           </div>
 
           <!-- Copy -->
-          <div class="mb-4">
+          <div class="mb-4 flex-1">
             <h3 class="font-bold text-lg text-black mb-1 flex items-center gap-2">
               {{ t.name }}
               <span
@@ -49,7 +49,7 @@ function closeModal() {
 
           <!-- Button - Kuning -->
           <a @click.prevent="openType(t.id)" href="#"
-            class="inline-flex items-center justify-center px-5 py-2.5 bg-[#c9a84c] text-black font-medium text-sm rounded-lg hover:bg-[#b8974a] transition-colors">
+            class="inline-flex items-center justify-center px-5 py-2.5 bg-[#c9a84c] text-black font-medium text-sm rounded-lg hover:bg-[#b8974a] transition-colors mt-auto">
             Lihat Detail
           </a>
         </div>
