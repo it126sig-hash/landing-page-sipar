@@ -31,10 +31,10 @@
       <!-- Part 2: Lokasi di Pusat Pertumbuhan -->
       <div class="relative mb-12">
         <!-- Hero Image with Maps -->
-        <div class="w-full h-[400px] md:h-[500px] bg-gray-100 rounded-lg overflow-hidden relative group">
+        <div class="w-full bg-gray-100 rounded-lg overflow-hidden relative group">
           <!-- Peta Image -->
           <img :src="content.locationSection?.mapImage" alt="Peta Lokasi Sanggar Indah Parahyangan"
-            class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+            class="w-full h-auto object-contain cursor-pointer hover:scale-105 transition-transform duration-300"
             @click="isLightboxOpen = true" />
 
           <!-- Hover Overlay Hint -->
