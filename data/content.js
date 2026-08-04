@@ -133,12 +133,14 @@ export default {
     mapImage: '/assets/images/petalokasi.webp',
     mapUrl: 'https://maps.app.goo.gl/UQb822nm8bBxj81x9',
     facilities: [
-      'IKEA KBP',
+      'IKEA',
       'STASIUN KCIC WHOOSH',
       'XXI CINEMA',
       'TOL PADALARANG',
       'PARAHYANGAN GOLF',
       'RUMAH SAKIT',
+      'WAHOO WATER WORLD',
+      'PASAR PARAHYANGAN'
     ],
   },
 
@@ -157,7 +159,6 @@ export default {
     { id: 'f12', question: 'Kapan unit bisa ditempati setelah akad?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait jadwal serah terima kunci]' },
     { id: 'f13', question: 'Apakah lingkungan perumahan ini aman?', answer: 'Menerapkan One Gate System dengan akses masuk satu pintu, sehingga lingkungan lebih terkontrol dan nyaman untuk keluarga.' },
     { id: 'f14', question: 'Apa saja fasilitas di sekitar perumahan?', answer: 'Dekat IKEA, XXI Cinema, rumah sakit, dan Parahyangan Golf, dengan akses ke Tol Padalarang dan Stasiun KCIC Whoosh.' },
-    { id: 'f15', question: 'Apakah ada biaya tambahan di luar harga rumah?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait rincian biaya KPR, notaris, dan BPHTB]' },
   ],
 
   finalCta: {
