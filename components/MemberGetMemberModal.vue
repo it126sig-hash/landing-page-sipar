@@ -69,7 +69,7 @@ function handleSubmit() {
           <div class="pr-8">
             <h3 class="font-display text-2xl font-bold text-[#142B20]">Form Member Get Member</h3>
             <p class="mt-2 text-sm text-gray-500 leading-relaxed">
-              Isi data singkat, tim kami hubungi Anda via WhatsApp dalam 1×24 jam.
+              Isi data singkat, tim kami segera hubungi Anda via WhatsApp.
             </p>
           </div>
 
