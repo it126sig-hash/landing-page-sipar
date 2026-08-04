@@ -50,6 +50,9 @@ export default {
     sub: 'Nikmati kenyamanan tinggal di hunian nyaman yang berada di lingkungan asri dan sejuk, dengan lokasi strategis di jantung pertumbuhan Bandung Barat',
     primaryTypeId: '22-60',
     primaryCta: 'Lihat Tipe Rumah',
+    image: '/assets/images/hero.webp',
+    imageMobile: '/assets/images/hero-mobile.webp',
+    heroMobile: '/assets/images/hero-mobile.webp',
   },
 
   about: {
@@ -113,12 +116,10 @@ export default {
 
   // Merged advantages: Reasons + Location + Invest + Demand
   advantages: [
-    { id: 'loc1', title: 'Dekat Kota Baru Parahyangan', desc: '', image: '/assets/images/fasilitas/KBP.webp' },
-    { id: 'loc2', title: 'Dekat Tol Padalarang', desc: '', image: '/assets/images/fasilitas/Gerbang-Tol-Padalarang-Timur.webp' },
-    { id: 'loc3', title: 'Dekat Stasiun KCIC', desc: '', image: '/assets/images/fasilitas/Stasiun KCIC.webp' },
-    { id: 'loc4', title: 'Dikelilingi Fasilitas Publik', desc: '', image: '/assets/images/fasilitas/IKEA KBP.webp' },
-    { id: 'inv1', title: 'Cicilan Flat', desc: '', image: '/assets/images/fasilitas/Cicilan Flat.webp' },
-    { id: 'inv2', title: 'One Gate System', desc: '', image: '/assets/images/signgate.webp' },
+    { id: 'loc1', title: 'Dekat KBP', desc: '', image: '/assets/images/fasilitas/logo kbp.webp' },
+    { id: 'loc2', title: 'Dekat Tol Padalarang', desc: '', image: '/assets/images/fasilitas/logo tol.webp' },
+    { id: 'loc3', title: 'Dekat WOOSH', desc: '', image: '/assets/images/fasilitas/logo woosh.webp' },
+    { id: 'loc4', title: '', desc: '', image: '/assets/images/fasilitas/logo fasilitas.webp' },
   ],
 
   // Merged stats: key numbers from Demand + Installment
@@ -126,6 +127,11 @@ export default {
     { id: 's1', stat: '15 mnt', title: 'Ke KBP & IKEA', desc: 'Berdampingan dengan kawasan hunian & bisnis yang terus tumbuh.' },
     { id: 's2', stat: '30 mnt', title: 'Ke Stasiun Whoosh', desc: 'Kehadiran KCIC mempercepat kenaikan nilai properti.' },
     { id: 's3', stat: '1 Jt-an', title: 'Cicilan Flat', desc: 'Rasa komersial, harga subsidi mulai 1 jutaan/bulan.' },
+  ],
+
+  banks: [
+    { name: 'BCA', image: '/assets/images/bank/bca.webp' },
+    { name: 'BTN', image: '/assets/images/bank/btn.webp' },
   ],
 
   locationSection: {
@@ -148,17 +154,9 @@ export default {
     { id: 'f1',  question: 'Siapa pengembang Sanggar Indah Parahyangan?', answer: 'Dikembangkan oleh PT Sanggar Duta Parahyangan, bagian dari Sanggar Indah Group yang telah berpengalaman lebih dari 30 tahun di bidang properti, dan terdaftar sebagai anggota Real Estate Indonesia (REI).' },
     { id: 'f2',  question: 'Penghargaan apa saja yang pernah diraih pengembang?', answer: '[Isi jawaban di sini — tim SIPAR perlu melengkapi daftar penghargaan resmi, karena tidak ditemukan publikasinya secara online]' },
     { id: 'f3',  question: 'Proyek apa saja yang sudah dibangun oleh pengembang ini?', answer: '[Isi jawaban di sini — tim SIPAR perlu melengkapi daftar proyek sebelumnya, karena portofolio lengkap tidak ditemukan publikasinya secara online]' },
-    { id: 'f4',  question: 'Berapa harga rumah di Sanggar Indah Parahyangan?', answer: 'Mulai dari 160 Jt-an untuk Tipe 22/60 hingga 300 Jt-an untuk Tipe 36/72, dengan cicilan flat mulai 1 jutaan per bulan.' },
-    { id: 'f5',  question: 'Berapa uang muka (DP) yang dibutuhkan?', answer: 'DP ringan dan bisa disesuaikan dengan kemampuan, tim kami bantu hitungkan skema yang paling cocok untuk Anda.' },
     { id: 'f6',  question: 'Bagaimana skema cicilannya?', answer: 'Cicilan flat sepanjang tenor tanpa naik-turun, sehingga lebih mudah direncanakan untuk keuangan keluarga.' },
     { id: 'f7',  question: 'Apakah bisa KPR meski belum punya slip gaji tetap?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait jalur pengajuan untuk pekerja informal/wiraswasta]' },
-    { id: 'f8',  question: 'Bank apa yang bekerja sama untuk KPR?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait daftar bank rekanan KPR yang aktif]' },
-    { id: 'f9',  question: 'Bagaimana cara mengajukan pembelian?', answer: 'Konsultasi kebutuhan lewat WhatsApp, survei lokasi, lalu lanjut ke proses booking dan pengajuan KPR bersama tim kami.' },
-    { id: 'f10', question: 'Jenis sertifikat rumahnya apa?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait jenis sertifikat yang diterbitkan, mis. SHM]' },
-    { id: 'f11', question: 'Berapa lama proses dari booking sampai akad kredit?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait estimasi waktu proses]' },
-    { id: 'f12', question: 'Kapan unit bisa ditempati setelah akad?', answer: '[Isi jawaban di sini — perlu konfirmasi tim terkait jadwal serah terima kunci]' },
-    { id: 'f13', question: 'Apakah lingkungan perumahan ini aman?', answer: 'Menerapkan One Gate System dengan akses masuk satu pintu, sehingga lingkungan lebih terkontrol dan nyaman untuk keluarga.' },
-    { id: 'f14', question: 'Apa saja fasilitas di sekitar perumahan?', answer: 'Dekat IKEA, XXI Cinema, rumah sakit, dan Parahyangan Golf, dengan akses ke Tol Padalarang dan Stasiun KCIC Whoosh.' },
+    { id: 'f8',  question: 'Apakah ada show unit/rumah contoh yang bisa dikunjungi?', answer: 'Ada' },
   ],
 
   finalCta: {

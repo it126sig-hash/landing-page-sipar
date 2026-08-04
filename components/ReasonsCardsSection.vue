@@ -2,29 +2,50 @@
   <section id="lokasi" class="relative bg-gradient-to-b from-white via-[#fffef5] to-white py-12 md:py-16">
     <div class="container mx-auto px-4 md:px-20">
       <!-- Part 1: Kenapa Harus -->
-      <h2 class="font-display font-semibold text-3xl md:text-4xl text-center text-[#142b20] mb-10">
-        Kenapa Harus Sanggar Indah Parahyangan?
-      </h2>
+      <div class="flex justify-center mb-10">
+        <img src="/assets/images/kenapa.webp" alt="Kenapa Sanggar Indah Parahyangan?"
+          class="h-auto w-[80%] sm:w-auto sm:max-w-xl md:max-w-2xl lg:max-w-3xl object-contain" />
+      </div>
 
-      <!-- Cards Grid with overlay text -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
-        <div v-for="(advantage, index) in content.advantages" :key="advantage.id" class="flex flex-col">
-          <!-- Image with overlay text -->
-          <div class="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden group cursor-pointer">
-            <!-- Background Image -->
-            <img v-if="advantage.image" :src="advantage.image" :alt="advantage.title"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+      <!-- Cards & Mascot Section -->
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 mb-16">
+        
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full flex-grow">
+          <div v-for="(advantage, index) in content.advantages" :key="advantage.id" 
+            class="group cursor-pointer bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 ease-out p-4 md:p-6 flex flex-col items-center justify-between h-full border border-gray-50 overflow-hidden relative">
+            
+            <template v-if="advantage.title">
+              <!-- Image / Icon -->
+              <div class="w-20 h-20 md:w-28 md:h-28 mb-4 flex items-center justify-center">
+                <img v-if="advantage.image" :src="advantage.image" :alt="advantage.title"
+                  class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" />
+              </div>
 
-            <!-- Solid overlay -->
-            <div class="absolute inset-0 bg-[#c9a84c]/30"></div>
+              <!-- Title -->
+              <div class="flex-grow flex items-center justify-center mb-4">
+                <h3 class="font-bold text-sm md:text-base text-center text-[#2A6D3A] leading-snug group-hover:text-[#1d4d29] transition-colors">
+                  {{ advantage.title }}
+                </h3>
+              </div>
 
-            <!-- Text overlay at center -->
-            <div class="absolute inset-0 flex items-center justify-center p-3">
-              <h3 class="font-bold text-xs md:text-sm text-center text-white leading-tight">
-                {{ advantage.title }}
-              </h3>
-            </div>
+              <!-- Bottom Dash -->
+              <div class="w-6 h-1 bg-[#F59E0B] rounded-full mt-auto transition-all duration-300 group-hover:w-10"></div>
+            </template>
+            
+            <template v-else>
+              <!-- Fit Image -->
+              <div class="w-full h-full flex items-center justify-center my-auto p-2">
+                <img v-if="advantage.image" :src="advantage.image" alt="Fasilitas"
+                  class="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105" />
+              </div>
+            </template>
           </div>
+        </div>
+
+        <!-- Mascot -->
+        <div class="w-32 sm:w-40 md:w-48 lg:w-56 flex-shrink-0 mt-6 lg:mt-0 flex justify-center">
+          <img src="/assets/images/mascot.webp" alt="Maskot SIPAR" class="w-full h-auto drop-shadow-2xl" />
         </div>
       </div>
 
@@ -59,18 +80,7 @@
           </div>
         </div>
 
-        <!-- Title below image -->
-        <h2 class="font-display font-semibold text-3xl md:text-4xl text-center text-[#142b20] mt-8 mb-10">
-          {{ content.locationSection?.title || 'Lokasi di Pusat Pertumbuhan' }}
-        </h2>
 
-        <!-- Facilities List with borders -->
-        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 max-w-4xl mx-auto">
-          <div v-for="(facility, idx) in content.locationSection?.facilities || []" :key="idx"
-            class="w-full md:w-[calc(33.333%-1.35rem)] pb-4 border-b border-gray-200">
-            <p class="font-body text-sm uppercase tracking-wide text-gray-600">{{ facility }}</p>
-          </div>
-        </div>
       </div>
     </div>
 

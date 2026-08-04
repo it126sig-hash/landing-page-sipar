@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useContent } from '~/composables/useContent';
 import MemberGetMemberModal from './MemberGetMemberModal.vue';
+import KprTermsModal from './KprTermsModal.vue';
 
 const { wa } = useContent();
 const href = wa('konsultasi');
@@ -11,6 +12,8 @@ const isDesktop = ref(false);
 
 const isMenuOpen = ref(false);
 const isModalOpen = ref(false);
+const isKprModalOpen = ref(false);
+const kprModalTitle = ref('');
 
 const checkState = () => {
   if (typeof window === 'undefined') return;
@@ -27,6 +30,12 @@ const toggleMenu = () => {
 
 const openModal = () => {
   isModalOpen.value = true;
+  isMenuOpen.value = false;
+};
+
+const openKprModal = (title) => {
+  kprModalTitle.value = title;
+  isKprModalOpen.value = true;
   isMenuOpen.value = false;
 };
 
@@ -100,7 +109,31 @@ onUnmounted(() => {
             <span>Konsultasi Sekarang</span>
           </a>
 
-          <!-- Button 2: Isi Form Member Get Member -->
+          <!-- Button 2: Syarat KPR BCA -->
+          <button
+            type="button"
+            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142B20] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#0f1f17] transition-all whitespace-nowrap"
+            @click="openKprModal('Syarat KPR BCA')"
+          >
+            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Syarat KPR BCA</span>
+          </button>
+
+          <!-- Button 3: Syarat KPR BTN -->
+          <button
+            type="button"
+            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142B20] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#0f1f17] transition-all whitespace-nowrap"
+            @click="openKprModal('Syarat KPR BTN')"
+          >
+            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Syarat KPR BTN</span>
+          </button>
+
+          <!-- Button 4: Isi Form Member Get Member -->
           <button
             type="button"
             class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142B20] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#0f1f17] transition-all whitespace-nowrap"
@@ -147,5 +180,13 @@ onUnmounted(() => {
     :is-open="isModalOpen"
     @close="isModalOpen = false"
   />
+
+  <!-- KPR Terms Modal -->
+  <KprTermsModal
+    :is-open="isKprModalOpen"
+    :title="kprModalTitle"
+    @close="isKprModalOpen = false"
+  />
 </template>
+
 
