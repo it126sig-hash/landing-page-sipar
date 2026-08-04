@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 md:px-20">
       <!-- Part 1: Kenapa Harus -->
       <div class="flex justify-center mb-10">
-        <img src="/assets/images/kenapa.webp" alt="Kenapa Sanggar Indah Parahyangan?"
+        <img :src="withBase('/assets/images/kenapa.webp')" alt="Kenapa Sanggar Indah Parahyangan?"
           class="h-auto w-[80%] sm:w-auto sm:max-w-xl md:max-w-2xl lg:max-w-3xl object-contain" />
       </div>
 
@@ -45,7 +45,7 @@
 
         <!-- Mascot -->
         <div class="w-32 sm:w-40 md:w-48 lg:w-56 flex-shrink-0 mt-6 lg:mt-0 flex justify-center">
-          <img src="/assets/images/mascot.webp" alt="Maskot SIPAR" class="w-full h-auto drop-shadow-2xl" />
+          <img :src="withBase('/assets/images/mascot.webp')" alt="Maskot SIPAR" class="w-full h-auto drop-shadow-2xl" />
         </div>
       </div>
 
@@ -112,6 +112,6 @@
 <script setup>
 import { ref } from 'vue';
 
-const { content } = useContent();
+const { content, withBase } = useContent();
 const isLightboxOpen = ref(false);
 </script>

@@ -30,11 +30,18 @@ export function useContent() {
     content: { 
       ...content, 
       meta: { ...content.meta, logo: withBase(content.meta.logo) },
+      hero: {
+        ...content.hero,
+        image: withBase(content.hero.image),
+        imageMobile: withBase(content.hero.imageMobile),
+        heroMobile: withBase(content.hero.heroMobile),
+      },
       about: { 
         ...content.about, 
         awards: content.about.awards.map(a => ({ ...a, image: withBase(a.image) })) 
       },
       advantages: content.advantages.map(a => ({ ...a, image: withBase(a.image) })),
+      banks: content.banks.map(b => ({ ...b, image: withBase(b.image) })),
       locationSection: { 
         ...content.locationSection, 
         mapImage: withBase(content.locationSection.mapImage) 

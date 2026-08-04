@@ -2,18 +2,18 @@
 import { ref } from 'vue';
 import { useContent } from '~/composables/useContent';
 
-const { content } = useContent();
+const { content, withBase } = useContent();
 </script>
 
 <template>
   <section class="relative h-full min-h-[300px] lg:h-[calc(100vh-64px)] lg:min-h-[600px] overflow-hidden">
     <!-- Background Image Desktop -->
     <div class="hidden md:block absolute inset-0 bg-cover bg-center"
-      :style="{ backgroundImage: `url(${content.hero.image || '/assets/images/hero.webp'})` }"></div>
+      :style="{ backgroundImage: `url(${content.hero.image || withBase('/assets/images/hero.webp')})` }"></div>
 
     <!-- Background Image Mobile -->
     <div class="block md:hidden absolute inset-0 bg-cover bg-center"
-      :style="{ backgroundImage: `url(${content.hero.imageMobile || content.hero.heroMobile || '/assets/images/hero-mobile.webp'})` }">
+      :style="{ backgroundImage: `url(${content.hero.imageMobile || content.hero.heroMobile || withBase('/assets/images/hero-mobile.webp')})` }">
     </div>
 
     <!-- Dimmer overlay - hijau gelap base -->
