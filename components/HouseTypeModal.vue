@@ -8,17 +8,30 @@ const props = defineProps({
 const emit = defineEmits(['close']);
 
 const dialogRef = ref(null);
-const { openLightbox } = useLightbox();
+const { openGallery } = useLightbox();
+
+/** Galeri tipe ini: ilustrasi/fasad lalu denah — dipakai untuk zoom + swipe. */
+function typeGallery() {
+  return [
+    { src: props.type.gallery[1], alt: `Ilustrasi ${props.type.name}` },
+    { src: props.type.gallery[0], alt: `Denah ${props.type.name}` },
+  ];
+}
 
 function onKeydown(e) {
-  if (e.key === 'Escape') emit('close');
+  if (e.key === 'Escape' && props.type) emit('close');
 }
 
 onMounted(() => document.addEventListener('keydown', onKeydown));
-onUnmounted(() => document.removeEventListener('keydown', onKeydown));
+onUnmounted(() => {
+  document.removeEventListener('keydown', onKeydown);
+  if (typeof document !== 'undefined') document.body.style.overflow = '';
+});
 
 watch(() => props.type, (t) => {
   if (t) dialogRef.value?.focus();
+  // Kunci scroll body selama modal terbuka, konsisten dengan modal lain.
+  if (typeof document !== 'undefined') document.body.style.overflow = t ? 'hidden' : '';
 });
 </script>
 
@@ -33,7 +46,7 @@ watch(() => props.type, (t) => {
   >
     <div
       v-if="type"
-      class="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-charcoal/50 p-4 py-10"
+      class="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto bg-charcoal/50 p-4 py-10"
       @click.self="emit('close')"
     >
       <Transition
@@ -75,10 +88,16 @@ watch(() => props.type, (t) => {
           </div>
 
           <div class="mt-6 grid gap-4 sm:grid-cols-2">
-            <img :src="type.gallery[1]" :alt="`Fasad ${type.name}`" class="aspect-[4/3] w-full cursor-pointer rounded-xl object-cover"
-              @click="openLightbox(type.gallery[1], `Fasad ${type.name}`)" />
-            <img :src="type.gallery[0]" :alt="`Denah ${type.name}`" class="aspect-[4/3] w-full cursor-pointer rounded-xl object-cover"
-              @click="openLightbox(type.gallery[0], `Denah ${type.name}`)" />
+            <button type="button" class="block w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-deep/30 rounded-xl"
+              :aria-label="`Perbesar ilustrasi ${type.name}`" @click="openGallery(typeGallery(), 0)">
+              <img :src="type.gallery[1]" :alt="`Ilustrasi ${type.name}`" loading="lazy"
+                class="aspect-[4/3] w-full rounded-xl object-cover" />
+            </button>
+            <button type="button" class="block w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-deep/30 rounded-xl"
+              :aria-label="`Perbesar denah ${type.name}`" @click="openGallery(typeGallery(), 1)">
+              <img :src="type.gallery[0]" :alt="`Denah ${type.name}`" loading="lazy"
+                class="aspect-[4/3] w-full rounded-xl object-cover" />
+            </button>
           </div>
 
           <div class="mt-6">

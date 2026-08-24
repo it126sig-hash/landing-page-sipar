@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useContent } from '~/composables/useContent';
 
 const { content } = useContent();
@@ -11,13 +11,26 @@ const checkScroll = () => {
   isScrolled.value = window.scrollY > 100;
 };
 
+const onKeydown = (e) => {
+  if (e.key === 'Escape' && isSidebarOpen.value) closeSidebar();
+};
+
 onMounted(() => {
   checkScroll();
   window.addEventListener('scroll', checkScroll, { passive: true });
+  document.addEventListener('keydown', onKeydown);
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', checkScroll);
+  document.removeEventListener('keydown', onKeydown);
+  if (typeof document !== 'undefined') document.body.style.overflow = '';
+});
+
+// Kunci scroll body selama drawer terbuka agar background tidak ikut ter-scroll di mobile.
+watch(isSidebarOpen, (open) => {
+  if (typeof document === 'undefined') return;
+  document.body.style.overflow = open ? 'hidden' : '';
 });
 
 const closeSidebar = () => {
@@ -82,7 +95,7 @@ const closeSidebar = () => {
       >
         <div
           v-if="isSidebarOpen"
-          class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden"
+          class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm lg:hidden"
           @click="closeSidebar"
         ></div>
       </Transition>
@@ -98,7 +111,7 @@ const closeSidebar = () => {
       >
         <div
           v-if="isSidebarOpen"
-          class="fixed inset-y-0 right-0 z-50 w-72 max-w-[80vw] bg-white shadow-2xl flex flex-col justify-between p-6 lg:hidden"
+          class="fixed inset-y-0 right-0 z-[60] w-72 max-w-[80vw] bg-white shadow-2xl flex flex-col justify-between p-6 lg:hidden overflow-y-auto"
         >
           <div>
             <!-- Header Sidebar (Logo & Close Button) -->

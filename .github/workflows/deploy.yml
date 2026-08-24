@@ -25,6 +25,14 @@ jobs:
       - run: npm run generate
         env:
           NUXT_APP_BASE_URL: /landing-page-sipar/
+          # Endpoint Google Apps Script (Web App /exec).
+          # WAJIB diisi lewat GitHub repo secret bernama NUXT_PUBLIC_SHEET_ENDPOINT,
+          # karena .env tidak ikut ter-commit. Tanpa ini, form akan tampil
+          # "belum dapat mengirim data online" di website yang sudah live.
+          NUXT_PUBLIC_SHEET_ENDPOINT: ${{ secrets.NUXT_PUBLIC_SHEET_ENDPOINT }}
+          # Site key reCAPTCHA sudah punya default di nuxt.config.ts.
+          # Secret ini opsional, hanya untuk override kalau site key diganti.
+          NUXT_PUBLIC_CAPTCHA_SITE_KEY: ${{ secrets.NUXT_PUBLIC_CAPTCHA_SITE_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

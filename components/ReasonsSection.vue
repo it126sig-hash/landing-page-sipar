@@ -48,7 +48,8 @@ onUnmounted(() => ctx?.revert());
       subtitle="Lokasi strategis, lingkungan aman, dan nilai investasi yang terus bertumbuh." />
     <div ref="listRef"
       class="divide-y divide-cream-light rounded-[18px] border border-cream-light bg-off-white sm:hidden">
-      <div v-for="r in content.reasons" :key="r.id" class="flex items-start gap-4 p-[18px_20px]">
+      <!-- DEFENSIVE: content.reasons not used in homepage; optional chaining prevents runtime error -->
+      <div v-for="r in (content.reasons ?? [])" :key="r.id" class="flex items-start gap-4 p-[18px_20px]">
         <div
           class="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] bg-mint-pale font-display text-base font-extrabold text-forest-deep">
           {{ r.num }}
@@ -60,7 +61,7 @@ onUnmounted(() => ctx?.revert());
       </div>
     </div>
     <div ref="gridRef" class="hidden gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-5">
-      <FeatureCard v-for="r in content.reasons" :key="r.id" :num="r.num" :title="r.title" :desc="r.desc" />
+      <FeatureCard v-for="r in (content.reasons ?? [])" :key="r.id" :num="r.num" :title="r.title" :desc="r.desc" />
     </div>
   </SectionShell>
 </template>

@@ -15,7 +15,16 @@ onMounted(() => {
   ctx = gsap.context(() => {
     const carousel = carouselRef.value;
     const items = Array.from(carousel.children);
-    const itemWidth = 130; // 110px width + 20px gap
+    // Ukur jarak antar-kartu dari DOM: lebar kartu + gap berbeda per breakpoint
+    // (100px+16px di mobile, 110px+20px di sm+). Nilai hardcoded 130 membuat loop
+    // meleset ~14px per putaran di mobile sehingga terlihat "melompat".
+    const measurePitch = () => {
+      if (items.length < 2) return 130;
+      const a = items[0].getBoundingClientRect();
+      const b = items[1].getBoundingClientRect();
+      return Math.round(b.left - a.left) || 130;
+    };
+    const itemWidth = measurePitch();
 
     // Clone items for seamless loop
     items.forEach(item => {
@@ -43,7 +52,7 @@ onUnmounted(() => ctx?.revert());
 </script>
 
 <template>
-  <section id="tentang" class="bg-white py-4 sm:py-6 lg:py-16 border-t border-gray-100 lg:border-t-0">
+  <section id="tentang" class="scroll-mt-20 bg-white py-4 sm:py-6 lg:py-16 border-t border-gray-100 lg:border-t-0">
     <div class="container mx-auto px-4 md:px-20">
       <div class="grid md:grid-cols-2 gap-4 md:gap-8 items-center">
         <!-- Left: Awards Carousel - Show max 4 visible -->
@@ -83,9 +92,7 @@ onUnmounted(() => ctx?.revert());
             {{ content.about.title }}
           </h2>
           <p class="font-body text-xs sm:text-sm md:text-base leading-relaxed text-gray-700">
-            Kami adalah bagian dari <strong class="text-[#142b20]">{{ content.meta.developer }}</strong> yang sudah
-            dikenal sebagai developer terpercaya dengan <strong class="text-[#c9a84c]">pengalaman, kualitas, dan
-              penghargaan</strong> yang dimiliki.
+            {{ content.about.description }}
           </p>
         </div>
       </div>

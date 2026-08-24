@@ -27,7 +27,9 @@ useHead({
     <TheHeader />
     <main>
       <!-- Hero + About Section Container: 1 screen on mobile/tablet (< lg), standard full hero on desktop (lg:) -->
-      <div class="h-[calc(100vh-64px)] min-h-[580px] flex flex-col justify-between overflow-hidden lg:h-auto lg:min-h-0 lg:block lg:overflow-visible">
+      <!-- min-h (bukan h) + tanpa overflow-hidden: layar pendek (mis. 320x568) tetap bisa menampilkan
+           seluruh konten hero/about alih-alih memotongnya. Layar tinggi tetap pas 1 layar. -->
+      <div class="min-h-[calc(100vh-64px)] flex flex-col justify-between lg:min-h-0 lg:block">
         <HeroSection class="flex-1 lg:flex-none" />
         <AboutSection class="flex-shrink-0 lg:flex-none" />
       </div>
