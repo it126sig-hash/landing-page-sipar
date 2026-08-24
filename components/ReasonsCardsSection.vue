@@ -108,13 +108,16 @@
             </span>
           </div>
 
-          <!-- Button overlay bottom right -->
-          <div class="absolute bottom-6 right-6 z-10">
+          <!-- CTA: tepat di atas panel QR peta, rata kanan dengannya.
+               Posisi pakai persen supaya ikut menyesuaikan di semua lebar layar.
+               Panel QR pada gambar ada di x 72,1%-95,1% dan y 85%-96,2%. -->
+          <div class="absolute bottom-[17%] right-[4.95%] z-10">
             <a :href="content.locationSection?.mapUrl" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center px-5 py-2.5 bg-[#c9a84c] text-black font-medium text-sm rounded-lg hover:bg-[#b8974a] transition-colors shadow-lg">
+              class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 bg-[#c9a84c] text-black font-medium text-[9px] sm:text-xs md:text-sm whitespace-nowrap rounded md:rounded-lg hover:bg-[#b8974a] transition-colors shadow-lg">
               {{ content.reasons.mapCtaLabel }}
             </a>
           </div>
+
         </div>
       </div>
     </div>

@@ -39,6 +39,15 @@ const { content } = useContent();
             </a>
           </div>
 
+          <!-- Dikembangkan oleh Sanggar Indah Group -->
+          <div>
+            <p class="font-body text-sm font-semibold text-white mb-2.5">
+              {{ content.footer.developedByLabel }}
+            </p>
+            <img :src="content.meta.logoGroup" :alt="content.meta.developer"
+              class="w-32 md:w-36 h-auto opacity-90" loading="lazy" />
+          </div>
+
         </div>
 
         <!-- Middle: Quick Links -->

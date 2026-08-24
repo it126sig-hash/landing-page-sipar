@@ -15,16 +15,17 @@ const meta = {
   projectName: 'Sanggar Indah Parahyangan',
   developer: 'Sanggar Indah Group',
   logo: '/assets/images/logo.webp',
+  logoGroup: '/assets/images/logo-sig-white.png',
   tagline: 'Akses Mudah, Hidup Lebih Nyaman',
   priceFrom: 'Mulai 160 Juta-an',
   whatsapp: {
     number: '6282118992299',
     templates: {
-      konsultasi: 'Halo, saya lihat informasi di website dan saya ingin konsultasi & survey lokasi {project}.',
+      konsultasi: 'Halo, saya lihat informasi di website, saya ingin konsultasi & survey lokasi {project}.',
       simulasi: 'Halo, saya lihat informasi di website dan saya mau tanya simulasi cicilan flat {project}.',
       survey: 'Halo, saya lihat informasi di website dan saya ingin booking survey lokasi {project}.',
       type: 'Halo, saya lihat informasi di website dan saya tertarik dengan {type} di {project}. Boleh info lengkap & harga?',
-      konsultasiForm: 'Halo, saya sudah mengisi form konsultasi di website {project} namun sistem sedang tidak tersedia. Saya ingin melanjutkan konsultasi via WhatsApp.',
+      konsultasiForm: 'Halo, saya sudah mengisi Form Member Get Member di website {project}, namun sistem sedang tidak tersedia. Saya ingin melanjutkan proses melalui WhatsApp.',
     },
   },
   nav: [
@@ -59,7 +60,7 @@ export default {
   about: {
     title: 'Tentang Kami',
     // Updated: now used by AboutSection.vue as single source of truth
-    description: 'Kami adalah bagian dari Sanggar Indah Group yang telah berpengalaman di bidang properti sejak 1993. Dengan rekam jejak lebih dari tiga dekade dan berbagai penghargaan dari lembaga terkemuka, kami berkomitmen membantu keluarga Indonesia menemukan hunian yang layak dan terjangkau.',
+    description: 'Sanggar Indah Parahyangan hadir dari dedikasi Sanggar Indah Group selama lebih dari 30 tahun dalam menghadirkan hunian yang layak dan terjangkau. Dengan pengalaman dan berbagai penghargaan yang telah diraih, kami terus berkomitmen menghadirkan pilihan hunian yang dapat menjadi tempat untuk tumbuh dan membangun cerita bersama keluarga.',
     awards: [
       { id: 'award1', year: '2000', title: 'Pelopor KPR Untuk Masyarakat', image: '/assets/images/awards/Pelopor KPR Untuk Masyarakat.webp' },
       { id: 'award2', year: '2002', title: 'Pelopor Pembangunan Rumah Sederhana Sehat', image: '/assets/images/awards/Pelopor Pembangunan Rumah Sederhana Sehat.webp' },
@@ -215,7 +216,7 @@ export default {
 
   locationSection: {
     title: 'Lokasi di Pusat Pertumbuhan',
-    mapImage: '/assets/images/petalokasi.webp',
+    mapImage: '/assets/images/petalokasi-v2.webp',
     mapUrl: 'https://maps.app.goo.gl/UQb822nm8bBxj81x9',
     facilities: [
       'IKEA',
@@ -256,7 +257,7 @@ export default {
     {
       id: 'f7',
       question: 'Apakah bisa KPR meski belum punya slip gaji tetap?',
-      answer: 'Bisa. Pekerja non-fixed income tetap dapat mengajukan KPR, dengan dokumen pendukung penghasilan sebagai pengganti slip gaji.\n\nSyarat lengkapnya ada di menu Syarat KPR BCA / BTN pada tombol WhatsApp mengambang.',
+      answer: 'Bisa. Pekerja non-fixed income tetap dapat mengajukan KPR, dengan dokumen pendukung penghasilan sebagai pengganti slip gaji.\n\nSyarat lengkapnya ada di menu Syarat KPR BCA / BTN pada tombol WhatsApp.',
     },
     {
       id: 'f8',
@@ -316,13 +317,14 @@ export default {
   },
 
   footer: {
+    developedByLabel: 'Dikembangkan oleh',
     mainAddress: {
       label: 'Kantor Pemasaran',
       lines: ['Jl. Banyakniaga Kaler No.27', 'Kota Baru Parahyangan, Jawa Barat']
     },
     secondAddress: {
       label: 'Kantor Pusat',
-      lines: ['Jl. Sukahaji No.126 (Gedung GRHA Satria)', 'Kota Bandung, Jawa Barat']
+      lines: ['Jl. Sukahaji No.126 (GRHA Satria)', 'Kota Bandung, Jawa Barat']
     },
     quickLinks: [
       { id: 'tentang', label: 'Tentang Kami' },

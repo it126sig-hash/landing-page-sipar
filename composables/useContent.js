@@ -29,7 +29,11 @@ export function useContent() {
   return {
     content: { 
       ...content, 
-      meta: { ...content.meta, logo: withBase(content.meta.logo) },
+      meta: {
+        ...content.meta,
+        logo: withBase(content.meta.logo),
+        logoGroup: withBase(content.meta.logoGroup),
+      },
       hero: {
         ...content.hero,
         image: withBase(content.hero.image),
