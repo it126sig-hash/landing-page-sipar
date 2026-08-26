@@ -1,7 +1,7 @@
 import { ref, computed, nextTick } from 'vue';
 import { useContent } from '~/composables/useContent';
 
-// Dipakai bersama oleh semua pemanggil composable (ConsultationModal &
+// Dipakai bersama oleh semua pemanggil composable (saat ini hanya
 // MemberGetMemberModal) supaya script Google hanya diunduh sekali.
 let recaptchaScriptPromise = null;
 

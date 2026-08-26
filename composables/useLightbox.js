@@ -8,7 +8,7 @@ export function useLightbox() {
     gallery.value = { items, index: Math.max(0, Math.min(index, items.length - 1)) };
   }
 
-  /** Kompatibilitas: buka satu gambar (dipakai OneGateSection dsb). */
+  /** Kompatibilitas: buka satu gambar lewat URL langsung. */
   function openLightbox(src, alt = '') {
     openGallery([{ src, alt }], 0);
   }
