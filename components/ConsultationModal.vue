@@ -282,8 +282,17 @@ watch(state, async (s) => {
                   visual dan MENGUNCI kotak layout ke ukuran hasil scale, jadi tidak ada konten yang hilang
                   dan parameter render reCAPTCHA sama sekali tidak diubah.
                 -->
-                <div class="mx-auto overflow-hidden w-[304px] h-[78px] max-[389px]:w-[237px] max-[389px]:h-[61px]">
-                  <div ref="recaptchaContainer" class="w-[304px] origin-top-left max-[389px]:scale-[0.78]"></div>
+                <!--
+                  JANGAN bungkus container ini dengan overflow-hidden atau CSS transform.
+                  Popup challenge (pilih gambar) dirender Google sebagai anak dari container
+                  ini dengan position: fixed. overflow-hidden memotongnya, dan transform apa
+                  pun (mis. scale) membuat position: fixed terkurung di dalam kotak widget —
+                  dua-duanya bikin challenge tidak pernah terlihat, terutama di layar HP yang
+                  jauh lebih sering dapat challenge gambar daripada desktop.
+                  Lebar widget diatur lewat opsi `size` reCAPTCHA di useConsultationForm.js.
+                -->
+                <div class="flex justify-center">
+                  <div ref="recaptchaContainer"></div>
                 </div>
                 <!-- Pesan error reCAPTCHA + jalan keluar.
                      Sebelumnya captchaErrorMsg tidak pernah dirender, sehingga kalau reCAPTCHA

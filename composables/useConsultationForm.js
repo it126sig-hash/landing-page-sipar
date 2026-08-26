@@ -1,6 +1,15 @@
 import { ref, computed, nextTick } from 'vue';
 import { useContent } from '~/composables/useContent';
 
+// Dipakai bersama oleh semua pemanggil composable (ConsultationModal &
+// MemberGetMemberModal) supaya script Google hanya diunduh sekali.
+let recaptchaScriptPromise = null;
+
+// Jaringan seluler bisa jauh lebih lambat dari WiFi. Timeout 10 detik yang lama
+// sering habis duluan di HP sehingga verifikasi tidak pernah tampil padahal
+// script-nya sebenarnya baik-baik saja, cuma telat.
+const RECAPTCHA_LOAD_TIMEOUT_MS = 25000;
+
 export function useConsultationForm() {
   const { content } = useContent();
   const config = useRuntimeConfig();
@@ -14,11 +23,10 @@ export function useConsultationForm() {
   let submissionInProgress = false;
   let recaptchaWidgetId = null;
   // Catatan: reCAPTCHA bisa gagal diam-diam kalau domain belum didaftarkan di
-  // Google reCAPTCHA Admin Console. Kasus itu SUDAH tertangani karena
-  // `error-callback` Google terpanggil dan pesannya kini benar-benar dirender di
-  // modal (sebelumnya captchaErrorMsg tidak pernah ditampilkan sama sekali).
-  // Sengaja TIDAK memakai timer "stuck" buta: user yang sekadar lambat mengisi
-  // akan ikut kena peringatan palsu. Sebagai pengaman terakhir, tombol
+  // Google reCAPTCHA Admin Console. Kasus itu ditangani lewat `error-callback`
+  // Google plus verifyWidgetVisible() — pengecekan yang hanya melihat apakah
+  // iframe widget benar-benar terpasang, jadi user yang sekadar lambat mengisi
+  // tidak ikut kena peringatan palsu. Sebagai pengaman terakhir, tombol
   // "Muat Ulang Verifikasi" + fallback WhatsApp selalu tampil di langkah captcha.
 
   const isSubmitting = computed(() => state.value === 'submitting');
@@ -68,57 +76,89 @@ export function useConsultationForm() {
   }
 
   /**
-   * Loader script Google reCAPTCHA yang aman dan mendukung semua browser
+   * Loader script Google reCAPTCHA. Idempoten: dipanggil berapa kali pun,
+   * script hanya diunduh sekali dan semua pemanggil menunggu promise yang sama.
    */
   function loadRecaptchaScript() {
-    return new Promise((resolve, reject) => {
-      if (typeof window === 'undefined') return reject(new Error('SSR'));
+    if (typeof window === 'undefined') return Promise.reject(new Error('SSR'));
+    if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
+      return Promise.resolve(window.grecaptcha);
+    }
+    if (recaptchaScriptPromise) return recaptchaScriptPromise;
 
-      // Jika grecaptcha.render sudah ada
-      if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
-        return resolve(window.grecaptcha);
-      }
-
-      // Pasang global callback
-      window.__onRecaptchaLoaded = function() {
-        if (window.grecaptcha) {
-          resolve(window.grecaptcha);
+    recaptchaScriptPromise = new Promise((resolve, reject) => {
+      let settled = false;
+      let pollId = null;
+      const settle = (fn, arg) => {
+        if (settled) return;
+        settled = true;
+        if (pollId) clearInterval(pollId);
+        fn(arg);
+      };
+      const tryResolve = () => {
+        if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
+          settle(resolve, window.grecaptcha);
+          return true;
         }
+        return false;
       };
 
-      // Cek apakah script sudah ada
       let script = document.querySelector('script[src*="recaptcha/api.js"]');
       if (!script) {
         script = document.createElement('script');
-        script.src = 'https://www.google.com/recaptcha/api.js?onload=__onRecaptchaLoaded&render=explicit';
+        script.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
         script.async = true;
         script.defer = true;
-        script.onerror = () => reject(new Error('Gagal mengunduh script Google reCAPTCHA (mungkin terblokir ad-blocker)'));
         document.head.appendChild(script);
       }
+      // Script tag-nya sudah dipasang di nuxt.config.ts, jadi cabang di atas
+      // jarang jalan. Listener error tetap dipasang ke tag yang sudah ada supaya
+      // ad-blocker / jaringan yang memblokir www.google.com kebaca sebagai error
+      // eksplisit, bukan sekadar timeout.
+      script.addEventListener('error', () => settle(reject, new Error('RECAPTCHA_SCRIPT_BLOCKED')));
 
-      // Polling fallback jika callback tidak terpanggil
-      let attempts = 0;
-      const checkInterval = setInterval(() => {
-        attempts++;
-        if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
-          clearInterval(checkInterval);
-          resolve(window.grecaptcha);
-        } else if (window.grecaptcha && typeof window.grecaptcha.ready === 'function') {
-          window.grecaptcha.ready(() => {
-            if (typeof window.grecaptcha.render === 'function') {
-              clearInterval(checkInterval);
-              resolve(window.grecaptcha);
-            }
-          });
-        }
+      // api.js selesai diunduh belum tentu berarti grecaptcha.render sudah ada
+      // (api.js masih menarik bundle turunannya), jadi tetap dipoll sampai siap.
+      const deadline = Date.now() + RECAPTCHA_LOAD_TIMEOUT_MS;
+      pollId = setInterval(() => {
+        if (tryResolve()) return;
+        if (Date.now() > deadline) settle(reject, new Error('RECAPTCHA_TIMEOUT'));
+      }, 150);
 
-        if (attempts > 50) { // 10 detik
-          clearInterval(checkInterval);
-          reject(new Error('Timeout memuat Google reCAPTCHA'));
-        }
-      }, 200);
+      tryResolve();
     });
+
+    // Dinolkan lagi kalau gagal, supaya tombol "Muat Ulang Verifikasi"
+    // benar-benar mencoba dari nol dan tidak nyangkut di promise yang sudah reject.
+    recaptchaScriptPromise.catch(() => { recaptchaScriptPromise = null; });
+    return recaptchaScriptPromise;
+  }
+
+  /**
+   * Widget reCAPTCHA ukuran "normal" lebarnya tetap 304px. Modal punya padding
+   * 24px kiri-kanan, jadi di viewport < 352px widget itu meluber. Solusinya
+   * memakai varian resmi "compact" (164px) — BUKAN CSS transform: scale(),
+   * karena transform apa pun pada elemen leluhur membuat popup challenge
+   * (position: fixed) ikut terkurung di kotak widget dan tidak pernah terlihat.
+   */
+  function pickCaptchaSize() {
+    if (typeof window === 'undefined') return 'normal';
+    return window.innerWidth < 352 ? 'compact' : 'normal';
+  }
+
+  /**
+   * grecaptcha.render() bisa "berhasil" tapi iframe-nya tidak pernah muncul,
+   * misalnya kalau domain belum terdaftar di reCAPTCHA Admin Console. Tanpa cek
+   * ini user hanya melihat kotak kosong tanpa penjelasan apa pun.
+   */
+  function verifyWidgetVisible(containerEl) {
+    setTimeout(() => {
+      if (state.value !== 'captcha' || captchaErrorMsg.value) return;
+      const iframe = containerEl.querySelector('iframe');
+      if (!iframe || iframe.offsetHeight === 0) {
+        captchaErrorMsg.value = content.consultationForm.messages.captchaStuck;
+      }
+    }, 6000);
   }
 
   /**
@@ -128,43 +168,44 @@ export function useConsultationForm() {
     if (!containerEl) return;
     if (!captchaSiteKey.value) {
       captchaLoading.value = false;
+      onCaptchaError('not_configured');
       return;
     }
 
     captchaLoading.value = true;
     captchaErrorMsg.value = '';
 
+    let grecaptcha;
     try {
-      const grecaptcha = await loadRecaptchaScript();
-      
-      // Tunggu grecaptcha.ready
-      grecaptcha.ready(() => {
-        try {
-          containerEl.innerHTML = '';
-          recaptchaWidgetId = grecaptcha.render(containerEl, {
-            sitekey: captchaSiteKey.value,
-            callback: (token) => {
-              onCaptchaSuccess(token);
-            },
-            'expired-callback': () => {
-              onCaptchaError('expired');
-            },
-            'error-callback': () => {
-              onCaptchaError('error');
-            },
-          });
-          captchaLoading.value = false;
-        } catch (renderErr) {
-          console.error('[useConsultationForm] render error inside ready:', renderErr);
-          captchaLoading.value = false;
-          captchaErrorMsg.value = content.consultationForm.messages.captchaRenderFailed;
-        }
-      });
+      grecaptcha = await loadRecaptchaScript();
     } catch (err) {
       console.error('[useConsultationForm] load script error:', err);
       captchaLoading.value = false;
       captchaErrorMsg.value = content.consultationForm.messages.captchaFailed;
+      return;
     }
+
+    const doRender = () => {
+      try {
+        containerEl.innerHTML = '';
+        recaptchaWidgetId = grecaptcha.render(containerEl, {
+          sitekey: captchaSiteKey.value,
+          size: pickCaptchaSize(),
+          callback: (token) => onCaptchaSuccess(token),
+          'expired-callback': () => onCaptchaError('expired'),
+          'error-callback': () => onCaptchaError('error'),
+        });
+        captchaLoading.value = false;
+        verifyWidgetVisible(containerEl);
+      } catch (renderErr) {
+        console.error('[useConsultationForm] render error:', renderErr);
+        captchaLoading.value = false;
+        captchaErrorMsg.value = content.consultationForm.messages.captchaRenderFailed;
+      }
+    };
+
+    if (typeof grecaptcha.ready === 'function') grecaptcha.ready(doRender);
+    else doRender();
   }
 
   function resetRecaptchaWidget() {
