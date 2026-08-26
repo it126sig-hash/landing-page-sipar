@@ -59,8 +59,22 @@ export default {
 
   about: {
     title: 'Tentang Kami',
-    // Updated: now used by AboutSection.vue as single source of truth
-    description: 'Sanggar Indah Parahyangan hadir dari dedikasi Sanggar Indah Group selama lebih dari 30 tahun dalam menghadirkan hunian yang layak dan terjangkau. Dengan pengalaman dan berbagai penghargaan yang telah diraih, kami terus berkomitmen menghadirkan pilihan hunian yang dapat menjadi tempat untuk tumbuh dan membangun cerita bersama keluarga.',
+    // Dipecah jadi potongan supaya sebagian kata bisa ditebalkan/diberi warna
+    // tanpa memakai v-html. `em` menunjuk ke gaya di AboutSection.vue:
+    //   'gold'  -> pencapaian & rekam jejak
+    //   'green' -> nilai inti produk
+    // Sengaja hanya 3 penekanan. Kalau terlalu banyak yang disorot, tidak ada
+    // yang benar-benar menonjol dan paragrafnya justru terlihat ramai.
+    // Spasi di ujung potongan itu disengaja — jangan dirapikan.
+    description: [
+      { text: 'Sanggar Indah Parahyangan hadir dari dedikasi Sanggar Indah Group selama ' },
+      { text: 'lebih dari 30 tahun', em: 'gold' },
+      { text: ' dalam menghadirkan hunian yang ' },
+      { text: 'layak dan terjangkau', em: 'green' },
+      { text: '. Dengan pengalaman dan ' },
+      { text: 'berbagai penghargaan yang telah diraih', em: 'gold' },
+      { text: ', kami terus berkomitmen menghadirkan pilihan hunian yang dapat menjadi tempat untuk tumbuh dan membangun cerita bersama keluarga.' },
+    ],
     awards: [
       { id: 'award1', year: '2000', title: 'Pelopor KPR Untuk Masyarakat', image: '/assets/images/awards/Pelopor KPR Untuk Masyarakat.webp' },
       { id: 'award2', year: '2002', title: 'Pelopor Pembangunan Rumah Sederhana Sehat', image: '/assets/images/awards/Pelopor Pembangunan Rumah Sederhana Sehat.webp' },
@@ -198,7 +212,10 @@ export default {
   // Copy section tipe rumah (sebelumnya hardcoded di ProductsSection.vue)
   products: {
     title: 'Pilih Rumah Impianmu',
-    priceHeadline: 'Harga mulai dari 160jt-an s/d 300jt-an',
+    // Dipisah agar angkanya bisa dijatuhkan ke baris sendiri dan diberi
+    // penekanan warna; lihat ProductsSection.vue.
+    priceHeadline: 'Harga mulai dari',
+    priceRange: '160jt-an s/d 300jt-an',
     detailCtaLabel: 'Lihat Detail',
   },
 

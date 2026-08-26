@@ -5,6 +5,20 @@ import { useContent } from '~/composables/useContent';
 
 const { content } = useContent();
 
+/**
+ * Gaya penekanan untuk potongan teks di content.about.description.
+ *
+ * Emasnya sengaja #8a6d1f, bukan #c9a84c seperti judul. #c9a84c memang warna
+ * palet yang sama, tapi di atas latar putih kontrasnya hanya sekitar 2,3:1 —
+ * cukup untuk judul berukuran besar, tidak cukup untuk teks paragraf. Nada
+ * emas yang lebih tua ini menjaga identitas warnanya sekaligus tetap terbaca.
+ */
+const emphasis = {
+  gold: 'font-semibold text-[#8a6d1f]',
+  green: 'font-semibold text-forest-deep',
+  undefined: '',
+};
+
 const carouselRef = ref(null);
 let ctx;
 let tween;
@@ -88,11 +102,25 @@ onUnmounted(() => ctx?.revert());
 
         <!-- Right: Text Content with Colored Typography -->
         <div class="text-left md:text-right">
-          <h2 class="font-display font-semibold text-2xl sm:text-3xl md:text-4xl leading-tight text-[#c9a84c] mb-2 sm:mb-3">
+          <!-- Metallic gold, sama seperti headline harga di ProductsSection.
+               text-[#a8862f] adalah warna cadangan kalau background-clip:text
+               tidak didukung — tanpa itu judulnya bisa hilang sama sekali. -->
+          <!-- inline-block itu WAJIB, bukan hiasan: gradient dilukis pada kotak
+               elemen, bukan pada hurufnya. Sebagai block selebar kolom, teks
+               yang rata kanan hanya kebagian ujung gelap gradient dan kilaunya
+               terbuang. Menyusut selebar teks membuat gradient terpetakan pas. -->
+          <h2 class="inline-block font-display font-semibold text-2xl sm:text-3xl md:text-4xl leading-tight mb-2 sm:mb-3
+                     text-[#a8862f]
+                     bg-[linear-gradient(115deg,#836619_0%,#9c7c28_38%,#b8974a_55%,#8f7124_78%,#7d611a_100%)]
+                     bg-clip-text supports-[background-clip:text]:text-transparent">
             {{ content.about.title }}
           </h2>
-          <p class="font-body text-xs sm:text-sm md:text-base leading-relaxed text-gray-700">
-            {{ content.about.description }}
+          <!-- text-justify merapikan tepi kiri-kanan supaya paragraf tidak lagi
+               bergerigi. hyphens-auto dipasang berpasangan dengannya: teks rata
+               kanan-kiri tanpa pemenggalan kata akan melebarkan spasi antarkata
+               secara ekstrem pada kolom sempit. -->
+          <p class="font-body text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 text-justify hyphens-auto">
+            <span v-for="(part, i) in content.about.description" :key="i" :class="emphasis[part.em]">{{ part.text }}</span>
           </p>
         </div>
       </div>

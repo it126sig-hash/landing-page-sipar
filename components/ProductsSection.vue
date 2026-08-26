@@ -61,12 +61,17 @@ function closeModal() {
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
 
             <!-- Label tipe, ditempel di atas gambar seperti pola kartu properti.
-                 Alasnya putih agar tetap terbaca di atas foto apa pun; yang dibuat
-                 emas adalah TULISANNYA, sesuai permintaan. Sengaja tidak memakai
-                 alas emas pekat supaya tidak bersaing dengan tombol CTA di bawah. -->
+                 Alasnya krem terang, bukan emas pekat, supaya tidak bersaing
+                 dengan tombol CTA emas di bawah — label ini informasi, bukan
+                 ajakan menekan. Huruf kapital berjarak membuatnya terbaca
+                 sebagai label, bukan potongan kalimat. -->
             <span
-              class="absolute left-3 top-3 inline-flex items-center rounded-full bg-white/95 px-3 py-1
-                     text-xs font-bold tracking-wide text-[#8a6d1f] shadow-sm ring-1 ring-[#e0d3ae] backdrop-blur-sm">
+              class="absolute left-3 top-3 inline-flex items-center rounded-full px-3 py-1.5
+                     bg-[linear-gradient(135deg,#fffdf6_0%,#f7edd6_100%)]
+                     text-[10px] font-bold uppercase tracking-[0.12em] text-[#8a6d1f]
+                     ring-1 ring-[#e2d2a6]
+                     shadow-[0_1px_2px_rgba(90,70,20,0.12),inset_0_1px_0_rgba(255,255,255,0.9)]
+                     backdrop-blur-sm">
               {{ t.tag }}
             </span>
           </button>
@@ -110,11 +115,34 @@ function closeModal() {
           </div>
         </article>
       </div>
-      <div class="text-center">
-        <h2 class="font-display font-semibold text-3xl md:text-4xl text-center text-[#142b20] mb-10">
+      <!-- Angkanya dijatuhkan ke baris sendiri di bawah kalimat pengantar.
+           Pengantarnya sengaja dikecilkan dan dibuat kapital berjarak supaya
+           berperan sebagai label, sehingga angka harganyalah yang dibaca lebih
+           dulu. Tetap satu <h2> agar struktur judul halaman tidak berubah. -->
+      <h2 class="mb-10 text-center">
+        <span class="block font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-charcoal-gray">
           {{ content.products.priceHeadline }}
-        </h2>
-      </div>
+        </span>
+        <!-- Efek metallic gold: gradient dengan pita terang di tengah meniru
+             pantulan cahaya pada logam.
+
+             text-[#8a6d1f] DITULIS DULUAN dengan sengaja sebagai warna cadangan.
+             Kalau background-clip:text tidak didukung, teks jatuh ke emas pekat
+             biasa; tanpa itu, text-transparent akan membuat harganya HILANG
+             sama sekali. Itulah gunanya varian supports-[].
+
+             lining-nums: Cormorant bawaannya memakai angka old-style yang tinggi
+             digitnya naik-turun — cantik untuk teks mengalir, tapi angka harga
+             harus terbaca sekilas. -->
+        <span class="mt-2 inline-block font-display text-3xl sm:text-4xl md:text-5xl font-bold lining-nums
+                     text-[#8a6d1f]
+                     bg-[linear-gradient(115deg,#836619_0%,#9c7c28_38%,#b8974a_55%,#8f7124_78%,#7d611a_100%)]
+                     bg-clip-text supports-[background-clip:text]:text-transparent">
+          {{ content.products.priceRange }}
+        </span>
+        <!-- Garis emas tipis yang memudar di kedua ujung, sebagai penutup visual. -->
+        <span class="mx-auto mt-4 block h-px w-24 bg-[linear-gradient(90deg,transparent,#c9a84c,transparent)]"></span>
+      </h2>
 
     </div>
 
