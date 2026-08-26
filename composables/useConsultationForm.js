@@ -185,6 +185,22 @@ export function useConsultationForm() {
   }
 
   /**
+   * grecaptcha.render() menolak elemen yang PERNAH dipakai merender widget dengan
+   * "reCAPTCHA has already been rendered in this element". Mengosongkan innerHTML
+   * tidak menolong: catatan itu disimpan Google di sisi internalnya, bukan di DOM.
+   *
+   * Karena itu setiap render selalu memakai elemen anak yang benar-benar baru.
+   * Elemen ref dari Vue tidak pernah dipakai langsung, jadi ia bisa dipakai ulang
+   * berkali-kali dan tombol "Muat Ulang Verifikasi" bisa dipencet berulang kali.
+   */
+  function createWidgetHost(containerEl) {
+    containerEl.innerHTML = '';
+    const host = document.createElement('div');
+    containerEl.appendChild(host);
+    return host;
+  }
+
+  /**
    * Render widget reCAPTCHA ke elemen DOM
    */
   async function renderRecaptchaWidget(containerEl) {
@@ -210,8 +226,7 @@ export function useConsultationForm() {
 
     const doRender = () => {
       try {
-        containerEl.innerHTML = '';
-        recaptchaWidgetId = grecaptcha.render(containerEl, {
+        recaptchaWidgetId = grecaptcha.render(createWidgetHost(containerEl), {
           sitekey: captchaSiteKey.value,
           size: pickCaptchaSize(containerEl),
           callback: (token) => onCaptchaSuccess(token),
@@ -307,13 +322,13 @@ export function useConsultationForm() {
 
   /** Render ulang widget reCAPTCHA dari nol (dipakai tombol "Muat Ulang Verifikasi"). */
   async function retryCaptcha(containerEl) {
+    if (!containerEl) return;
     captchaErrorMsg.value = '';
     captchaToken.value = null;
+    // Lepaskan widget lama dulu; pengosongan DOM + pembuatan elemen anak baru
+    // ditangani createWidgetHost() di dalam renderRecaptchaWidget().
     resetRecaptchaWidget();
-    if (containerEl) {
-      containerEl.innerHTML = '';
-      await renderRecaptchaWidget(containerEl);
-    }
+    await renderRecaptchaWidget(containerEl);
   }
 
   function devBypassCaptcha() {
