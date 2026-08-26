@@ -93,7 +93,7 @@ onUnmounted(() => {
       v-if="isDesktop && !isScrolled"
       type="button"
       aria-label="Konsultasi dengan tim kami"
-      class="fixed z-50 top-3 right-20 inline-flex items-center justify-center gap-2 font-body rounded-lg bg-[#142b20] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#0f1f17] shadow-none transition-colors"
+      class="fixed z-50 top-3 right-20 inline-flex items-center justify-center gap-2 font-body rounded-lg bg-[#142b20] bg-grad-forest px-6 py-2.5 text-sm font-semibold text-white shadow-btn-forest hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 transition-all duration-200"
       @click="openWhatsAppDirect"
     >
       <span>WhatsApp</span>
@@ -109,9 +109,26 @@ onUnmounted(() => {
     leave-from-class="opacity-100 translate-y-0 scale-100"
     leave-to-class="opacity-0 translate-y-4 scale-90"
   >
+    <!--
+      JANGAN pasang overflow-y-auto di container ini.
+
+      Diukur langsung di browser: isinya 234,x px sehingga clientWidth
+      dibulatkan ke bawah jadi 234 dan scrollWidth ke atas jadi 235. Selisih
+      1 piksel dari pembulatan sub-piksel itu sudah cukup memunculkan
+      scrollbar — dan karena menurut aturan CSS menyetel satu sumbu ke nilai
+      non-visible membuat sumbu lainnya ikut jadi `auto`, yang muncul bukan
+      satu tapi DUA scrollbar, horizontal dan vertikal, menempel di sebelah
+      tombol WhatsApp.
+
+      Isinya cuma 242px sementara ruang tersedia 820px, jadi kemampuan
+      menggulir tidak pernah terpakai. max-h tetap dipertahankan sebagai
+      pengaman kalau menunya bertambah banyak; kalau nanti benar-benar
+      melebihi layar, kembalikan overflow-y-auto DAN pasangkan dengan
+      overflow-x-hidden supaya kasus di atas tidak terulang.
+    -->
     <div
       v-if="!isDesktop || isScrolled"
-      class="fixed z-50 bottom-5 right-5 flex flex-col items-end gap-3 max-h-[calc(100vh-5rem)] overflow-y-auto"
+      class="fixed z-50 bottom-5 right-5 flex flex-col items-end gap-3 max-h-[calc(100vh-5rem)]"
       :style="{ bottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }"
     >
       <!-- 4-item Menu -->
@@ -128,7 +145,7 @@ onUnmounted(() => {
           <!-- 1. Syarat KPR BCA -->
           <button
             type="button"
-            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142B20] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#0f1f17] transition-all whitespace-nowrap"
+            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142b20] bg-grad-forest px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 shadow-btn-forest transition-all duration-200 whitespace-nowrap"
             @click="openKprModal('Syarat KPR BCA')"
           >
             <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,7 +157,7 @@ onUnmounted(() => {
           <!-- 2. Syarat KPR BTN -->
           <button
             type="button"
-            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142B20] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#0f1f17] transition-all whitespace-nowrap"
+            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142b20] bg-grad-forest px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 shadow-btn-forest transition-all duration-200 whitespace-nowrap"
             @click="openKprModal('Syarat KPR BTN')"
           >
             <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,7 +169,7 @@ onUnmounted(() => {
           <!-- 3. Isi Form Member Get Member -->
           <button
             type="button"
-            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142B20] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#0f1f17] transition-all whitespace-nowrap"
+            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142b20] bg-grad-forest px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 shadow-btn-forest transition-all duration-200 whitespace-nowrap"
             @click="openMemberModal"
           >
             <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +181,7 @@ onUnmounted(() => {
           <!-- 4. Hubungi Kami → WhatsApp langsung -->
           <button
             type="button"
-            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#25D366] px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-[#20ba5a] transition-all whitespace-nowrap"
+            class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#25D366] bg-grad-wa px-4 py-2.5 text-xs font-bold text-white shadow-btn-wa hover:bg-grad-wa-hover hover:-translate-y-0.5 hover:shadow-btn-wa-lg active:translate-y-0 transition-all duration-200 whitespace-nowrap"
             @click="openWhatsAppDirect"
           >
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -206,7 +223,7 @@ onUnmounted(() => {
           type="button"
           :aria-label="isMenuOpen ? 'Tutup menu' : 'Buka menu layanan'"
           :aria-expanded="isMenuOpen"
-          class="flex h-14 w-14 items-center justify-center rounded-full bg-orange text-white hover:bg-[#D66F1A] transition-colors"
+          class="flex h-14 w-14 items-center justify-center rounded-full bg-[#EE8322] bg-grad-orange text-white shadow-btn-orange hover:bg-grad-orange-hover hover:shadow-btn-orange-lg hover:scale-105 active:scale-100 transition-all duration-200"
           @click="toggleMenu"
         >
           <svg

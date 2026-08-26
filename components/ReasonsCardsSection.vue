@@ -113,7 +113,7 @@
                Panel QR pada gambar ada di x 72,1%-95,1% dan y 85%-96,2%. -->
           <div class="absolute bottom-[17%] right-[4.95%] z-10">
             <a :href="content.locationSection?.mapUrl" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 bg-[#c9a84c] text-black font-medium text-[9px] sm:text-xs md:text-sm whitespace-nowrap rounded md:rounded-lg hover:bg-[#b8974a] transition-colors shadow-lg">
+              class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 bg-[#c9a84c] bg-grad-gold text-black font-semibold text-[9px] sm:text-xs md:text-sm whitespace-nowrap rounded md:rounded-lg hover:-translate-y-0.5 hover:bg-grad-gold-hover hover:shadow-btn-gold-lg active:translate-y-0 transition-all duration-200 shadow-btn-gold">
               {{ content.reasons.mapCtaLabel }}
             </a>
           </div>

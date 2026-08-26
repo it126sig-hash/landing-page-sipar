@@ -255,7 +255,7 @@ watch(state, async (s) => {
                   <!-- Spacer before submit -->
                   <div class="pt-2">
                     <button type="submit"
-                      class="w-full rounded-full bg-[#EE8322] px-6 py-3.5 text-base font-bold text-white shadow-[0_4px_14px_0_rgba(238,131,34,0.39)] hover:bg-[#d9741a] hover:shadow-[0_6px_20px_rgba(238,131,34,0.23)] transition-all focus:outline-none focus:ring-2 focus:ring-orange/50 active:scale-[0.98]">
+                      class="w-full rounded-full bg-[#EE8322] bg-grad-orange px-6 py-3.5 text-base font-bold text-white shadow-btn-orange hover:bg-grad-orange-hover hover:-translate-y-0.5 hover:shadow-btn-orange-lg active:translate-y-0 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange/50 active:scale-[0.98]">
                       {{ mgmContent.submitLabel }}
                     </button>
                   </div>
@@ -310,7 +310,7 @@ watch(state, async (s) => {
                       {{ cf.captcha.retry }}
                     </button>
                     <p class="text-center text-[11px] text-gray-400">{{ cf.captcha.fallbackIntro }}</p>
-                    <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#20ba5a] transition-colors">
+                    <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] bg-grad-wa px-5 py-2.5 text-xs font-bold text-white shadow-btn-wa hover:bg-grad-wa-hover hover:-translate-y-0.5 hover:shadow-btn-wa-lg active:translate-y-0 transition-all duration-200">
                       {{ cf.captcha.fallbackCta }}
                     </a>
                   </div>
@@ -334,7 +334,7 @@ watch(state, async (s) => {
                   <p class="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">{{ cf.messages.success }}</p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 w-full mt-2">
-                  <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white hover:bg-[#20ba5a] transition-colors">
+                  <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] bg-grad-wa px-5 py-3 text-sm font-bold text-white shadow-btn-wa hover:bg-grad-wa-hover hover:-translate-y-0.5 hover:shadow-btn-wa-lg active:translate-y-0 transition-all duration-200">
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     {{ cf.successCtaWa }}
                   </a>
@@ -358,7 +358,7 @@ watch(state, async (s) => {
                   <h3 class="font-display text-xl font-bold text-[#142B20] mb-2">{{ cf.notConfiguredTitle }}</h3>
                   <p class="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">{{ cf.messages.notConfigured }}</p>
                 </div>
-                <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white hover:bg-[#20ba5a] transition-colors">
+                <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] bg-grad-wa px-5 py-3 text-sm font-bold text-white shadow-btn-wa hover:bg-grad-wa-hover hover:-translate-y-0.5 hover:shadow-btn-wa-lg active:translate-y-0 transition-all duration-200">
                   {{ cf.errorCtaWa }}
                 </a>
               </div>
@@ -371,10 +371,10 @@ watch(state, async (s) => {
                   <p class="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">{{ cf.messages.error }}</p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 w-full mt-2">
-                  <button type="button" class="flex-1 rounded-full bg-[#142B20] px-5 py-3 text-sm font-bold text-white hover:bg-[#0f1f17] transition-colors" @click="() => { state = 'idle'; }">
+                  <button type="button" class="flex-1 rounded-full bg-[#142b20] bg-grad-forest px-5 py-3 text-sm font-bold text-white hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 shadow-btn-forest transition-all duration-200" @click="() => { state = 'idle'; }">
                     {{ cf.errorCtaRetry }}
                   </button>
-                  <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white hover:bg-[#20ba5a] transition-colors">
+                  <a :href="waFallbackUrl" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] bg-grad-wa px-5 py-3 text-sm font-bold text-white shadow-btn-wa hover:bg-grad-wa-hover hover:-translate-y-0.5 hover:shadow-btn-wa-lg active:translate-y-0 transition-all duration-200">
                     {{ cf.errorCtaWa }}
                   </a>
                 </div>

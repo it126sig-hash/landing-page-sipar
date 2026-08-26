@@ -147,7 +147,7 @@ const heroMobile = content.hero.imageMobile || content.hero.heroMobile || withBa
         <!-- CTA Button - Kuning -->
         <div class="mb-4 sm:mb-6">
           <a href="#tipe"
-            class="inline-flex items-center px-5 py-2.5 sm:px-6 sm:py-3 bg-[#c9a84c] text-black font-medium text-sm sm:text-base rounded-lg shadow-lg shadow-black/25 hover:bg-[#b8974a] transition-colors">
+            class="inline-flex items-center px-5 py-2.5 sm:px-6 sm:py-3 bg-[#c9a84c] bg-grad-gold text-black font-semibold text-sm sm:text-base rounded-lg shadow-btn-gold hover:-translate-y-0.5 hover:bg-grad-gold-hover hover:shadow-btn-gold-lg active:translate-y-0 transition-all duration-200">
             {{ content.hero.primaryCta || 'Lihat Tipe Rumah' }}
           </a>
         </div>

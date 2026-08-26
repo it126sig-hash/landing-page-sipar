@@ -159,7 +159,7 @@ const closeSidebar = () => {
           <div class="pt-6 border-t border-gray-100">
             <WhatsAppButton
               message-key="konsultasi"
-              class="w-full justify-center !bg-[#142b20] !text-white hover:!bg-[#0f1f17] !py-3 !text-base !rounded-lg"
+              class="w-full justify-center !bg-[#142b20] !bg-grad-forest !text-white hover:!bg-grad-forest-hover !py-3 !text-base !rounded-lg"
               @click="closeSidebar"
             >
               Hubungi WhatsApp
