@@ -135,15 +135,38 @@ export function useConsultationForm() {
   }
 
   /**
-   * Widget reCAPTCHA ukuran "normal" lebarnya tetap 304px. Modal punya padding
-   * 24px kiri-kanan, jadi di viewport < 352px widget itu meluber. Solusinya
-   * memakai varian resmi "compact" (164px) — BUKAN CSS transform: scale(),
-   * karena transform apa pun pada elemen leluhur membuat popup challenge
-   * (position: fixed) ikut terkurung di kotak widget dan tidak pernah terlihat.
+   * Widget reCAPTCHA ukuran "normal" lebarnya tetap 304px; varian resmi
+   * "compact" 164px. Dipakai varian resmi, BUKAN CSS transform: scale(),
+   * karena scale membuat widget tampak benar tapi area sentuhnya bergeser.
+   *
+   * Ambangnya diukur dari lebar container yang sebenarnya, bukan
+   * window.innerWidth. Versi lama membandingkan innerWidth < 352, padahal
+   * ruang yang benar-benar tersedia jauh lebih sempit karena overlay punya
+   * padding 16px dan body modal punya padding 24px kiri-kanan. Di HP 360px
+   * ruang isinya cuma 280px, sehingga widget 304px meluber 24px keluar modal
+   * tapi ambang 352 tidak pernah aktif. Mengukur container membuat keputusan
+   * ini otomatis benar berapa pun padding modalnya berubah.
    */
-  function pickCaptchaSize() {
+  const RECAPTCHA_NORMAL_WIDTH = 304;
+
+  /**
+   * Container reCAPTCHA masih KOSONG saat diukur (widget-nya belum dirender) dan
+   * ia flex item, jadi lebarnya 0 — bukan lebar ruang yang tersedia. Karena itu
+   * ditelusuri ke atas sampai ketemu elemen yang benar-benar punya lebar.
+   */
+  function availableWidth(containerEl) {
+    let node = containerEl;
+    while (node && node.getBoundingClientRect) {
+      const w = node.getBoundingClientRect().width;
+      if (w > 0) return w;
+      node = node.parentElement;
+    }
+    return typeof window !== 'undefined' ? window.innerWidth : RECAPTCHA_NORMAL_WIDTH;
+  }
+
+  function pickCaptchaSize(containerEl) {
     if (typeof window === 'undefined') return 'normal';
-    return window.innerWidth < 352 ? 'compact' : 'normal';
+    return availableWidth(containerEl) < RECAPTCHA_NORMAL_WIDTH ? 'compact' : 'normal';
   }
 
   /**
@@ -190,7 +213,7 @@ export function useConsultationForm() {
         containerEl.innerHTML = '';
         recaptchaWidgetId = grecaptcha.render(containerEl, {
           sitekey: captchaSiteKey.value,
-          size: pickCaptchaSize(),
+          size: pickCaptchaSize(containerEl),
           callback: (token) => onCaptchaSuccess(token),
           'expired-callback': () => onCaptchaError('expired'),
           'error-callback': () => onCaptchaError('error'),

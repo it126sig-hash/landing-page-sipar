@@ -282,17 +282,19 @@ watch(state, async (s) => {
                   </div>
 
                   <!--
-                    Lihat catatan yang sama di ConsultationModal: reCAPTCHA berlebar tetap 304px di-scale
-                    turun pada layar <390px agar tidak meluber keluar modal. Render params tidak diubah.
-                  -->
-                  <!--
                     JANGAN bungkus container ini dengan overflow-hidden atau CSS transform.
-                    Popup challenge (pilih gambar) dirender Google sebagai anak dari container
-                    ini dengan position: fixed. overflow-hidden memotongnya, dan transform apa
-                    pun (mis. scale) membuat position: fixed terkurung di dalam kotak widget —
-                    dua-duanya bikin challenge tidak pernah terlihat, terutama di layar HP yang
-                    jauh lebih sering dapat challenge gambar daripada desktop.
-                    Lebar widget diatur lewat opsi `size` reCAPTCHA di useConsultationForm.js.
+                    Yang dipotong bukan challenge-nya, melainkan WIDGET-nya sendiri: kotak
+                    304px milik Google akan terpangkas mengikuti wrapper.
+
+                    Catatan penting supaya tidak salah arah lagi: popup challenge (pilih
+                    gambar) TIDAK dirender di dalam container ini. Diukur langsung di
+                    browser, Google menempelkannya sebagai anak <body> dengan
+                    z-index 2147483647, jadi CSS milik modal ini tidak bisa menutupinya
+                    maupun mengurungnya. Kalau challenge tidak muncul, penyebabnya ada di
+                    sisi Google/jaringan, bukan di layout modal.
+
+                    Lebar widget diatur lewat opsi `size` reCAPTCHA di useConsultationForm.js,
+                    yang mengukur lebar container ini.
                   -->
                   <div class="flex justify-center">
                     <div ref="recaptchaContainer"></div>
