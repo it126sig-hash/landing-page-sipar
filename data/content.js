@@ -91,21 +91,21 @@ export default {
   houseTypes: [
     {
       id: '22-60', name: 'Tipe 22/60', lb: '22', lt: '60', kt: '1', km: '1',
-      tag: 'Subsidi', subtitle: 'Untuk pasutri baru', priceFrom: '160 Jt-an',
+      tag: 'Subsidi', subtitle: 'Tempat yang pas untuk memulai cerita baru bersama pasangan.', priceFrom: '160 Jt-an',
       thumbnail: '/assets/images/rumah/22 DAN 60.webp',
       gallery: ['/assets/images/rumah/galeri/2260-denah.webp', '/assets/images/rumah/galeri/2260-fasad.webp'],
       specsOverride: [{ label: 'Listrik', value: '900 VA' }]
     },
     {
       id: '26-72', name: 'Tipe 26/72', lb: '26', lt: '72', kt: '2', km: '1',
-      tag: 'Komersil', subtitle: 'Untuk keluarga kecil', priceFrom: '200 Jt-an',
+      tag: 'Komersil', subtitle: 'Ruang lebih lega untuk menikmati hari bersama keluarga kecil.', priceFrom: '200 Jt-an',
       thumbnail: '/assets/images/rumah/26 DAN 72.webp',
       gallery: ['/assets/images/rumah/galeri/2672-denah.webp', '/assets/images/rumah/galeri/2672-fasad.webp'],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
     },
     {
       id: '36-72', name: 'Tipe 36/72', lb: '36', lt: '72', kt: '2', km: '1',
-      tag: 'Komersil', subtitle: 'Untuk keluarga yang sedang bertumbuh', priceFrom: '300 Jt-an',
+      tag: 'Komersil', subtitle: 'Lebih leluasa untuk keluarga yang terus tumbuh dan berkembang.', priceFrom: '300 Jt-an',
       thumbnail: '/assets/images/rumah/36 DAN 72.webp',
       gallery: ['/assets/images/rumah/galeri/3672-denah.webp', '/assets/images/rumah/galeri/3672-fasad.webp'],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
@@ -395,7 +395,7 @@ export default {
   // ============================================================
   // NEW: Consultation Form
   // Labels, microcopy, categories, validation messages.
-  // Digunakan oleh ConsultationModal.vue.
+  // Digunakan oleh MemberGetMemberModal.vue lewat useConsultationForm().
   // ============================================================
   consultationForm: {
     title: 'Konsultasi dengan Tim Kami',
