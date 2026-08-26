@@ -22,17 +22,42 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+
+      # Secret yang belum di-set tetap diteruskan GitHub Actions sebagai STRING
+      # KOSONG, bukan "tidak ada". Kalau string kosong itu masuk ke env build,
+      # Nuxt meng-override runtimeConfig.public jadi "" — dan override itu
+      # berjalan SETELAH nuxt.config.ts dievaluasi, sehingga default
+      # `process.env.X || '<default>'` di sana tidak akan pernah menang.
+      # Itulah yang bikin form live berhenti di "Belum Bisa Kirim Online"
+      # (sheetEndpoint:"") walaupun captcha-nya sudah lolos.
+      #
+      # Jadi secret hanya diteruskan kalau benar-benar berisi. Kalau kosong,
+      # env var-nya sama sekali tidak dibuat dan default di nuxt.config.ts dipakai.
+      - name: Teruskan secret hanya jika tidak kosong
+        env:
+          SHEET_ENDPOINT: ${{ secrets.NUXT_PUBLIC_SHEET_ENDPOINT }}
+          CAPTCHA_SITE_KEY: ${{ secrets.NUXT_PUBLIC_CAPTCHA_SITE_KEY }}
+        run: |
+          if [ -n "$SHEET_ENDPOINT" ]; then
+            echo "NUXT_PUBLIC_SHEET_ENDPOINT=$SHEET_ENDPOINT" >> "$GITHUB_ENV"
+          fi
+          if [ -n "$CAPTCHA_SITE_KEY" ]; then
+            echo "NUXT_PUBLIC_CAPTCHA_SITE_KEY=$CAPTCHA_SITE_KEY" >> "$GITHUB_ENV"
+          fi
+
       - run: npm run generate
         env:
           NUXT_APP_BASE_URL: /landing-page-sipar/
-          # Endpoint Google Apps Script (Web App /exec).
-          # WAJIB diisi lewat GitHub repo secret bernama NUXT_PUBLIC_SHEET_ENDPOINT,
-          # karena .env tidak ikut ter-commit. Tanpa ini, form akan tampil
-          # "belum dapat mengirim data online" di website yang sudah live.
-          NUXT_PUBLIC_SHEET_ENDPOINT: ${{ secrets.NUXT_PUBLIC_SHEET_ENDPOINT }}
-          # Site key reCAPTCHA sudah punya default di nuxt.config.ts.
-          # Secret ini opsional, hanya untuk override kalau site key diganti.
-          NUXT_PUBLIC_CAPTCHA_SITE_KEY: ${{ secrets.NUXT_PUBLIC_CAPTCHA_SITE_KEY }}
+
+      # Pengaman: build yang endpoint-nya kosong tidak boleh sampai ter-deploy,
+      # karena gejalanya diam-diam (form tampak normal sampai user menekan kirim).
+      - name: Pastikan endpoint ter-bake di hasil build
+        run: |
+          if grep -rq 'sheetEndpoint:""' .output/public; then
+            echo "::error::sheetEndpoint kosong di hasil build — form tidak akan bisa mengirim data."
+            exit 1
+          fi
+          echo "OK: sheetEndpoint terisi."
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

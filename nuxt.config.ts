@@ -9,9 +9,20 @@ export default defineNuxtConfig({
       // ponytail: placeholder sampai domain produksi fix, override via NUXT_PUBLIC_SITE_URL
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://it126sig-hash.github.io/landing-page-sipar/',
       // Google Sheets integration via Google Apps Script Web App.
-      // Set NUXT_PUBLIC_SHEET_ENDPOINT to the Apps Script deployment URL.
-      // Jika kosong, ConsultationModal akan menampilkan state INTEGRATION_NOT_CONFIGURED.
-      sheetEndpoint: process.env.NUXT_PUBLIC_SHEET_ENDPOINT || '',
+      //
+      // URL /exec ini TIDAK rahasia: dipanggil langsung dari browser lewat fetch(),
+      // jadi selalu ikut ter-bundle ke JS yang bisa dibaca siapa pun yang membuka
+      // DevTools di situs live. Pengaman sesungguhnya ada di sisi Apps Script, yang
+      // memverifikasi token reCAPTCHA memakai SECRET KEY di Script Properties.
+      //
+      // Default ini wajib ada dengan alasan yang sama seperti captchaSiteKey di bawah:
+      // .env tidak ikut ter-commit, dan kalau GitHub repo secret
+      // NUXT_PUBLIC_SHEET_ENDPOINT belum di-set, build GitHub Actions menghasilkan
+      // string kosong sehingga form live selalu berhenti di state notConfigured
+      // ("Belum Bisa Kirim Online") walaupun captcha-nya sudah lolos.
+      // Tetap bisa dioverride lewat NUXT_PUBLIC_SHEET_ENDPOINT.
+      sheetEndpoint: process.env.NUXT_PUBLIC_SHEET_ENDPOINT
+        || 'https://script.google.com/macros/s/AKfycbytID6Jm-dzZ78VUioDSMtuaE4dlD7J1eqGGIW7i_Bp88Sbf55cZzYFnOwt3Z25DpH7kw/exec',
       // CAPTCHA provider (reCAPTCHA v2 checkbox).
       // Site key reCAPTCHA memang bersifat PUBLIK (selalu ikut terkirim ke browser),
       // jadi aman dipakai sebagai default di sini. Yang WAJIB tetap rahasia adalah
