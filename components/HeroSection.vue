@@ -14,7 +14,33 @@ const heroMobile = content.hero.imageMobile || content.hero.heroMobile || withBa
     jatuh persis di bawah lipatan dan tidak pernah terlihat tanpa men-scroll —
     padahal justru itu tujuannya dipindah keluar dari hero.
   -->
-  <section class="relative isolate flex flex-col h-full min-h-[300px] lg:h-[calc(100vh-120px)] lg:min-h-[544px] overflow-hidden bg-[#12271b]">
+  <!--
+    min-h mobile 450px, bukan 300px.
+
+    Di bawah lg hero memakai `flex-1` di dalam pembungkus setinggi
+    calc(100vh-64px) bersama pita KPR (34px) dan section Tentang (±419px), jadi
+    tinggi alaminya = tinggi layar - 517. Di hampir semua ponsel (tinggi 568-932)
+    angka itu di bawah min-h, sehingga min-h-lah yang menentukan — dan itu bagus:
+    komposisinya jadi SAMA di semua ponsel, bukan ikut berubah per tinggi layar.
+
+    Kenapa 450. Isi hero menumpuk atas-bawah (judul+tagline di atas; tombol +
+    deskripsi di bawah), sedangkan papan nama "SANGGAR INDAH PARAHYANGAN" di
+    foto duduk di 41,5%-56,1% tinggi file. Karena foto mobile ter-cover
+    berdasarkan LEBAR, papan nama hanya turun 0,44px setiap hero ditambah 1px,
+    sementara tombol (menempel ke bawah) turun 1px penuh — tiap 1px tambahan
+    tinggi memberi 0,56px jarak bersih. Pada 300px tombol emas menimpa separuh
+    papan nama; 450px menyisakan ±18px di layar tersempit (320px) dan makin lega
+    di layar lebih besar.
+
+    Konsekuensinya section Tentang mulai lebih ke bawah di ponsel pendek. Itu
+    disengaja: pembungkusnya memakai min-h (bukan h) sehingga halaman tinggal
+    digulir, dan foto hero yang utuh lebih berharga daripada memaksa Tentang
+    ikut masuk satu layar.
+
+    Kalau tinggi tombol/deskripsi atau foto mobile-nya diganti, hitung ulang
+    angka ini — bukan angka keramat, hasil geometri di atas.
+  -->
+  <section class="relative isolate flex flex-col h-full min-h-[450px] lg:h-[calc(100vh-120px)] lg:min-h-[544px] overflow-hidden bg-[#12271b]">
     <!--
       ============================================================
       BACKGROUND HERO — "SUNLIT GARDEN"
