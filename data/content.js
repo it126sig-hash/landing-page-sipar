@@ -91,6 +91,8 @@ export default {
   defaultSpecs: [
     { label: 'Pondasi', value: 'Batu Kali' },
     { label: 'Struktur', value: 'Beton Bertulang' },
+    // Hebel adalah dinding bawaan tipe subsidi 22/60. Tipe komersil 26/72 & 36/72
+    // memakai bata interlock lewat specsOverride masing-masing.
     { label: 'Dinding', value: 'Hebel' },
     { label: 'Lantai', value: 'Keramik' },
     { label: 'Atap', value: 'Genteng Beton' },
@@ -133,7 +135,10 @@ export default {
         { src: '/assets/images/rumah/galeri/2672-fasad.webp', label: 'Tampak Depan' },
         { src: '/assets/images/rumah/galeri/2672-3d-ilustrasi.webp', label: 'Perspektif' },
       ],
-      specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
+      specsOverride: [
+        { label: 'Dinding', value: 'Bata Interlock' },
+        { label: 'Listrik', value: '1300 VA' },
+      ]
     },
     {
       id: '36-72', name: 'Tipe 36/72', lb: '36', lt: '72', kt: '2', km: '1',
@@ -144,7 +149,10 @@ export default {
         { src: '/assets/images/rumah/galeri/3672-fasad.webp', label: 'Tampak Depan' },
         { src: '/assets/images/rumah/galeri/3672-3d-ilustrasi.webp', label: 'Perspektif' },
       ],
-      specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
+      specsOverride: [
+        { label: 'Dinding', value: 'Bata Interlock' },
+        { label: 'Listrik', value: '1300 VA' },
+      ]
     },
   ],
 

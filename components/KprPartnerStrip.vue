@@ -4,16 +4,29 @@ import { useContent } from '~/composables/useContent';
 const { content } = useContent();
 
 /**
- * Tinggi optis logo bank tidak sama dengan tinggi kotaknya.
+ * Tinggi logo bank disetel per merek, bukan disamakan begitu saja.
  *
- * Wordmark BCA punya huruf kapital semua dengan tinggi penuh, sedangkan "btn"
- * huruf kecil dengan aksen yang menjulur ke atas. Diberi tinggi CSS yang sama,
- * BCA terlihat lebih besar. Selisih ~3px ini membuat keduanya terbaca setara —
- * disetel dengan mata, bukan dengan angka yang rapi.
+ * Tinggi file PNG-nya tidak sebanding dengan tinggi hurufnya. Diukur dari
+ * kotak piksel non-transparan tiap file:
+ *   bca-white.png — puncak huruf kapital di 17,9% tinggi file, baseline 84,9%
+ *                   (tinggi kapital = 67,0% tinggi file)
+ *   btn-white.png — puncak huruf b/t di 13,8%, baseline 91,0%
+ *                   (tinggi ascender = 77,1% tinggi file; sisanya ruang kosong
+ *                   di bawah dan coretan aksen di atas huruf n)
+ *
+ * Dua akibatnya kalau tingginya dikira-kira: huruf "btn" jadi lebih besar
+ * daripada "BCA", dan baseline-nya turun beberapa piksel sehingga terlihat
+ * melorot. Rasio 18 : 21 (0,857) menyamakan tinggi kapital BCA dengan tinggi
+ * ascender btn, dan pada rasio itu baseline keduanya jatuh di garis yang sama
+ * (selisih < 0,2px) tanpa perlu digeser manual — jadi `items-center` di
+ * pembungkusnya sudah cukup.
+ *
+ * Kalau salah satu file logo diganti, ukur ulang persentase di atas dulu:
+ * angka di sini ikut berubah karena mengikuti isi file, bukan seleranya.
  */
 const bankHeight = {
   BCA: 'h-[14px] sm:h-[16px] lg:h-[21px]',
-  BTN: 'h-[16px] sm:h-[19px] lg:h-[25px]',
+  BTN: 'h-[12px] sm:h-[14px] lg:h-[18px]',
 };
 </script>
 
@@ -62,7 +75,11 @@ const bankHeight = {
            pita membungkus ke dua baris, karena di sana ia justru mengambang. -->
       <span class="hidden h-3 w-px bg-white/20 sm:block lg:h-4" aria-hidden="true"></span>
 
-      <span class="flex items-center gap-4 sm:gap-6 lg:gap-8">
+      <!-- Jarak antar-logo sengaja lebih rapat daripada jarak pemisah→logo di
+           induknya (10 vs 12, 14 vs 20, 20 vs 28). Kalau sama atau lebih lebar,
+           BCA dan btn terbaca sebagai dua keterangan terpisah, bukan satu
+           pasangan bank yang berdiri di belakang proyek yang sama. -->
+      <span class="flex items-center gap-2.5 sm:gap-3.5 lg:gap-5">
         <!--
           Versi putih satu warna, bukan logo berwarna yang di-filter. Bank
           umumnya mengizinkan penggunaan monokrom di atas latar gelap, dan
