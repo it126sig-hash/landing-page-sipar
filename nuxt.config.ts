@@ -4,6 +4,22 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: false,
   modules: ['@nuxtjs/tailwindcss'],
+  experimental: {
+    // Mematikan app manifest. Fiturnya menerbitkan `builds/meta/<buildId>.json`
+    // yang dipakai Nuxt untuk route rules sisi klien + deteksi rute prerender
+    // saat prefetch <NuxtLink> — dua-duanya tidak dipakai situs satu halaman ini.
+    //
+    // Sekaligus menghilangkan error yang muncul di awal `nuxt dev`:
+    //   Pre-transform error: Failed to resolve import "#app-manifest"
+    //     from "node_modules/nuxt/dist/app/composables/manifest.js"
+    // Penyebabnya balapan waktu start: alias `#app-manifest` menunjuk ke
+    // .nuxt/manifest/meta/dev.json yang baru ditulis NITRO, sedangkan Vite sudah
+    // siap menerima request SSR lebih dulu. Request yang masuk di sela itu
+    // gagal me-resolve alias-nya. Sifatnya sementara — begitu Nitro selesai,
+    // error berhenti sendiri dan situs tidak pernah rusak karenanya — tapi
+    // dengan appManifest mati, import-nya tidak pernah ada sejak awal.
+    appManifest: false,
+  },
   runtimeConfig: {
     public: {
       // Domain produksi. Ditulis TANPA trailing slash supaya penggabungan
@@ -26,6 +42,17 @@ export default defineNuxtConfig({
       // Tetap bisa dioverride lewat NUXT_PUBLIC_SHEET_ENDPOINT.
       sheetEndpoint: process.env.NUXT_PUBLIC_SHEET_ENDPOINT
         || 'https://script.google.com/macros/s/AKfycbytID6Jm-dzZ78VUioDSMtuaE4dlD7J1eqGGIW7i_Bp88Sbf55cZzYFnOwt3Z25DpH7kw/exec',
+      // Verifikator kode referral Member Get Member (milik SIG App).
+      // Dipanggil langsung dari browser (POST, parameter `kode`), jadi URL-nya
+      // memang publik — sama sekali bukan rahasia. Endpoint-nya sendiri hanya
+      // membalas data pemilik kode, tidak menerima perubahan apa pun.
+      //
+      // Default ini wajib ada dengan alasan yang sama seperti sheetEndpoint di
+      // atas: .env tidak ikut ter-commit, sehingga tanpa fallback ini build di
+      // GitHub Actions menghasilkan string kosong dan tombol "Cek" selalu gagal.
+      // Tetap bisa dioverride lewat NUXT_PUBLIC_REFERRAL_CHECK_ENDPOINT.
+      referralCheckEndpoint: process.env.NUXT_PUBLIC_REFERRAL_CHECK_ENDPOINT
+        || 'https://sigapp.site/api/public/check-referral',
       // CAPTCHA provider (reCAPTCHA v2 checkbox).
       // Site key reCAPTCHA memang bersifat PUBLIK (selalu ikut terkirim ke browser),
       // jadi aman dipakai sebagai default di sini. Yang WAJIB tetap rahasia adalah

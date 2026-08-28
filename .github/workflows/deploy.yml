@@ -37,12 +37,16 @@ jobs:
         env:
           SHEET_ENDPOINT: ${{ secrets.NUXT_PUBLIC_SHEET_ENDPOINT }}
           CAPTCHA_SITE_KEY: ${{ secrets.NUXT_PUBLIC_CAPTCHA_SITE_KEY }}
+          REFERRAL_CHECK_ENDPOINT: ${{ secrets.NUXT_PUBLIC_REFERRAL_CHECK_ENDPOINT }}
         run: |
           if [ -n "$SHEET_ENDPOINT" ]; then
             echo "NUXT_PUBLIC_SHEET_ENDPOINT=$SHEET_ENDPOINT" >> "$GITHUB_ENV"
           fi
           if [ -n "$CAPTCHA_SITE_KEY" ]; then
             echo "NUXT_PUBLIC_CAPTCHA_SITE_KEY=$CAPTCHA_SITE_KEY" >> "$GITHUB_ENV"
+          fi
+          if [ -n "$REFERRAL_CHECK_ENDPOINT" ]; then
+            echo "NUXT_PUBLIC_REFERRAL_CHECK_ENDPOINT=$REFERRAL_CHECK_ENDPOINT" >> "$GITHUB_ENV"
           fi
 
       # Custom domain sanggarindahparahyangan.com menyajikan situs di ROOT, bukan

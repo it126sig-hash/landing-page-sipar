@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useContent } from '~/composables/useContent';
 import MemberGetMemberModal from './MemberGetMemberModal.vue';
 import KprTermsModal from './KprTermsModal.vue';
+import ReferralWelcomeModal from './ReferralWelcomeModal.vue';
 
 const { wa, content, withBase } = useContent();
 
@@ -264,4 +265,10 @@ onUnmounted(() => {
     :is-open="isMemberModalOpen"
     @close="isMemberModalOpen = false"
   />
+
+  <!-- Sambutan untuk pengunjung yang masuk lewat QR / tautan berkode referral.
+       Ditempatkan di sini karena komponen inilah pemilik isMemberModalOpen,
+       jadi tombol "Lengkapi Data Saya" bisa langsung membuka formulirnya tanpa
+       state tambahan yang dioper lintas komponen. -->
+  <ReferralWelcomeModal @open-form="isMemberModalOpen = true" />
 </template>

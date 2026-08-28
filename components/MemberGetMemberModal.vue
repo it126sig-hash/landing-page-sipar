@@ -2,6 +2,8 @@
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useContent } from '~/composables/useContent';
 import { useConsultationForm } from '~/composables/useConsultationForm';
+import { useReferralCheck } from '~/composables/useReferralCheck';
+import { useReferralFromUrl } from '~/composables/useReferralFromUrl';
 
 const props = defineProps({
   isOpen: { type: Boolean, default: false }
@@ -14,6 +16,24 @@ const mgmContent = content.memberGetMember;
 const cf = content.consultationForm;
 
 const dialogRef = ref(null);
+
+// Verifikasi kode referral ke SIG App. Statusnya berdiri sendiri dari validasi
+// form biasa karena butuh panggilan jaringan dan tombolnya terpisah.
+const {
+  status: referralStatus,
+  data: referralData,
+  message: referralMessage,
+  isChecking: referralChecking,
+  isValid: referralValid,
+  markAsStale: markReferralStale,
+  check: checkReferralCode,
+  seedVerified: seedVerifiedReferral,
+  reset: resetReferral,
+} = useReferralCheck();
+
+// Kode referral yang ikut di URL (?kode=VR0418) dan sudah lolos verifikasi
+// sejak halaman dibuka. Dipakai untuk mengisi form di resetForm().
+const { urlData: urlReferralData } = useReferralFromUrl();
 
 const {
   state,
@@ -53,8 +73,24 @@ watch(() => form.value.hasReferral, (newVal) => {
   if (!newVal) {
     form.value.referralCode = '';
     errors.value.referralCode = '';
+    resetReferral();
   }
 });
+
+// Inti dari aturan "wajib klik Cek": begitu isian kolom berubah, hasil
+// verifikasi sebelumnya dianggap kedaluwarsa. Jadi kode yang diketik benar tapi
+// tombol Cek-nya tidak dipencet tetap berstatus belum terverifikasi, dan submit
+// akan menahannya dengan peringatan.
+watch(() => form.value.referralCode, (val) => {
+  markReferralStale(val);
+  if (errors.value.referralCode) errors.value.referralCode = '';
+});
+
+async function handleCheckReferral() {
+  if (referralChecking.value) return;
+  errors.value.referralCode = '';
+  await checkReferralCode(form.value.referralCode);
+}
 
 function normalizePhone(phone) {
   let p = (phone || '').trim().replace(/[\s\-().]/g, '').replace(/\D/g, '');
@@ -84,9 +120,16 @@ function validateForm() {
     isValid = false;
   }
 
-  if (form.value.hasReferral && !form.value.referralCode.trim()) {
-    errors.value.referralCode = mgmContent.referral.requiredMessage;
-    isValid = false;
+  if (form.value.hasReferral) {
+    if (!form.value.referralCode.trim()) {
+      errors.value.referralCode = mgmContent.referral.requiredMessage;
+      isValid = false;
+    } else if (!referralValid.value) {
+      // Kolom sudah diisi tapi belum (atau tidak lagi) lolos verifikasi:
+      // inilah kasus "input benar tapi tombol Cek tidak dipencet".
+      errors.value.referralCode = mgmContent.referral.unverifiedMessage;
+      isValid = false;
+    }
   }
 
   return isValid;
@@ -102,22 +145,52 @@ function handleSubmit() {
     phone: normalizePhone(form.value.phone),
     houseType: form.value.houseType,
     referralEnabled: form.value.hasReferral,
-    referralCode: form.value.hasReferral ? form.value.referralCode.trim() : "",
+    // Yang dikirim adalah kode kanonik dari SIG App (huruf besar, sudah
+    // terverifikasi), bukan apa adanya yang diketik user.
+    referralCode: form.value.hasReferral ? (referralData.value?.kode_referal || '') : '',
+    referralName: form.value.hasReferral ? (referralData.value?.nama_konsumen || '') : '',
+    referralKavling: form.value.hasReferral ? (referralData.value?.kavling_dimiliki || '') : '',
     source: 'landing-page-sipar'
   });
 }
 
 function resetForm() {
+  // Prefill dari URL hanya dipakai kalau kodenya SUDAH dikonfirmasi server.
+  // Karena itu di-seed lewat seedVerifiedReferral(), bukan sekadar mengisi
+  // teks kolom — supaya statusnya benar-benar 'valid' dan user tidak diminta
+  // menekan "Cek" untuk kode yang barusan diverifikasi atas namanya.
+  const prefill = urlReferralData.value;
+
   form.value = {
     name: '',
     phone: '',
     houseType: mgmContent.houseTypeDefault,
-    hasReferral: false,
-    referralCode: ''
+    hasReferral: !!prefill,
+    referralCode: prefill ? prefill.kode_referal : ''
   };
   errors.value = { name: '', phone: '', referralCode: '' };
+
+  // Urutannya penting: watcher form berjalan belakangan (flush 'pre'), jadi saat
+  // markAsStale() dipanggil status sudah 'valid' dengan verifiedCode yang sama
+  // persis — hasil verifikasi tidak ikut terhapus.
+  if (prefill) seedVerifiedReferral(prefill);
+  else resetReferral();
+
   resetEngine();
 }
+
+// Verifikasi kode dari URL berjalan asinkron sejak halaman dibuka. Kalau user
+// keburu membuka modal sebelum jawabannya datang, resetForm() tadi belum punya
+// apa-apa untuk diisi. Watcher ini menyusulkan prefill begitu hasilnya tiba —
+// tapi hanya selama user belum menyentuh bagian referral sama sekali, supaya
+// tidak menimpa apa pun yang sedang dia ketik.
+watch(urlReferralData, (prefill) => {
+  if (!prefill || !props.isOpen) return;
+  if (form.value.hasReferral || form.value.referralCode) return;
+  form.value.hasReferral = true;
+  form.value.referralCode = prefill.kode_referal;
+  seedVerifiedReferral(prefill);
+});
 
 function onKeydown(e) {
   if (e.key === 'Escape' && props.isOpen) emit('close');
@@ -239,16 +312,65 @@ watch(state, async (s) => {
 
                   <!-- Referral Code Input (Conditional) -->
                   <Transition enter-active-class="transition duration-300 ease-out"
-                    enter-from-class="opacity-0 -translate-y-2 max-h-0" enter-to-class="opacity-100 translate-y-0 max-h-[100px]"
-                    leave-active-class="transition duration-200 ease-in" leave-from-class="opacity-100 translate-y-0 max-h-[100px]"
+                    enter-from-class="opacity-0 -translate-y-2 max-h-0" enter-to-class="opacity-100 translate-y-0 max-h-[420px]"
+                    leave-active-class="transition duration-200 ease-in" leave-from-class="opacity-100 translate-y-0 max-h-[420px]"
                     leave-to-class="opacity-0 -translate-y-2 max-h-0">
                     <div v-show="form.hasReferral" class="pt-2 overflow-hidden">
-                      <label class="block text-sm font-semibold text-gray-800 mb-1.5">{{ mgmContent.referral.label }} <span class="text-red-500">*</span></label>
-                      <input v-model="form.referralCode" type="text" :placeholder="mgmContent.referral.placeholder"
-                        class="w-full rounded-xl border border-gray-200 bg-[#FAF8F5] px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:border-emerald-600 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-600 transition" 
-                        :class="{'border-red-500 focus:border-red-500 focus:ring-red-500': errors.referralCode}"
-                        />
-                      <p v-if="errors.referralCode" class="mt-1.5 text-xs font-medium text-red-500">{{ errors.referralCode }}</p>
+                      <label for="mgm-referral-code" class="block text-sm font-semibold text-gray-800 mb-1.5">{{ mgmContent.referral.label }} <span class="text-red-500">*</span></label>
+
+                      <!-- Kolom + tombol Cek. Tombolnya type="button" supaya Enter di
+                           dalam kolom tidak nyasar men-submit form. -->
+                      <div class="flex items-stretch gap-2">
+                        <input id="mgm-referral-code" v-model="form.referralCode" type="text"
+                          :placeholder="mgmContent.referral.placeholder"
+                          autocapitalize="characters" autocomplete="off" spellcheck="false"
+                          :aria-invalid="referralStatus === 'invalid' || !!errors.referralCode"
+                          aria-describedby="mgm-referral-feedback"
+                          class="min-w-0 flex-1 rounded-xl border bg-[#FAF8F5] px-4 py-3 text-sm uppercase text-gray-800 placeholder-gray-400 placeholder:normal-case focus:bg-white focus:outline-none focus:ring-1 transition"
+                          :class="referralValid
+                            ? 'border-emerald-500 focus:border-emerald-600 focus:ring-emerald-600'
+                            : (errors.referralCode || referralStatus === 'invalid' || referralStatus === 'error')
+                              ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                              : 'border-gray-200 focus:border-emerald-600 focus:ring-emerald-600'"
+                          @keydown.enter.prevent="handleCheckReferral" />
+
+                        <button type="button"
+                          :disabled="referralChecking || !form.referralCode.trim()"
+                          class="shrink-0 inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#142b20] bg-grad-forest px-5 text-sm font-bold text-white shadow-btn-forest transition-all duration-200 hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 disabled:translate-y-0 disabled:shadow-none"
+                          @click="handleCheckReferral">
+                          <span v-if="referralChecking"
+                            class="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white"></span>
+                          {{ referralChecking ? mgmContent.referral.checkingCta : mgmContent.referral.checkCta }}
+                        </button>
+                      </div>
+
+                      <!-- Umpan balik verifikasi. Satu wadah aria-live supaya pembaca
+                           layar mengumumkan hasil Cek tanpa perlu memindah fokus. -->
+                      <div id="mgm-referral-feedback" aria-live="polite">
+                        <!-- Terverifikasi: tampilkan identitas perujuk supaya user
+                             yakin kodenya milik orang yang benar. -->
+                        <div v-if="referralValid"
+                          class="mt-2 flex items-start gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2.5">
+                          <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <div class="min-w-0 text-xs leading-relaxed">
+                            <p class="font-bold text-emerald-800">{{ mgmContent.referral.validTitle }}</p>
+                            <p class="text-emerald-700">
+                              {{ mgmContent.referral.validSubtitle.replace('{name}', referralData.nama_konsumen) }}
+                            </p>
+                            <p v-if="referralData.kavling_dimiliki" class="mt-0.5 text-emerald-600/80">
+                              {{ referralData.kavling_dimiliki }}
+                            </p>
+                          </div>
+                        </div>
+
+                        <!-- errors.referralCode diprioritaskan: itu pesan yang muncul
+                             saat tombol Kirim ditahan karena kode belum dicek. -->
+                        <p v-else-if="errors.referralCode" class="mt-1.5 text-xs font-medium text-red-500">{{ errors.referralCode }}</p>
+                        <p v-else-if="referralMessage" class="mt-1.5 text-xs font-medium text-red-500">{{ referralMessage }}</p>
+                        <p v-else class="mt-1.5 text-xs text-gray-400">{{ mgmContent.referral.hint }}</p>
+                      </div>
                     </div>
                   </Transition>
 

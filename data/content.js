@@ -526,6 +526,18 @@ export default {
       label: 'Kode Referral',
       placeholder: 'Masukkan kode referral',
       requiredMessage: 'Silakan masukkan kode referral Anda.',
+      // Kode referral wajib diverifikasi ke SIG App sebelum form boleh dikirim.
+      checkCta: 'Cek',
+      checkingCta: 'Cek...',
+      hint: 'Klik "Cek" untuk memastikan kode referral Anda terdaftar.',
+      // Dipakai kalau kolom sudah diisi tapi tombol "Cek" belum pernah dipencet,
+      // atau kodenya diubah lagi setelah sempat diverifikasi.
+      unverifiedMessage: 'Klik tombol "Cek" dulu untuk memverifikasi kode referral Anda.',
+      invalidMessage: 'Kode referral tidak valid atau tidak ditemukan.',
+      networkErrorMessage: 'Gagal memeriksa kode referral. Periksa koneksi Anda lalu coba lagi.',
+      validTitle: 'Kode referral valid',
+      // {name} diganti nama_konsumen dari respons SIG App.
+      validSubtitle: 'Perujuk: {name}',
     },
     validation: {
       nameRequired: 'Silakan masukkan nama Anda.',
@@ -536,5 +548,17 @@ export default {
     submitLabel: 'Kirim Sekarang',
     disclaimer: 'Data Anda hanya digunakan tim SIPAR untuk menghubungi kembali.',
     waTemplate: 'Halo tim {project}, saya tertarik program Member Get Member.',
+  },
+
+  // Sambutan yang muncul HANYA kalau pengunjung datang lewat tautan/QR berkode
+  // referral yang sudah terbukti valid. Kunjungan biasa tidak melihat apa pun.
+  referralWelcome: {
+    eyebrow: 'Selamat Datang',
+    invitedBy: 'Anda diundang oleh',
+    // {code} diganti kode referral yang sudah dikonfirmasi server.
+    body: 'Kode {code} sudah kami isikan di formulir Member Get Member. Tinggal lengkapi nama dan nomor WhatsApp Anda.',
+    primaryCta: 'Lengkapi Data Saya',
+    secondaryCta: 'Lihat-lihat Dulu',
+    closeLabel: 'Tutup sambutan',
   },
 };
