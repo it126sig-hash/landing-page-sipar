@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { useContent } from '~/composables/useContent';
 
 const props = defineProps({
@@ -9,8 +9,21 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
-const { content, wa } = useContent();
+const { content, wa, withBase } = useContent();
 const kpr = content.kprRequirements;
+
+// Logo bank diturunkan dari `title` ("Syarat KPR BCA" / "Syarat KPR BTN") karena
+// itulah satu-satunya pembeda yang dikirim pemanggil — datasetnya sendiri dipakai
+// bersama oleh kedua bank, jadi tidak ada field bank di content.kprRequirements.
+// Cocokkan sebagai kata utuh (\b) supaya tidak asal kena substring, dan kalau
+// judulnya nanti berubah jadi tanpa nama bank, nilainya null dan logo tinggal
+// tidak dirender — header tetap utuh.
+const bankLogo = computed(() => {
+  const t = props.title || '';
+  if (/\bBCA\b/i.test(t)) return { src: '/assets/images/bank/bca.webp', alt: 'Logo Bank BCA' };
+  if (/\bBTN\b/i.test(t)) return { src: '/assets/images/bank/btn.webp', alt: 'Logo Bank BTN' };
+  return null;
+});
 
 const dialogRef = ref(null);
 const activeTab = ref('karyawan'); // 'karyawan' | 'jointIncome' | 'subsidi'
@@ -83,11 +96,24 @@ const consultasiLink = wa('konsultasi');
             </svg>
           </button>
 
-          <!-- Header -->
+          <!-- Header
+               Logo bank ditaruh di kiri judul sebagai penanda visual: pengguna
+               membuka modal ini dari dua tombol berbeda (BCA / BTN) yang isinya
+               identik, jadi logo memastikan mereka yakin sedang melihat bank yang
+               benar. Dibungkus kotak putih ber-ring karena kedua logo punya latar
+               terang — tanpa alas, logonya seolah mengambang di kertas modal.
+               object-contain wajib: rasio logo BCA dan BTN berbeda, kalau dipangkas
+               salah satunya akan terpotong. -->
           <div class="pr-10 border-b border-gray-100 pb-4 mb-5">
-            <h2 class="font-display text-2xl md:text-3xl font-bold text-[#142B20]">
-              {{ title }}
-            </h2>
+            <div class="flex items-center gap-3">
+              <span v-if="bankLogo"
+                class="inline-flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 ring-1 ring-gray-200 shadow-sm md:h-12 md:w-12">
+                <img :src="withBase(bankLogo.src)" :alt="bankLogo.alt" class="h-full w-full object-contain" />
+              </span>
+              <h2 class="font-display text-2xl md:text-3xl font-bold text-[#142B20]">
+                {{ title }}
+              </h2>
+            </div>
             <p class="mt-1 text-sm text-gray-500">Persyaratan KPR yang perlu disiapkan</p>
           </div>
 

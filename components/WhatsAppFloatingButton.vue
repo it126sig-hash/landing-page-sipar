@@ -4,7 +4,7 @@ import { useContent } from '~/composables/useContent';
 import MemberGetMemberModal from './MemberGetMemberModal.vue';
 import KprTermsModal from './KprTermsModal.vue';
 
-const { wa, content } = useContent();
+const { wa, content, withBase } = useContent();
 
 const isScrolled = ref(false);
 const isDesktop = ref(false);
@@ -148,9 +148,15 @@ onUnmounted(() => {
             class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142b20] bg-grad-forest px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 shadow-btn-forest transition-all duration-200 whitespace-nowrap"
             @click="openKprModal('Syarat KPR BCA')"
           >
-            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+            <!-- Ikon dokumen generik diganti logo bank supaya dua tombol ini bisa
+                 dibedakan sekilas — teksnya cuma beda tiga huruf di ujung. Logo
+                 berlatar terang, jadi butuh alas putih agar terbaca di atas tombol
+                 hijau tua. aria-hidden + alt kosong: nama banknya sudah diucapkan
+                 oleh teks tombol di sebelahnya, kalau logo ikut dibacakan pembaca
+                 layar akan menyebut "BCA" dua kali. -->
+            <span class="inline-flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white p-0.5" aria-hidden="true">
+              <img :src="withBase('/assets/images/bank/bca.webp')" alt="" class="h-full w-full object-contain" />
+            </span>
             <span>Syarat KPR BCA</span>
           </button>
 
@@ -160,9 +166,15 @@ onUnmounted(() => {
             class="inline-flex items-center gap-2.5 font-body rounded-full bg-[#142b20] bg-grad-forest px-4 py-2.5 text-xs font-bold text-white shadow-lg hover:bg-grad-forest-hover hover:-translate-y-0.5 hover:shadow-btn-forest-lg active:translate-y-0 shadow-btn-forest transition-all duration-200 whitespace-nowrap"
             @click="openKprModal('Syarat KPR BTN')"
           >
-            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+            <!-- Ikon dokumen generik diganti logo bank supaya dua tombol ini bisa
+                 dibedakan sekilas — teksnya cuma beda tiga huruf di ujung. Logo
+                 berlatar terang, jadi butuh alas putih agar terbaca di atas tombol
+                 hijau tua. aria-hidden + alt kosong: nama banknya sudah diucapkan
+                 oleh teks tombol di sebelahnya, kalau logo ikut dibacakan pembaca
+                 layar akan menyebut "BCA" dua kali. -->
+            <span class="inline-flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white p-0.5" aria-hidden="true">
+              <img :src="withBase('/assets/images/bank/btn.webp')" alt="" class="h-full w-full object-contain" />
+            </span>
             <span>Syarat KPR BTN</span>
           </button>
 
