@@ -49,7 +49,7 @@ export function useContent() {
         awards: content.about.awards.map(a => ({ ...a, image: withBase(a.image) })) 
       },
       advantages: content.advantages.map(a => ({ ...a, image: withBase(a.image) })),
-      banks: content.banks.map(b => ({ ...b, image: withBase(b.image) })),
+      banks: content.banks.map(b => ({ ...b, image: withBase(b.image), imageWhite: withBase(b.imageWhite) })),
       locationSection: { 
         ...content.locationSection, 
         mapImage: withBase(content.locationSection.mapImage) 

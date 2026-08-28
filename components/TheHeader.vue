@@ -60,7 +60,21 @@ const closeSidebar = () => {
           logo pendamping — bobot visualnya di bawah logo proyek meski selisih
           tingginya kecil.
         -->
-        <span class="h-6 w-px shrink-0 bg-[#dedcd2] min-[400px]:h-7 sm:h-8 lg:h-9" aria-hidden="true"></span>
+        <!--
+          Pemisahnya emas, bukan abu polos. Emas #c9a84c adalah warna brand yang
+          sama dengan headline hero, jadi garis setipis 1px ini cukup menandai
+          bahwa yang berdiri di sebelahnya adalah pengembangnya — tanpa perlu
+          memperbesar logonya atau menambah label teks.
+
+          Bagian emas sengaja mengisi 70% tengah dan hanya memudar di 15% ujung
+          atas-bawah. Gradien yang memudar sejak titik tengah membuat emasnya
+          pekat hanya pada satu baris piksel, dan pada elemen selebar 1px
+          hasilnya terbaca abu, bukan emas.
+        -->
+        <span
+          class="h-6 w-px shrink-0 bg-[linear-gradient(to_bottom,transparent,#c9a84c_15%,#c9a84c_85%,transparent)] min-[400px]:h-7 sm:h-8 lg:h-9"
+          aria-hidden="true"
+        ></span>
         <img :src="content.meta.logoGroupDark" :alt="content.meta.developer"
           class="h-5 w-auto shrink-0 object-contain min-[400px]:h-7 sm:h-9 lg:h-10" />
       </a>
@@ -69,6 +83,10 @@ const closeSidebar = () => {
       <div class="flex-1"></div>
 
       <!-- Navigation Right (Desktop) -->
+      <!-- Margin kanan memberi ruang bagi tombol WhatsApp dari
+           WhatsAppFloatingButton — position:fixed di right-20 (80px), lebar
+           ~122px. Setelah di-scroll tombol itu berganti jadi tombol mengambang
+           di kanan-bawah, sehingga ruangnya bisa dikembalikan ke nav. -->
       <nav
         class="hidden items-center gap-8 lg:flex transition-[margin] duration-500 ease-in-out"
         :class="isScrolled ? 'mr-0' : 'mr-[154px]'"

@@ -8,7 +8,13 @@ const heroMobile = content.hero.imageMobile || content.hero.heroMobile || withBa
 </script>
 
 <template>
-  <section class="relative isolate flex flex-col h-full min-h-[300px] lg:h-[calc(100vh-64px)] lg:min-h-[600px] overflow-hidden bg-[#12271b]">
+  <!--
+    Tinggi desktop dikurangi tinggi header (64px) DAN tinggi pita KPR (47px),
+    supaya hero beserta pita mitranya muat pas dalam satu layar. Tanpa itu pita
+    jatuh persis di bawah lipatan dan tidak pernah terlihat tanpa men-scroll —
+    padahal justru itu tujuannya dipindah keluar dari hero.
+  -->
+  <section class="relative isolate flex flex-col h-full min-h-[300px] lg:h-[calc(100vh-111px)] lg:min-h-[553px] overflow-hidden bg-[#12271b]">
     <!--
       ============================================================
       BACKGROUND HERO — "SUNLIT GARDEN"
@@ -115,26 +121,19 @@ const heroMobile = content.hero.imageMobile || content.hero.heroMobile || withBa
 
     <!-- Content Container -->
     <div class="relative flex-1 flex flex-col justify-between px-4 md:px-20 py-6 sm:py-10 lg:py-20">
-      <!-- Top Content: Bank Badge, Title & Tagline -->
+      <!-- Top Content: Title & Tagline -->
       <div class="sm:max-w-[600px] lg:max-w-[80%]">
         <!--
-          MOBILE: satu baris flex — headline KIRI, badge bank KANAN.
-          sm ke atas: badge kembali absolute kanan-atas.
+          Logo bank sudah tidak di sini. Dulu ia berbagi baris dengan headline
+          di mobile (memotong headline jadi dua baris) dan melayang di kanan-atas
+          di desktop dengan latar emas yang sama dengan headline — dua blok emas
+          bersaing. Sekarang bank turun ke KprPartnerStrip, pita tipis tepat di
+          bawah hero, sebagai keterangan penyedia KPR.
         -->
-        <div class="flex items-center justify-between gap-2.5 min-[375px]:gap-3 sm:block">
-          <!-- Headline - Kuning — focal point utama -->
-          <h1 class="min-w-0 flex-1 font-display font-bold text-2xl min-[360px]:text-[1.7rem] min-[390px]:text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl leading-[1.15] text-[#c9a84c] hero-headline-shadow">
-            {{ content.hero.headlineLines[0] }}
-          </h1>
-
-          <!-- Bank logos — gold solid background matching headline color, compact on mobile -->
-          <div
-            class="shrink-0 inline-flex items-center gap-1.5 min-[375px]:gap-2 sm:gap-3 z-10 bg-[#c9a84c] px-2 py-1 min-[375px]:px-2.5 min-[375px]:py-1.5 sm:px-3 sm:py-2 lg:px-4 lg:py-2.5 rounded-md min-[375px]:rounded-lg sm:rounded-xl shadow-lg shadow-black/25
-                   sm:absolute sm:top-10 sm:right-20 lg:top-20 sm:flex">
-            <img v-for="bank in content.banks" :key="bank.name" :src="bank.image" :alt="`Logo ${bank.name}`"
-              class="h-4 min-[360px]:h-4.5 min-[390px]:h-5 sm:h-6 md:h-7 lg:h-9 w-auto object-contain" />
-          </div>
-        </div>
+        <!-- Headline - Kuning — focal point utama -->
+        <h1 class="font-display font-bold text-2xl min-[360px]:text-[1.7rem] min-[390px]:text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl leading-[1.15] text-[#c9a84c] hero-headline-shadow">
+          {{ content.hero.headlineLines[0] }}
+        </h1>
 
         <!-- Tagline - Putih, ALL CAPS -->
         <p class="mt-1.5 sm:mt-3 font-body text-[11px] min-[360px]:text-xs sm:text-sm md:text-base tracking-wider uppercase text-white/95 font-medium hero-text-shadow">

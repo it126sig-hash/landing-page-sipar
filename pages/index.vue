@@ -31,6 +31,9 @@ useHead({
            seluruh konten hero/about alih-alih memotongnya. Layar tinggi tetap pas 1 layar. -->
       <div class="min-h-[calc(100vh-64px)] flex flex-col justify-between lg:min-h-0 lg:block">
         <HeroSection class="flex-1 lg:flex-none" />
+        <!-- Keterangan penyedia KPR. Ditempatkan di luar hero supaya logo bank
+             terbaca sebagai keterangan pembiayaan, bukan pemilik proyek. -->
+        <KprPartnerStrip class="flex-shrink-0" />
         <AboutSection class="flex-shrink-0 lg:flex-none" />
       </div>
       <ProductsSection />

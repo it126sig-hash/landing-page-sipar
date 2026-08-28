@@ -251,9 +251,12 @@ export default {
     { id: 's3', stat: '1 Jt-an', title: 'Cicilan Flat', desc: 'Rasa komersial, harga subsidi mulai 1 jutaan/bulan.' },
   ],
 
+  // imageWhite dipakai di pita mitra KPR yang berlatar hijau forest. Versi
+  // berwarna tetap dipakai di modal syarat KPR dan footer, di mana orang
+  // memang sedang mencari nama banknya.
   banks: [
-    { name: 'BCA', image: '/assets/images/bank/bca.webp' },
-    { name: 'BTN', image: '/assets/images/bank/btn.webp' },
+    { name: 'BCA', image: '/assets/images/bank/bca.webp', imageWhite: '/assets/images/bank/bca-white.png' },
+    { name: 'BTN', image: '/assets/images/bank/btn.webp', imageWhite: '/assets/images/bank/btn-white.png' },
   ],
 
   locationSection: {
