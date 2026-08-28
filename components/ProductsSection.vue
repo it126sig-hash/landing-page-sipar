@@ -100,7 +100,7 @@ function closeModal() {
                shadow-nya memakai warna emas yang digelapkan — bukan hitam, karena
                shadow hitam membuat warna emas terlihat kotor. -->
           <a @click.prevent="openType(t.id)" href="#"
-            class="group/cta mt-auto inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-black
+            class="group/cta mt-auto inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-black
                    bg-[linear-gradient(135deg,#b8974a_0%,#d9bc63_100%)]
                    shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_4px_12px_-4px_rgba(150,120,40,0.55)]
                    transition-all duration-200

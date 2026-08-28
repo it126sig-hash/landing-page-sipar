@@ -10,25 +10,26 @@ const emit = defineEmits(['close']);
 const dialogRef = ref(null);
 const { openGallery } = useLightbox();
 
-/** Galeri tipe ini: ilustrasi/fasad lalu denah — dipakai untuk zoom + swipe. */
-function typeGallery() {
-  return [
-    { src: props.type.gallery[1], alt: `Ilustrasi ${props.type.name}` },
-    { src: props.type.gallery[0], alt: `Denah ${props.type.name}` },
-  ];
-}
-
 /**
- * Dua kartu gambar di dalam modal. `index` harus cocok dengan urutan
- * typeGallery() di atas supaya lightbox terbuka pada gambar yang diklik.
+ * Tampilan luar untuk galeri geser. Kalau `facades` belum diisi di content.js,
+ * jatuh ke satu gambar fasad dari `gallery` supaya modal tetap utuh.
  */
-const imageCards = computed(() => props.type ? [
-  // Fasad boleh dipangkas (object-cover) karena yang dijual kesan visualnya.
-  // Denah TIDAK boleh: memangkasnya menghilangkan sebagian ruang dan ukuran,
-  // yang justru jadi alasan utama orang membuka denah. Karena itu object-contain.
-  { label: 'Fasad', src: props.type.gallery[1], index: 0, fit: 'object-cover' },
-  { label: 'Denah', src: props.type.gallery[0], index: 1, fit: 'object-contain p-2' },
-] : []);
+const facades = computed(() => {
+  if (!props.type) return [];
+  if (props.type.facades?.length) return props.type.facades;
+  return props.type.gallery[1]
+    ? [{ src: props.type.gallery[1], label: 'Fasad' }]
+    : [];
+});
+
+/** Denah dipisah dari galeri: dibaca, bukan dinikmati. */
+const denah = computed(() => props.type?.gallery?.[0] || null);
+
+function openDenah() {
+  if (denah.value) {
+    openGallery([{ src: denah.value, alt: `Denah ${props.type.name}` }], 0);
+  }
+}
 
 function onKeydown(e) {
   if (e.key === 'Escape' && props.type) emit('close');
@@ -99,7 +100,11 @@ watch(() => props.type, (t) => {
 
             <div class="pr-12">
               <p class="font-body text-xs font-bold uppercase tracking-[0.14em] text-orange">Detail Unit</p>
-              <h3 class="mt-1 font-display text-size-3 text-forest-deep sm:text-size-2">{{ type.name }}</h3>
+              <!-- lining-nums: sama seperti headline harga di ProductsSection.
+                   Cormorant bawaannya memakai angka old-style yang tinggi
+                   digitnya naik-turun — cantik untuk teks mengalir, tapi nomor
+                   tipe rumah harus terbaca tegas sebagai angka spesifikasi. -->
+              <h3 class="mt-1 font-display text-size-3 lining-nums text-forest-deep sm:text-size-2">{{ type.name }}</h3>
             </div>
 
             <div class="mt-4 flex flex-wrap gap-2">
@@ -112,23 +117,28 @@ watch(() => props.type, (t) => {
 
           <!-- ISI — satu-satunya bagian yang bergulir -->
           <div class="flex-1 overflow-y-auto overscroll-contain px-6 py-6 sm:px-9">
-            <div class="grid gap-4 sm:grid-cols-2">
-              <!-- Gambar diberi keterangan. Sebelumnya keduanya tampil polos
-                   berdampingan sehingga user harus menebak mana fasad mana denah.
-                   Ikon kaca pembesar memberi tahu bahwa gambar bisa diperbesar —
-                   sebelumnya satu-satunya petunjuk hanya kursor, yang tidak ada
-                   sama sekali di layar sentuh. -->
-              <button v-for="img in imageCards" :key="img.label" type="button"
-                class="group relative block w-full overflow-hidden rounded-xl border border-cream-light bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-deep/30"
-                :aria-label="`Perbesar ${img.label.toLowerCase()} ${type.name}`"
-                @click="openGallery(typeGallery(), img.index)">
-                <img :src="img.src" :alt="`${img.label} ${type.name}`" loading="lazy"
-                  :class="img.fit"
-                  class="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-[1.04]" />
-                <span class="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 font-body text-[11px] font-bold uppercase tracking-wide text-forest-deep shadow-sm ring-1 ring-cream-light">
-                  {{ img.label }}
-                </span>
-                <span class="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-forest-deep opacity-0 shadow-sm ring-1 ring-cream-light transition-opacity duration-200 group-hover:opacity-100">
+            <!-- GALERI FASAD — bisa digeser, rasio 16:9 sesuai aset aslinya.
+                 Sebelumnya fasad dipaksa masuk kotak 4:3 dengan object-cover
+                 sehingga sisi kiri-kanan streetscape terpotong. -->
+            <FacadeGallery :items="facades" :type-name="type.name" />
+
+            <!-- DENAH — kartu tersendiri, TIDAK ikut digeser bersama fasad.
+                 aspect-[3/4] karena denah aslinya potret (810x1080); dengan
+                 kotak lanskap gambarnya menyusut dan kartunya jadi ruang kosong.
+                 object-contain: memangkas denah menghilangkan sebagian ruang
+                 dan ukuran, yang justru jadi alasan orang membukanya. -->
+            <div v-if="denah" class="mt-7">
+              <h4 class="mb-3 flex items-center gap-3 font-display text-size-4 text-forest-deep">
+                <span class="whitespace-nowrap">Denah</span>
+                <span class="h-px flex-1 bg-[linear-gradient(90deg,#e0d3ae,transparent)]"></span>
+              </h4>
+              <button type="button"
+                class="group relative mx-auto block w-full max-w-[19rem] overflow-hidden rounded-xl border border-cream-light bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-deep/30"
+                :aria-label="`Perbesar denah ${type.name}`"
+                @click="openDenah()">
+                <img :src="denah" :alt="`Denah ${type.name}`" loading="lazy"
+                  class="aspect-[3/4] w-full object-contain p-2" />
+                <span class="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-forest-deep opacity-0 shadow-sm ring-1 ring-cream-light transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5M11 8v6M8 11h6" />
@@ -157,7 +167,7 @@ watch(() => props.type, (t) => {
           <!-- FOOTER — menetap, supaya ajakan bertindak selalu terlihat tanpa
                perlu menggulir kembali ke bawah. -->
           <div class="shrink-0 border-t border-cream-light bg-white px-6 py-4 sm:px-9">
-            <WhatsAppButton message-key="type" :vars="{ type: type.name }" variant="primaryGradient" class="w-full sm:w-auto">
+            <WhatsAppButton message-key="type" :vars="{ type: type.name }" variant="whatsapp" class="w-full sm:w-auto">
               <!-- Ikon WhatsApp memberi tahu tombol ini membuka WhatsApp, bukan
                    halaman lain di situs. -->
               <svg class="h-4 w-4 shrink-0 fill-current" viewBox="0 0 24 24" aria-hidden="true">
