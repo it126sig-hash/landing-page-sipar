@@ -51,7 +51,7 @@ export default {
     badge: 'Cluster Subsidi Pertama di Saguling',
     headlineLines: ['Hunian Modern'],
     tagline: meta.tagline,
-    sub: 'Hadir berdampingan dengan Kota Baru Parahyangan, Sanggar Indah Parahyangan menawarkan pilihan rumah subsidi untuk memulai cerita baru di kawasan yang terus berkembang.',
+    sub: 'Perumahan subsidi pertama yang berdampingan dengan Kota Baru Parahyangan. Hunian modern dan nyaman untuk memulai cerita baru, tumbuh, dan membangun masa depan.',
     primaryTypeId: '22-60',
     primaryCta: 'Lihat Tipe Rumah',
     image: '/assets/images/hero.webp',
