@@ -6,8 +6,11 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   runtimeConfig: {
     public: {
-      // ponytail: placeholder sampai domain produksi fix, override via NUXT_PUBLIC_SITE_URL
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://it126sig-hash.github.io/landing-page-sipar/',
+      // Domain produksi. Ditulis TANPA trailing slash supaya penggabungan
+      // `siteUrl + path` (og:image, twitter:image di pages/index.vue) tidak
+      // menghasilkan '//' — path aset sendiri sudah selalu diawali '/'.
+      // Tetap bisa dioverride lewat NUXT_PUBLIC_SITE_URL.
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://sanggarindahparahyangan.com',
       // Google Sheets integration via Google Apps Script Web App.
       //
       // URL /exec ini TIDAK rahasia: dipanggil langsung dari browser lewat fetch(),

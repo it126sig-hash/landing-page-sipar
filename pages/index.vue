@@ -1,6 +1,16 @@
 <script setup>
-const { content } = useContent();
-const siteUrl = useRuntimeConfig().public.siteUrl;
+const { content, withBase } = useContent();
+
+// Origin dinormalkan tanpa trailing slash, lalu URL absolut dirakit dari path
+// yang selalu diawali '/'. Sebelumnya `siteUrl + content.meta.logo` menempelkan
+// dua string yang sama-sama membawa slash, jadi og:image/twitter:image keluar
+// dengan '//' di tengah — dan waktu masih di sub-folder github.io base path-nya
+// bahkan ikut dobel. Dinormalkan di sini supaya benar di root maupun sub-folder.
+const origin = useRuntimeConfig().public.siteUrl.replace(/\/+$/, '');
+const absoluteUrl = (path) => origin + path;
+const pageUrl = absoluteUrl(withBase('/'));
+const ogImage = absoluteUrl(content.meta.logo);
+
 const title = `${content.meta.projectName} — ${content.meta.tagline}`;
 const description = `${content.meta.tagline}. ${content.meta.priceFrom}.`;
 
@@ -10,15 +20,15 @@ useSeoMeta({
   ogTitle: title,
   ogDescription: description,
   ogType: 'website',
-  ogUrl: siteUrl,
-  ogImage: siteUrl + content.meta.logo,
+  ogUrl: pageUrl,
+  ogImage,
   twitterCard: 'summary_large_image',
   twitterTitle: title,
   twitterDescription: description,
-  twitterImage: siteUrl + content.meta.logo,
+  twitterImage: ogImage,
 });
 useHead({
-  link: [{ rel: 'canonical', href: siteUrl }],
+  link: [{ rel: 'canonical', href: pageUrl }],
 });
 </script>
 
