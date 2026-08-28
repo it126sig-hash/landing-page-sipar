@@ -42,12 +42,27 @@ const closeSidebar = () => {
   <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
     <div class="mx-auto flex h-16 w-full items-center justify-between px-4 md:px-20">
       <!-- Logo Left -->
-      <a href="#" class="flex items-center gap-3">
-        <img :src="content.meta.logo" :alt="`Logo ${content.meta.projectName}`" class="h-12 w-12 object-contain" />
+      <a href="#" class="flex min-w-0 items-center gap-2 sm:gap-3">
+        <img :src="content.meta.logo" :alt="`Logo ${content.meta.projectName}`"
+          class="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11 lg:h-12 lg:w-12" />
         <span class="flex flex-col leading-tight">
-          <span class="font-body text-sm text-black">Sanggar Indah</span>
-          <span class="font-display text-xl font-semibold text-black tracking-tight">PARAHYANGAN</span>
+          <span class="font-body text-xs text-black sm:text-sm">Sanggar Indah</span>
+          <span class="font-display text-base font-semibold text-black tracking-tight sm:text-lg lg:text-xl">PARAHYANGAN</span>
         </span>
+
+        <!--
+          Logo pengembang. Sengaja menempel pada logo proyek dan hanya dipisah garis
+          tipis: kedekatan inilah yang membaca "satu pihak" tanpa perlu label teks.
+
+          Tinggi dipilih dari keterbacaan, bukan dari rasio: baris "Sanggar Indah Group"
+          hanya 18% tinggi aset, jadi butuh ~40px agar teksnya terbaca (~7,3px).
+          Karena aset ini lebar-rendah (rasio 2,1), pada 40px ia tetap terbaca sebagai
+          logo pendamping — bobot visualnya di bawah logo proyek meski selisih
+          tingginya kecil.
+        -->
+        <span class="h-6 w-px shrink-0 bg-[#dedcd2] min-[400px]:h-7 sm:h-8 lg:h-9" aria-hidden="true"></span>
+        <img :src="content.meta.logoGroupDark" :alt="content.meta.developer"
+          class="h-5 w-auto shrink-0 object-contain min-[400px]:h-7 sm:h-9 lg:h-10" />
       </a>
 
       <!-- Center Empty Space -->
@@ -72,7 +87,7 @@ const closeSidebar = () => {
       <!-- Hamburger Button (Mobile & Tablet) -->
       <button
         type="button"
-        class="flex items-center justify-center p-2 rounded-lg text-black hover:bg-gray-100 focus:outline-none lg:hidden ml-4"
+        class="flex h-11 w-11 items-center justify-center p-2 rounded-lg text-black hover:bg-gray-100 focus:outline-none lg:hidden ml-4"
         aria-label="Buka Menu"
         @click="isSidebarOpen = true"
       >

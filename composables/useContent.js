@@ -22,6 +22,9 @@ export function useContent() {
     ...t,
     thumbnail: t.thumbnail ? withBase(t.thumbnail) : t.thumbnail,
     gallery: t.gallery.map(withBase),
+    // facades ikut dilewatkan withBase seperti thumbnail & gallery — kalau tidak,
+    // path-nya jadi satu-satunya yang salah begitu situs dipasang di sub-folder.
+    facades: (t.facades || []).map(f => ({ ...f, src: withBase(f.src) })),
     specs: mergeSpecs(content.defaultSpecs, t.specsOverride),
     waLink: wa('type', { type: t.name }),
   }));
@@ -33,6 +36,7 @@ export function useContent() {
         ...content.meta,
         logo: withBase(content.meta.logo),
         logoGroup: withBase(content.meta.logoGroup),
+        logoGroupDark: withBase(content.meta.logoGroupDark),
       },
       hero: {
         ...content.hero,

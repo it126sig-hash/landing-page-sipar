@@ -16,6 +16,8 @@ const meta = {
   developer: 'Sanggar Indah Group',
   logo: '/assets/images/logo.webp',
   logoGroup: '/assets/images/logo-sig-white.png',
+  // Versi gelap dipakai di header putih; versi putih tetap untuk footer hijau.
+  logoGroupDark: '/assets/images/logo-sig-dark.png',
   tagline: 'Akses Mudah, Hidup Lebih Nyaman',
   priceFrom: 'Mulai 160 Juta-an',
   whatsapp: {
@@ -49,7 +51,7 @@ export default {
     badge: 'Cluster Subsidi Pertama di Saguling',
     headlineLines: ['Hunian Modern'],
     tagline: meta.tagline,
-    sub: 'Nikmati kenyamanan tinggal di hunian nyaman yang berada di lingkungan asri dan sejuk, dengan lokasi strategis di jantung pertumbuhan Bandung Barat',
+    sub: 'Hadir berdampingan dengan Kota Baru Parahyangan, Sanggar Indah Parahyangan menawarkan pilihan rumah subsidi untuk memulai cerita baru di kawasan yang terus berkembang.',
     primaryTypeId: '22-60',
     primaryCta: 'Lihat Tipe Rumah',
     image: '/assets/images/hero.webp',
@@ -105,12 +107,21 @@ export default {
   // ('/assets/images/rumah/TIPE <lb> <lt>.png') yang komposisi personanya sudah cocok per
   // tipe: 22/60 pasangan, 26/72 keluarga satu anak, 36/72 keluarga dua anak.
   // Render isometrik lama ('22 DAN 60.webp' dkk) sudah tidak dipakai di mana pun.
+  // `facades` = tampilan LUAR saja (fasad + perspektif 3D), dipakai galeri geser
+  // di dalam modal detail. Aset 3D perspektif sebelumnya ada di repo tapi tidak
+  // pernah tampil di mana pun. Denah sengaja TIDAK dimasukkan ke sini: denah
+  // dibaca (butuh utuh, object-contain), fasad dinikmati (boleh dipangkas).
+  // `gallery` lama dibiarkan apa adanya supaya denah & lightbox tidak berubah.
   houseTypes: [
     {
       id: '22-60', name: 'Tipe 22/60', lb: '22', lt: '60', kt: '1', km: '1',
       tag: 'Subsidi', subtitle: 'Tempat yang pas untuk memulai cerita baru bersama pasangan.', priceFrom: '160 Jt-an',
       thumbnail: '/assets/images/rumah/TIPE 22 60.png',
       gallery: ['/assets/images/rumah/galeri/2260-denah.webp', '/assets/images/rumah/galeri/2260-fasad.webp'],
+      facades: [
+        { src: '/assets/images/rumah/galeri/2260-fasad.webp', label: 'Tampak Depan' },
+        { src: '/assets/images/rumah/galeri/2260-3d-ilustrasi.webp', label: 'Perspektif' },
+      ],
       specsOverride: [{ label: 'Listrik', value: '900 VA' }]
     },
     {
@@ -118,6 +129,10 @@ export default {
       tag: 'Komersil', subtitle: 'Ruang lebih lega untuk menikmati hari bersama keluarga kecil.', priceFrom: '200 Jt-an',
       thumbnail: '/assets/images/rumah/TIPE 26 72.png',
       gallery: ['/assets/images/rumah/galeri/2672-denah.webp', '/assets/images/rumah/galeri/2672-fasad.webp'],
+      facades: [
+        { src: '/assets/images/rumah/galeri/2672-fasad.webp', label: 'Tampak Depan' },
+        { src: '/assets/images/rumah/galeri/2672-3d-ilustrasi.webp', label: 'Perspektif' },
+      ],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
     },
     {
@@ -125,6 +140,10 @@ export default {
       tag: 'Komersil', subtitle: 'Lebih leluasa untuk keluarga yang terus tumbuh dan berkembang.', priceFrom: '300 Jt-an',
       thumbnail: '/assets/images/rumah/TIPE 36 72.png',
       gallery: ['/assets/images/rumah/galeri/3672-denah.webp', '/assets/images/rumah/galeri/3672-fasad.webp'],
+      facades: [
+        { src: '/assets/images/rumah/galeri/3672-fasad.webp', label: 'Tampak Depan' },
+        { src: '/assets/images/rumah/galeri/3672-3d-ilustrasi.webp', label: 'Perspektif' },
+      ],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
     },
   ],
@@ -150,8 +169,8 @@ export default {
   advantages: [
     {
       id: 'loc1',
-      title: 'Dekat KBP',
-      microcopy: 'Kawasan bisnis & hunian yang terus berkembang',
+      title: 'Berdampingan dengan KBP',
+      microcopy: 'Dekat dengan kawasan yang terus berkembang.',
       desc: 'Berdampingan dengan kawasan Kota Baru Parahyangan — pusat gaya hidup, kuliner, dan properti yang terus tumbuh.',
       // ASSET KBP — gambar gerbang Kota Baru Parahyangan (kiriman klien 21 Agu 2026,
       // versi sudah remove-background / transparan).
@@ -167,23 +186,26 @@ export default {
     },
     {
       id: 'loc2',
-      title: 'Dekat Tol Padalarang',
-      microcopy: 'Akses cepat ke seluruh Bandung Raya',
+      title: 'Akses Lebih Praktis',
+      microcopy: 'Lebih mudah menuju berbagai tujuan.',
       desc: 'Mobilitas lebih mudah ke pusat kota dan berbagai daerah di sekitar Bandung Raya.',
       image: '/assets/images/fasilitas/logo tol.webp'
     },
     {
       id: 'loc3',
-      title: 'Dekat WOOSH',
-      microcopy: 'Stasiun KCIC, kereta cepat menuju Jakarta',
+      title: 'Lebih Dekat ke Jakarta',
+      microcopy: 'Akses mudah menuju Stasiun KCIC.',
       desc: 'Kehadiran Stasiun KCIC Whoosh memberikan pilihan transportasi modern dan mendorong nilai properti kawasan.',
       image: '/assets/images/fasilitas/logo woosh.webp'
     },
     {
       id: 'loc4',
-      title: '',
-      microcopy: '',
-      desc: '',
+      title: 'Semua Lebih Dekat',
+      microcopy: 'Lengkapi kebutuhan sehari-hari dengan mudah.',
+      desc: 'Sekolah, rumah sakit, pusat belanja, dan tempat rekreasi ada dalam jangkauan singkat dari rumah.',
+      // Gambar ini kolase banyak logo, bukan satu ikon. Slot gambarnya
+      // dilebarkan lewat imageWide agar tiap logo tetap terbaca.
+      imageWide: true,
       image: '/assets/images/fasilitas/logo fasilitas.webp'
     },
   ],
