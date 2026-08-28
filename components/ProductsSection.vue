@@ -59,21 +59,6 @@ function closeModal() {
             @click="openTypeGallery(t, 0)">
             <img :src="t.thumbnail || t.gallery[1] || t.gallery[0]" :alt="t.name" loading="lazy"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
-
-            <!-- Label tipe, ditempel di atas gambar seperti pola kartu properti.
-                 Alasnya krem terang, bukan emas pekat, supaya tidak bersaing
-                 dengan tombol CTA emas di bawah — label ini informasi, bukan
-                 ajakan menekan. Huruf kapital berjarak membuatnya terbaca
-                 sebagai label, bukan potongan kalimat. -->
-            <span
-              class="absolute left-3 top-3 inline-flex items-center rounded-full px-3 py-1.5
-                     bg-[linear-gradient(135deg,#fffdf6_0%,#f7edd6_100%)]
-                     text-[10px] font-bold uppercase tracking-[0.12em] text-[#8a6d1f]
-                     ring-1 ring-[#e2d2a6]
-                     shadow-[0_1px_2px_rgba(90,70,20,0.12),inset_0_1px_0_rgba(255,255,255,0.9)]
-                     backdrop-blur-sm">
-              {{ t.tag }}
-            </span>
           </button>
 
           <!-- Copy -->
@@ -84,7 +69,27 @@ function closeModal() {
                  mengalir. Serif Cormorant bertubuh tipis, jadi ukurannya dinaikkan
                  ke 15px + leading longgar + abu-abu lebih gelap supaya tetap jelas
                  dibaca — kalau dibiarkan 14px seperti sebelumnya, teksnya samar. -->
-            <h3 class="font-body text-base font-bold uppercase tracking-[0.08em] text-[#142b20]">{{ t.name }}</h3>
+            <!-- Label Subsidi/Komersil dipindah dari atas thumbnail ke samping nama
+                 tipe: render isometrik baru punya subjek (rumah + orang) yang menyentuh
+                 sudut kiri-atas, jadi badge di sana menutupi foto. Di sini badge juga
+                 lebih masuk akal secara bacaan — nama tipe dan kategorinya satu unit
+                 informasi. Barisnya flex-wrap supaya di kolom sempit badge turun rapi,
+                 bukan menekan nama tipe.
+                 Gradasinya emas asli (bukan krem) dengan pita terang di tengah meniru
+                 pantulan logam, ditambah inset highlight 1px di sisi atas untuk kesan
+                 timbul. Aman bersanding dengan CTA emas di bawah karena badge ini jauh
+                 lebih kecil dan tidak berbentuk tombol. -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h3 class="font-body text-base font-bold uppercase tracking-[0.08em] text-[#142b20]">{{ t.name }}</h3>
+              <span v-if="t.tag"
+                class="inline-flex items-center rounded-full px-2.5 py-1
+                       bg-[linear-gradient(135deg,#b8974a_0%,#e3caa8_50%,#b8974a_100%)]
+                       text-[10px] font-bold uppercase tracking-[0.12em] text-[#43350d]
+                       ring-1 ring-[#a98c3f]/60
+                       shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_2px_6px_-2px_rgba(150,120,40,0.5)]">
+                {{ t.tag }}
+              </span>
+            </div>
             <p class="mt-2 mb-5 font-display text-[15px] leading-relaxed text-[#5a5f55]">{{ t.subtitle }}</p>
 
           <!-- Button - Kuning

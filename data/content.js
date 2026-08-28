@@ -100,27 +100,30 @@ export default {
 
   // Slot gallery[1] = foto fasad/tampak depan (dipakai modal "Lebih Detail" + lightbox).
   // Diganti 24 Agu 2026 dari render isometrik lama ('/assets/images/rumah/<TIPE>.webp')
-  // ke foto fasad deretan rumah kiriman klien. File isometrik lama masih dipakai sebagai
-  // thumbnail kartu di ProductsSection, jadi sengaja tidak dihapus.
+  // ke foto fasad deretan rumah kiriman klien.
+  // `thumbnail` kartu di ProductsSection diganti 28 Agu 2026 ke render isometrik baru
+  // ('/assets/images/rumah/TIPE <lb> <lt>.png') yang komposisi personanya sudah cocok per
+  // tipe: 22/60 pasangan, 26/72 keluarga satu anak, 36/72 keluarga dua anak.
+  // Render isometrik lama ('22 DAN 60.webp' dkk) sudah tidak dipakai di mana pun.
   houseTypes: [
     {
       id: '22-60', name: 'Tipe 22/60', lb: '22', lt: '60', kt: '1', km: '1',
       tag: 'Subsidi', subtitle: 'Tempat yang pas untuk memulai cerita baru bersama pasangan.', priceFrom: '160 Jt-an',
-      thumbnail: '/assets/images/rumah/22 DAN 60.webp',
+      thumbnail: '/assets/images/rumah/TIPE 22 60.png',
       gallery: ['/assets/images/rumah/galeri/2260-denah.webp', '/assets/images/rumah/galeri/2260-fasad.webp'],
       specsOverride: [{ label: 'Listrik', value: '900 VA' }]
     },
     {
       id: '26-72', name: 'Tipe 26/72', lb: '26', lt: '72', kt: '2', km: '1',
       tag: 'Komersil', subtitle: 'Ruang lebih lega untuk menikmati hari bersama keluarga kecil.', priceFrom: '200 Jt-an',
-      thumbnail: '/assets/images/rumah/26 DAN 72.webp',
+      thumbnail: '/assets/images/rumah/TIPE 26 72.png',
       gallery: ['/assets/images/rumah/galeri/2672-denah.webp', '/assets/images/rumah/galeri/2672-fasad.webp'],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
     },
     {
       id: '36-72', name: 'Tipe 36/72', lb: '36', lt: '72', kt: '2', km: '1',
       tag: 'Komersil', subtitle: 'Lebih leluasa untuk keluarga yang terus tumbuh dan berkembang.', priceFrom: '300 Jt-an',
-      thumbnail: '/assets/images/rumah/36 DAN 72.webp',
+      thumbnail: '/assets/images/rumah/TIPE 36 72.png',
       gallery: ['/assets/images/rumah/galeri/3672-denah.webp', '/assets/images/rumah/galeri/3672-fasad.webp'],
       specsOverride: [{ label: 'Listrik', value: '1300 VA' }]
     },
