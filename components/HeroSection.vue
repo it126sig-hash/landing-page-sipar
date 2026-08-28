@@ -9,12 +9,12 @@ const heroMobile = content.hero.imageMobile || content.hero.heroMobile || withBa
 
 <template>
   <!--
-    Tinggi desktop dikurangi tinggi header (64px) DAN tinggi pita KPR (47px),
+    Tinggi desktop dikurangi tinggi header (64px) DAN tinggi pita KPR (56px),
     supaya hero beserta pita mitranya muat pas dalam satu layar. Tanpa itu pita
     jatuh persis di bawah lipatan dan tidak pernah terlihat tanpa men-scroll —
     padahal justru itu tujuannya dipindah keluar dari hero.
   -->
-  <section class="relative isolate flex flex-col h-full min-h-[300px] lg:h-[calc(100vh-111px)] lg:min-h-[553px] overflow-hidden bg-[#12271b]">
+  <section class="relative isolate flex flex-col h-full min-h-[300px] lg:h-[calc(100vh-120px)] lg:min-h-[544px] overflow-hidden bg-[#12271b]">
     <!--
       ============================================================
       BACKGROUND HERO — "SUNLIT GARDEN"

@@ -12,8 +12,8 @@ const { content } = useContent();
  * disetel dengan mata, bukan dengan angka yang rapi.
  */
 const bankHeight = {
-  BCA: 'h-[14px] sm:h-[16px] lg:h-[17px]',
-  BTN: 'h-[16px] sm:h-[19px] lg:h-[20px]',
+  BCA: 'h-[14px] sm:h-[16px] lg:h-[21px]',
+  BTN: 'h-[16px] sm:h-[19px] lg:h-[25px]',
 };
 </script>
 
@@ -38,26 +38,31 @@ const bankHeight = {
     tipis di sisi bawahnya, dan menambah garis kedua di sini hanya
     menggandakannya jadi dua rambut sejajar.
 
-    Tinggi desktop dikunci 47px karena HeroSection menghitung tingginya sebagai
-    calc(100vh-111px) — 64px header + 47px pita — supaya hero dan pita muat pas
+    Tinggi desktop dikunci 56px karena HeroSection menghitung tingginya sebagai
+    calc(100vh-120px) — 64px header + 56px pita — supaya hero dan pita muat pas
     satu layar. Kalau tinggi di sini diubah, angka di HeroSection harus ikut
     diperbarui.
+
+    Proporsinya sengaja hanya membesar di lg ke atas. Di desktop pita terbentang
+    selebar layar sehingga isinya jadi terlihat kecil dan hilang; di mobile
+    lebarnya sudah sempit, jadi ukuran yang sama justru membuatnya penuh sesak
+    dan memakan ruang layar pertama yang terbatas.
   -->
-  <aside class="relative bg-[#142b20] lg:h-[47px]">
+  <aside class="relative bg-[#142b20] lg:h-[56px]">
     <div
-      class="mx-auto flex h-full flex-wrap items-center justify-center gap-x-3 gap-y-1.5 px-4 py-2.5 sm:gap-x-5 sm:py-3 md:px-20 lg:py-0"
+      class="mx-auto flex h-full flex-wrap items-center justify-center gap-x-3 gap-y-1.5 px-4 py-2.5 sm:gap-x-5 sm:py-3 md:px-20 lg:gap-x-7 lg:py-0"
     >
       <span
-        class="font-body text-[9px] font-medium uppercase tracking-[0.16em] text-white/55 sm:text-[10px]"
+        class="font-body text-[9px] font-medium uppercase tracking-[0.16em] text-white/55 sm:text-[10px] lg:text-[12px] lg:tracking-[0.18em] lg:text-white/65"
       >
-        Pembiayaan KPR melalui
+        Bekerja sama dengan
       </span>
 
       <!-- Pemisah menandai batas antara keterangan dan logo. Disembunyikan saat
            pita membungkus ke dua baris, karena di sana ia justru mengambang. -->
-      <span class="hidden h-3 w-px bg-white/20 sm:block" aria-hidden="true"></span>
+      <span class="hidden h-3 w-px bg-white/20 sm:block lg:h-4" aria-hidden="true"></span>
 
-      <span class="flex items-center gap-4 sm:gap-6">
+      <span class="flex items-center gap-4 sm:gap-6 lg:gap-8">
         <!--
           Versi putih satu warna, bukan logo berwarna yang di-filter. Bank
           umumnya mengizinkan penggunaan monokrom di atas latar gelap, dan
