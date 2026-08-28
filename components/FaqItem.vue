@@ -10,12 +10,25 @@ const props = defineProps({
 const emit = defineEmits(['toggle']);
 
 const { content, withBase } = useContent();
-const { openLightbox } = useLightbox();
+const { openLightbox, openGallery } = useLightbox();
 
 // Media FAQ diambil dari data yang SUDAH ADA di content.js — tidak ada asset baru.
 const awardItems = computed(() => content.about.awards.map(a => ({
   key: a.id, image: a.image, meta: a.year, title: a.title,
 })));
+
+/**
+ * Buka viewer penghargaan pada kartu yang diklik.
+ *
+ * Memakai openGallery (bukan openLightbox satu gambar) supaya ketujuh
+ * penghargaan bisa digeser bolak-balik dari dalam viewer — pola yang sama
+ * dengan galeri tipe rumah. Judulnya diberi tahun di depan agar keterangan
+ * di viewer tetap menjelaskan penghargaan apa yang sedang dilihat.
+ */
+function openAt(item) {
+  const items = awardItems.value.map(a => ({ src: a.image, alt: `${a.meta} — ${a.title}` }));
+  openGallery(items, awardItems.value.findIndex(a => a.key === item.key));
+}
 const projectItems = computed(() => content.projects.items.map(p => ({
   key: p.id, meta: p.year, title: p.name, sub: p.location, types: p.types, current: p.current,
 })));
@@ -81,10 +94,15 @@ const parsedParagraphs = computed(() => {
             <span>{{ item }}</span>
           </li>
         </ul>
-        <!-- Text paragraph -->
+        <!-- Text paragraph.
+             Rata kanan-kiri sesuai permintaan. Kolom jawaban di HP cuma ±301px
+             (±32 karakter), jauh di bawah ±60 karakter yang ideal untuk justify,
+             jadi ada baris yang harus meregang sampai ±25%. text-pretty +
+             hyphens-auto menahan efek itu: penyeimbang baris membagi teks lebih
+             rata sehingga tidak ada satu baris yang terlalu kosong. -->
         <p
           v-else
-          class="font-body text-sm leading-relaxed text-charcoal-gray"
+          class="font-body text-sm leading-relaxed text-charcoal-gray text-justify text-pretty hyphens-auto"
           v-html="para.html"
         />
       </template>
@@ -124,7 +142,7 @@ const parsedParagraphs = computed(() => {
             {{ content.projects.timelineCaption }}
           </span>
         </button>
-        <p class="font-body text-xs italic leading-relaxed text-stone-gray">{{ content.projects.note }}</p>
+        <p class="font-body text-xs italic leading-relaxed text-stone-gray text-justify text-pretty hyphens-auto">{{ content.projects.note }}</p>
       </template>
     </div>
   </div>

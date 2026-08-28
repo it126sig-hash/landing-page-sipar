@@ -72,7 +72,10 @@ onUnmounted(() => ctx?.revert());
         <!-- Left: Awards Carousel - Show max 4 visible -->
         <div class="overflow-hidden relative" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
           <div ref="carouselRef" class="flex gap-4 sm:gap-5 items-stretch py-1">
-            <div v-for="award in content.about.awards" :key="award.id" class="flex-shrink-0 w-[100px] sm:w-[110px] flex">
+            <!-- Kartu dilebarkan tipis (100->116px) supaya judul penghargaan
+                 muat dibaca pada 11px; di 9px praktis tidak terbaca padahal
+                 justru inilah bukti rekam jejak yang membangun kepercayaan. -->
+            <div v-for="award in content.about.awards" :key="award.id" class="flex-shrink-0 w-[116px] sm:w-[124px] flex">
               <!-- Award Card -->
               <div class="w-full bg-white rounded-lg shadow-sm border border-gray-100 p-2.5 sm:p-3 text-center flex flex-col justify-between">
                 <!-- Award Image -->
@@ -93,7 +96,7 @@ onUnmounted(() => ctx?.revert());
                   <p class="font-bold text-xs text-[#c9a84c] mb-0.5 sm:mb-1 flex-shrink-0">{{ award.year }}</p>
 
                   <!-- Award Title -->
-                  <p class="font-medium text-[9px] leading-tight text-black flex-1 flex items-center justify-center">{{ award.title }}</p>
+                  <p class="font-body font-medium text-[11px] leading-snug text-black flex-1 flex items-center justify-center">{{ award.title }}</p>
                 </div>
               </div>
             </div>
@@ -115,11 +118,16 @@ onUnmounted(() => ctx?.revert());
                      bg-clip-text supports-[background-clip:text]:text-transparent">
             {{ content.about.title }}
           </h2>
-          <!-- text-justify merapikan tepi kiri-kanan supaya paragraf tidak lagi
-               bergerigi. hyphens-auto dipasang berpasangan dengannya: teks rata
-               kanan-kiri tanpa pemenggalan kata akan melebarkan spasi antarkata
-               secara ekstrem pada kolom sempit. -->
-          <p class="font-body text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 text-justify hyphens-auto">
+          <!-- Rata kanan-kiri menyala di HP dan mulai lg:, TAPI sengaja dimatikan
+               di rentang sm:..md: (tablet).
+               Alasannya lebar kolom, bukan lebar layar: di HP teksnya satu kolom
+               penuh (±343px / ±48 karakter di layar 390px) sehingga justify masih
+               terbagi rapi. Mulai sm: layoutnya jadi dua kolom dan teksnya
+               menyempit ke ±281px (±35 karakter) — di situ spasi antarkata
+               melebar tidak rata dan membentuk "sungai", paling terlihat di 768px.
+               Mulai lg: kolomnya melebar lagi (±544px / ±56 karakter) jadi aman.
+               text-pretty membantu menyeimbangkan panjang antarbaris. -->
+          <p class="font-body text-xs sm:text-sm md:text-base leading-relaxed text-gray-700 text-justify text-pretty hyphens-auto sm:text-left md:text-left lg:text-justify">
             <span v-for="(part, i) in content.about.description" :key="i" :class="emphasis[part.em]">{{ part.text }}</span>
           </p>
         </div>

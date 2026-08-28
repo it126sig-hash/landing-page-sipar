@@ -21,37 +21,38 @@
           <div v-for="(advantage) in content.advantages" :key="advantage.id"
             class="group cursor-pointer bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] hover:-translate-y-2 transition-all duration-300 ease-out p-4 md:p-6 flex flex-col items-center justify-between h-full border border-gray-50 overflow-hidden relative">
 
-            <template v-if="advantage.title">
-              <!-- Image / Icon -->
-              <!-- imageFit dari content.js: 'contain' untuk logo/ikon, 'cover' untuk foto suasana -->
-              <div class="w-20 h-20 md:w-28 md:h-28 mb-3 flex items-center justify-center overflow-hidden rounded-xl">
-                <img v-if="advantage.image" :src="advantage.image" :alt="advantage.title"
-                  class="w-full h-full transition-transform duration-300 group-hover:scale-110"
-                  :class="advantage.imageFit === 'cover' ? 'object-cover' : 'object-contain'" />
-              </div>
+            <!-- imageFit dari content.js: 'contain' untuk logo/ikon, 'cover' untuk foto suasana.
+                 imageWide melebarkan slot untuk kartu Fasilitas yang gambarnya kolase
+                 banyak logo — pada slot ikon biasa logo-logonya jadi tidak terbaca. -->
+            <div class="mb-3 flex items-center justify-center overflow-hidden rounded-xl"
+              :class="advantage.imageWide ? 'w-full h-24 md:h-28 px-1' : 'w-20 h-20 md:w-28 md:h-28'">
+              <img v-if="advantage.image" :src="advantage.image" :alt="advantage.title"
+                class="w-full h-full transition-transform duration-300 group-hover:scale-110"
+                :class="advantage.imageFit === 'cover' ? 'object-cover' : 'object-contain'" />
+            </div>
 
-              <!-- Title -->
-              <div class="flex-grow flex flex-col items-center justify-center mb-2 text-center">
-                <h3 class="font-bold text-sm md:text-base text-center text-[#2A6D3A] leading-snug group-hover:text-[#1d4d29] transition-colors">
-                  {{ advantage.title }}
-                </h3>
-                <!-- Microcopy — baru, dari content.advantages.microcopy -->
-                <p v-if="advantage.microcopy" class="mt-1 text-xs text-gray-500 leading-snug text-center">
-                  {{ advantage.microcopy }}
-                </p>
-              </div>
+            <div class="flex-grow flex flex-col items-center justify-center mb-2 text-center">
+              <!-- Headline: Be Vietnam Pro (font-body) dengan gradasi hijau.
+                   text-[#2A6D3A] ditulis DULUAN sebagai warna cadangan — kalau
+                   background-clip:text tidak didukung, judulnya jatuh ke hijau
+                   biasa; tanpa itu text-transparent membuat judul HILANG.
+                   inline-block wajib: gradient dilukis pada kotak elemen, bukan
+                   pada hurufnya, jadi kotaknya harus menyusut selebar teks.
+                   Kedua ujung gradasi berjarak sama dari #2A6D3A sehingga
+                   rata-rata warnanya kembali ke hijau semula — identitasnya
+                   tidak bergeser, yang bertambah hanya dimensinya. -->
+              <h3 class="headline-grad font-body font-bold text-sm md:text-base text-center leading-snug">
+                {{ advantage.title }}
+              </h3>
+              <!-- Deskripsi memakai font bawaan (Be Vietnam Pro) seperti semula.
+                   Hanya headline yang diberi gradasi & Be Vietnam Pro eksplisit. -->
+              <p v-if="advantage.microcopy" class="mt-1 text-xs text-gray-500 leading-snug text-center">
+                {{ advantage.microcopy }}
+              </p>
+            </div>
 
-              <!-- Bottom Dash -->
-              <div class="w-6 h-1 bg-[#F59E0B] rounded-full mt-auto transition-all duration-300 group-hover:w-10"></div>
-            </template>
-
-            <template v-else>
-              <!-- Full image (loc4: logo fasilitas) -->
-              <div class="w-full h-full flex items-center justify-center my-auto p-2">
-                <img v-if="advantage.image" :src="advantage.image" alt="Fasilitas sekitar"
-                  class="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105" />
-              </div>
-            </template>
+            <!-- Bottom Dash -->
+            <div class="w-6 h-1 bg-[#F59E0B] rounded-full mt-auto transition-all duration-300 group-hover:w-10"></div>
           </div>
 
           <!-- DESKTOP ONLY: Mascot card inside white card block -->
@@ -61,7 +62,7 @@
                 class="w-full h-full object-contain drop-shadow-2xl" />
             </div>
             <div class="flex-grow flex flex-col items-center justify-center mb-2 text-center">
-              <h3 class="font-bold text-sm md:text-base text-center text-[#2A6D3A] leading-snug">
+              <h3 class="headline-grad font-body font-bold text-sm md:text-base text-center leading-snug">
                 {{ content.mascot.title }}
               </h3>
               <p class="mt-1 text-xs text-gray-500 leading-snug text-center">
@@ -77,7 +78,7 @@
           <img :src="withBase(content.mascot.image)" :alt="content.mascot.alt"
             class="w-28 min-[375px]:w-32 sm:w-36 h-auto flex-shrink-0 drop-shadow-xl" />
           <div class="max-w-[15rem] text-left">
-            <h3 class="font-bold text-base sm:text-lg text-[#2A6D3A] leading-snug">
+            <h3 class="headline-grad font-body font-bold text-base sm:text-lg leading-snug">
               {{ content.mascot.title }}
             </h3>
             <p class="mt-1.5 font-body text-xs sm:text-sm text-gray-600 leading-relaxed">
@@ -112,8 +113,14 @@
                Posisi pakai persen supaya ikut menyesuaikan di semua lebar layar.
                Panel QR pada gambar ada di x 72,1%-95,1% dan y 85%-96,2%. -->
           <div class="absolute bottom-[17%] right-[4.95%] z-10">
+            <!-- Di mobile tombolnya sengaja dibuat ramping supaya tidak menenggelamkan
+                 panel QR di sebelahnya (panel itu hanya ±79x26px pada layar 390px;
+                 tombol setinggi 44px membuatnya tampak jauh lebih besar dari peta).
+                 Ambang sentuh 44px TIDAK dikorbankan: ia dipindahkan ke ::after —
+                 area tak terlihat yang melebarkan bidang sentuh ke luar kotak tombol.
+                 Jadi yang mengecil hanya tampilannya, bukan sasaran jarinya. -->
             <a :href="content.locationSection?.mapUrl" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 bg-[#c9a84c] bg-grad-gold text-black font-semibold text-[9px] sm:text-xs md:text-sm whitespace-nowrap rounded md:rounded-lg hover:-translate-y-0.5 hover:bg-grad-gold-hover hover:shadow-btn-gold-lg active:translate-y-0 transition-all duration-200 shadow-btn-gold">
+              class="map-cta relative inline-flex items-center px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 bg-[#c9a84c] bg-grad-gold text-black font-semibold text-[9px] sm:text-xs md:text-sm whitespace-nowrap rounded md:rounded-lg hover:-translate-y-0.5 hover:bg-grad-gold-hover hover:shadow-btn-gold-lg active:translate-y-0 transition-all duration-200 shadow-btn-gold">
               {{ content.reasons.mapCtaLabel }}
             </a>
           </div>
@@ -151,3 +158,57 @@ import { ref } from 'vue';
 const { content, withBase } = useContent();
 const isLightboxOpen = ref(false);
 </script>
+
+<style scoped>
+/* Gradasi headline kartu — dipakai 4 kartu keunggulan + kartu maskot
+   (desktop & mobile). Ditaruh di satu tempat, bukan diulang sebagai string
+   utility panjang di tiap h3, supaya sekali ubah berlaku untuk semuanya.
+
+   color: dipasang DULUAN sebagai warna cadangan. Kalau background-clip:text
+   tidak didukung, judulnya jatuh ke hijau biasa; tanpa itu teksnya HILANG.
+   Karena itu -webkit-text-fill-color: transparent hanya dinyalakan di dalam
+   @supports.
+
+   inline-block wajib: gradient dilukis pada kotak elemen, bukan pada hurufnya.
+   Sebagai block selebar kartu, judul pendek cuma kebagian ujung gelap gradient
+   dan kilaunya terbuang; menyusut selebar teks membuatnya terpetakan pas.
+
+   Kedua ujung gradasi berjarak sama dari #2A6D3A sehingga rata-rata warnanya
+   kembali ke hijau semula — identitas warnanya tidak bergeser, yang bertambah
+   hanya dimensinya. Aturan yang sama dipakai resep tombol di tailwind.config.js. */
+.headline-grad {
+  display: inline-block;
+  color: #2A6D3A;
+  background-image: linear-gradient(115deg, #1d4d29 0%, #2A6D3A 45%, #3d8b4d 70%, #245a31 100%);
+}
+
+/* Bidang sentuh tombol peta.
+   Tombolnya sendiri dibiarkan kecil agar proporsional dengan panel QR pada
+   gambar peta, tapi jari butuh sasaran ±44px. ::after memberi area sentuh
+   tak terlihat yang meluber ke luar kotak tombol tanpa mengubah ukuran
+   visual maupun posisinya. Hanya perlu di layar kecil; mulai sm: tombolnya
+   sudah cukup besar dengan sendirinya. */
+.map-cta::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 0 50%;
+  width: 100%;
+  min-width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 640px) {
+  .map-cta::after {
+    display: none;
+  }
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .headline-grad {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+</style>

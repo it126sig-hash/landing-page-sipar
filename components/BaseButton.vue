@@ -19,6 +19,16 @@ const variants = {
     'active:translate-y-0 active:shadow-[inset_0_2px_4px_rgba(140,70,10,0.35)]',
     'disabled:opacity-50',
   ].join(' '),
+  // Hijau WhatsApp. Resep gradasi & shadow-nya sudah ada di tailwind.config.js
+  // (grad-wa / btn-wa) tapi sebelumnya tidak dipakai variant mana pun.
+  // Dipakai untuk tombol yang membuka WhatsApp, supaya warnanya cocok dengan
+  // tujuan tombolnya dan tidak bersaing dengan CTA oranye di halaman yang sama.
+  whatsapp: [
+    'text-white bg-[#25D366] bg-grad-wa shadow-btn-wa',
+    'hover:-translate-y-0.5 hover:bg-grad-wa-hover hover:shadow-btn-wa-lg',
+    'active:translate-y-0 active:shadow-[inset_0_2px_4px_rgba(15,110,55,0.35)]',
+    'disabled:opacity-50',
+  ].join(' '),
   // `secondary` dan `ghost` SENGAJA tetap bergaris tepi tanpa isian gradasi.
   // Tombol sekunder gunanya justru untuk mengalah dari tombol utama; memberinya
   // gradasi penuh membuat dua tombol berebut perhatian dan hierarkinya hilang.
