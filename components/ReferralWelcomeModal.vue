@@ -14,7 +14,7 @@ const emit = defineEmits(['open-form']);
 
 const { content } = useContent();
 const copy = content.referralWelcome;
-const { urlData, isUrlReferralValid } = useReferralFromUrl();
+const { urlData, urlStatus } = useReferralFromUrl();
 
 const isOpen = ref(false);
 const primaryBtn = ref(null);
@@ -82,8 +82,8 @@ function onKeydown(e) {
 
 // Muncul begitu DUA syaratnya terpenuhi, tidak peduli mana yang tiba lebih dulu:
 // halaman selesai dimuat, dan kode dari URL selesai diverifikasi.
-watch([isUrlReferralValid, pageReady], ([valid, ready]) => {
-  if (!valid || !ready || isOpen.value) return;
+watch([urlStatus, pageReady], ([status, ready]) => {
+  if ((status !== 'valid' && status !== 'invalid') || !ready || isOpen.value) return;
   if (alreadySeen()) return;
   isOpen.value = true;
   lockScroll(true);
@@ -128,62 +128,97 @@ onUnmounted(() => {
           <div role="dialog" aria-modal="true" aria-labelledby="referral-welcome-name"
             class="relative w-full max-w-sm overflow-hidden rounded-3xl bg-white shadow-2xl">
 
-            <!-- Kop undangan.
-                 Nama perujuk sengaja jadi satu-satunya elemen berukuran besar dan
-                 satu-satunya yang memakai huruf display: yang membuat undangan ini
-                 bernilai adalah bahwa ada ORANG yang mengundang, bukan promonya. -->
-            <div class="relative bg-[#142b20] bg-grad-forest px-7 pb-8 pt-7 text-center">
-              <button type="button" :aria-label="copy.closeLabel"
-                class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60"
-                @click="dismiss">
-                <svg class="h-4 w-4 stroke-current" fill="none" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-
-              <p class="font-body text-[10px] font-bold uppercase tracking-[0.24em] text-sage-mist">
-                {{ copy.eyebrow }}
-              </p>
-
-              <p class="mt-6 font-body text-xs text-white/55">{{ copy.invitedBy }}</p>
-              <p id="referral-welcome-name"
-                class="mt-1 font-display text-[2rem] font-bold leading-tight text-white">
-                {{ urlData?.nama_konsumen }}
-              </p>
-
-              <!-- Garis oranye tipis sebagai "segel" undangan. -->
-              <span class="mx-auto mt-4 block h-px w-10 bg-orange" aria-hidden="true"></span>
-
-              <!-- Alamat kavling = bukti bahwa yang mengundang benar-benar warga
-                   di sini, bukan sekadar tautan afiliasi. -->
-              <p v-if="kavlingShort" class="mt-4 font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-sage-mist">
-                {{ kavlingShort }}
-              </p>
-              <p v-if="urlData?.nama_proyek" class="mt-0.5 font-body text-[11px] capitalize tracking-wide text-white/40">
-                {{ urlData.nama_proyek.toLowerCase() }}
-              </p>
-            </div>
-
-            <!-- Badan: satu kalimat yang menjelaskan apa yang SUDAH terjadi,
-                 lalu satu langkah berikutnya yang jelas. -->
-            <div class="px-7 py-6">
-              <p class="text-center font-body text-sm leading-relaxed text-gray-600">
-                {{ bodyText }}
-              </p>
-
-              <div class="mt-6 flex flex-col gap-2.5">
-                <button ref="primaryBtn" type="button"
-                  class="w-full rounded-full bg-[#EE8322] bg-grad-orange px-6 py-3.5 text-base font-bold text-white shadow-btn-orange transition-all duration-200 hover:-translate-y-0.5 hover:bg-grad-orange-hover hover:shadow-btn-orange-lg focus:outline-none focus:ring-2 focus:ring-orange/50 active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none"
-                  @click="openForm">
-                  {{ copy.primaryCta }}
-                </button>
-                <button type="button"
-                  class="w-full rounded-full px-6 py-2.5 text-sm font-bold text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            <template v-if="urlStatus === 'valid'">
+              <!-- Kop undangan.
+                   Nama perujuk sengaja jadi satu-satunya elemen berukuran besar dan
+                   satu-satunya yang memakai huruf display: yang membuat undangan ini
+                   bernilai adalah bahwa ada ORANG yang mengundang, bukan promonya. -->
+              <div class="relative bg-[#142b20] bg-grad-forest px-7 pb-8 pt-7 text-center">
+                <button type="button" :aria-label="copy.closeLabel"
+                  class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60"
                   @click="dismiss">
-                  {{ copy.secondaryCta }}
+                  <svg class="h-4 w-4 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
+
+                <p class="font-body text-[10px] font-bold uppercase tracking-[0.24em] text-sage-mist">
+                  {{ copy.eyebrow }}
+                </p>
+
+                <p class="mt-6 font-body text-xs text-white/55">{{ copy.invitedBy }}</p>
+                <p id="referral-welcome-name"
+                  class="mt-1 font-display text-[2rem] font-bold leading-tight text-white">
+                  {{ urlData?.nama_konsumen }}
+                </p>
+
+                <!-- Garis oranye tipis sebagai "segel" undangan. -->
+                <span class="mx-auto mt-4 block h-px w-10 bg-orange" aria-hidden="true"></span>
+
+                <!-- Alamat kavling = bukti bahwa yang mengundang benar-benar warga
+                     di sini, bukan sekadar tautan afiliasi. -->
+                <p v-if="kavlingShort" class="mt-4 font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-sage-mist">
+                  {{ kavlingShort }}
+                </p>
+                <p v-if="urlData?.nama_proyek" class="mt-0.5 font-body text-[11px] capitalize tracking-wide text-white/40">
+                  {{ urlData.nama_proyek.toLowerCase() }}
+                </p>
               </div>
-            </div>
+
+              <!-- Badan: satu kalimat yang menjelaskan apa yang SUDAH terjadi,
+                   lalu satu langkah berikutnya yang jelas. -->
+              <div class="px-7 py-6">
+                <p class="text-center font-body text-sm leading-relaxed text-gray-600">
+                  {{ bodyText }}
+                </p>
+
+                <div class="mt-6 flex flex-col gap-2.5">
+                  <button ref="primaryBtn" type="button"
+                    class="w-full rounded-full bg-[#EE8322] bg-grad-orange px-6 py-3.5 text-base font-bold text-white shadow-btn-orange transition-all duration-200 hover:-translate-y-0.5 hover:bg-grad-orange-hover hover:shadow-btn-orange-lg focus:outline-none focus:ring-2 focus:ring-orange/50 active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none"
+                    @click="openForm">
+                    {{ copy.primaryCta }}
+                  </button>
+                  <button type="button"
+                    class="w-full rounded-full px-6 py-2.5 text-sm font-bold text-gray-500 transition-colors hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    @click="dismiss">
+                    {{ copy.secondaryCta }}
+                  </button>
+                </div>
+              </div>
+            </template>
+
+            <template v-else-if="urlStatus === 'invalid'">
+              <div class="relative bg-red-50 px-7 pb-8 pt-8 text-center border-b border-red-100">
+                <button type="button" aria-label="Tutup"
+                  class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-red-400 transition-colors hover:bg-red-100 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                  @click="dismiss">
+                  <svg class="h-4 w-4 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-100 mb-4">
+                  <svg class="h-7 w-7 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+                <p id="referral-welcome-name" class="font-display text-xl font-bold leading-tight text-red-900">
+                  Kode Referal Tidak Valid
+                </p>
+              </div>
+              <div class="px-7 py-6">
+                <p class="text-center font-body text-sm leading-relaxed text-gray-600">
+                  Kode referral yang Anda gunakan tidak ditemukan atau sudah tidak berlaku. Anda tetap dapat mengisi formulir konsultasi tanpa kode referral.
+                </p>
+                <div class="mt-6">
+                  <button ref="primaryBtn" type="button"
+                    class="w-full rounded-full bg-gray-100 px-6 py-3 text-sm font-bold text-gray-700 transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    @click="dismiss">
+                    Tutup
+                  </button>
+                </div>
+              </div>
+            </template>
+
           </div>
         </Transition>
       </div>
