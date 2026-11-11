@@ -91,14 +91,13 @@ const closeSidebar = () => {
         class="hidden items-center gap-8 lg:flex transition-[margin] duration-500 ease-in-out"
         :class="isScrolled ? 'mr-0' : 'mr-[154px]'"
       >
-        <a href="#tentang" class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors">
-          Tentang Kami
-        </a>
-        <a href="#tipe" class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors">
-          Tipe Rumah
-        </a>
-        <a href="#lokasi" class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors">
-          Lokasi
+        <a
+          v-for="item in content.meta.nav.filter(n => n.id !== 'kontak')"
+          :key="item.id"
+          :href="`#${item.id}`"
+          class="font-body text-base font-medium text-black hover:text-gray-700 transition-colors"
+        >
+          {{ item.label }}
         </a>
       </nav>
 
@@ -165,25 +164,13 @@ const closeSidebar = () => {
             <!-- Navigation Links -->
             <nav class="flex flex-col gap-5 pt-6">
               <a
-                href="#tentang"
+                v-for="item in content.meta.nav.filter(n => n.id !== 'kontak')"
+                :key="item.id"
+                :href="`#${item.id}`"
                 class="font-body text-lg font-medium text-black hover:text-[#c9a84c] transition-colors"
                 @click="closeSidebar"
               >
-                Tentang Kami
-              </a>
-              <a
-                href="#tipe"
-                class="font-body text-lg font-medium text-black hover:text-[#c9a84c] transition-colors"
-                @click="closeSidebar"
-              >
-                Tipe Rumah
-              </a>
-              <a
-                href="#lokasi"
-                class="font-body text-lg font-medium text-black hover:text-[#c9a84c] transition-colors"
-                @click="closeSidebar"
-              >
-                Lokasi
+                {{ item.label }}
               </a>
             </nav>
           </div>

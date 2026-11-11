@@ -21,6 +21,7 @@ Ref PRD: §4 (arsitektur komponen), §5 (mapping section→data). Ref styling: `
 - [x] `InstallmentSection` (`#cicilan`) — CTA `simulasi`.
 - [x] `OneGateSection` — `oneGate[]` via `FeatureCard`.
 - [x] `HouseTypesSection` (`#tipe`) — `HouseTypeCard` (grid) + `HouseTypeModal` (state `selectedTypeId`, `modalOpen` lokal di section ini; panggung visual diperbesar 340px desktop/250px mobile, navigasi sekuensial gambar Tampak Depan $\leftrightarrow$ Perspektif (1/2 & 2/2) $\leftrightarrow$ Denah, panel spesifikasi carousel 1.8s dengan arsitektur padding anti-bocor & nav panah desktop, lolos QA Playwright 100%).
+- [x] `MortgageCalculatorSection` (`#kalkulator`) — Section Kalkulator Cicilan KPR (arsitektur 1 card landscape 2 kolom, latar belakang hunian 3D subtle dengan vertical fade, formula anuitas 5%, two-way sync DP nominal/persen/slider 5-90%, dropdown tenor, collapsible accordion biaya akad awal, pill Bank BCA di luar card, CTA WhatsApp dinamis, zero hardcode via `content.calculator`).
 - [x] `LocationSection` (`#lokasi`) — `locations` + `facilities[]`.
 - [x] `InvestSection` — `invest[]`.
 - [x] `DemandSection` — `demand[]` (varian `stat`).

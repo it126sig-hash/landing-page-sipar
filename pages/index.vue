@@ -47,6 +47,7 @@ useHead({
         <AboutSection class="flex-shrink-0 lg:flex-none" />
       </div>
       <ProductsSection />
+      <MortgageCalculatorSection />
       <ReasonsCardsSection />
       <FaqSection />
       <FinalCtaSection />

@@ -13,8 +13,11 @@ export function useContent() {
   const withBase = (path) => useRuntimeConfig().app.baseURL.replace(/\/$/, '') + path;
 
   const wa = (key, vars = {}) => {
-    const tpl = content.meta.whatsapp.templates[key];
-    const msg = tpl.replace('{project}', project).replace('{type}', vars.type || '');
+    let msg = content.meta.whatsapp.templates[key] || '';
+    const allVars = { project, ...vars };
+    Object.keys(allVars).forEach(k => {
+      msg = msg.replaceAll(`{${k}}`, allVars[k] ?? '');
+    });
     return `https://wa.me/${content.meta.whatsapp.number}?text=${encodeURIComponent(msg)}`;
   };
 
@@ -55,7 +58,15 @@ export function useContent() {
       locationSection: { 
         ...content.locationSection, 
         mapImage: withBase(content.locationSection.mapImage) 
-      }
+      },
+      calculator: {
+        ...content.calculator,
+        image: content.calculator?.image ? withBase(content.calculator.image) : '',
+        bankPartner: {
+          ...content.calculator?.bankPartner,
+          logo: content.calculator?.bankPartner?.logo ? withBase(content.calculator.bankPartner.logo) : '',
+        },
+      },
     },
     wa,
     houseTypes,
