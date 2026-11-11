@@ -25,6 +25,8 @@ export function useContent() {
     // facades ikut dilewatkan withBase seperti thumbnail & gallery — kalau tidak,
     // path-nya jadi satu-satunya yang salah begitu situs dipasang di sub-folder.
     facades: (t.facades || []).map(f => ({ ...f, src: withBase(f.src) })),
+    perspectives: (t.perspectives || []).map(p => typeof p === 'string' ? withBase(p) : ({ ...p, src: withBase(p.src) })),
+    plans: (t.plans || []).map(p => typeof p === 'string' ? withBase(p) : ({ ...p, src: withBase(p.src) })),
     specs: mergeSpecs(content.defaultSpecs, t.specsOverride),
     waLink: wa('type', { type: t.name }),
   }));

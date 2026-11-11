@@ -121,8 +121,9 @@ export default {
       thumbnail: '/assets/images/rumah/TIPE 22 60.png',
       gallery: ['/assets/images/rumah/galeri/2260-denah.webp', '/assets/images/rumah/galeri/2260-fasad.webp'],
       facades: [
-        { src: '/assets/images/rumah/galeri/2260-fasad.webp', label: 'Tampak Depan' },
-        { src: '/assets/images/rumah/galeri/2260-3d-ilustrasi.webp', label: 'Perspektif' },
+        { src: '/assets/images/rumah/galeri/2260-fasad.webp', label: 'Tampak Depan', category: 'front' },
+        { src: '/assets/images/rumah/galeri/2260-3d-ilustrasi.webp', label: 'Perspektif', category: 'perspective' },
+        { src: '/assets/images/rumah/tipe 2260.webp', label: 'Perspektif Sudut', category: 'perspective' },
       ],
       specsOverride: [{ label: 'Listrik', value: '900 VA' }]
     },
@@ -132,8 +133,8 @@ export default {
       thumbnail: '/assets/images/rumah/TIPE 26 72.png',
       gallery: ['/assets/images/rumah/galeri/2672-denah.webp', '/assets/images/rumah/galeri/2672-fasad.webp'],
       facades: [
-        { src: '/assets/images/rumah/galeri/2672-fasad.webp', label: 'Tampak Depan' },
-        { src: '/assets/images/rumah/galeri/2672-3d-ilustrasi.webp', label: 'Perspektif' },
+        { src: '/assets/images/rumah/galeri/2672-fasad.webp', label: 'Tampak Depan', category: 'front' },
+        { src: '/assets/images/rumah/galeri/2672-3d-ilustrasi.webp', label: 'Perspektif', category: 'perspective' },
       ],
       specsOverride: [
         { label: 'Dinding', value: 'Bata Interlock' },
@@ -146,8 +147,9 @@ export default {
       thumbnail: '/assets/images/rumah/TIPE 36 72.png',
       gallery: ['/assets/images/rumah/galeri/3672-denah.webp', '/assets/images/rumah/galeri/3672-fasad.webp'],
       facades: [
-        { src: '/assets/images/rumah/galeri/3672-fasad.webp', label: 'Tampak Depan' },
-        { src: '/assets/images/rumah/galeri/3672-3d-ilustrasi.webp', label: 'Perspektif' },
+        { src: '/assets/images/rumah/galeri/3672-fasad.webp', label: 'Tampak Depan', category: 'front' },
+        { src: '/assets/images/rumah/galeri/3672-3d-ilustrasi.webp', label: 'Perspektif', category: 'perspective' },
+        { src: '/assets/images/rumah/tipe 3672.webp', label: 'Perspektif Sudut', category: 'perspective' },
       ],
       specsOverride: [
         { label: 'Dinding', value: 'Bata Interlock' },
