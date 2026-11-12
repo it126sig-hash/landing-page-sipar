@@ -143,9 +143,7 @@ const metrics = computed(() => [
           {{ calcData.titleLines?.[0] }}<br>
           <em class="italic">{{ calcData.titleLines?.[1] }}</em>
         </h2>
-        <p class="text-xs sm:text-sm text-charcoal-gray leading-relaxed">
-          {{ calcData.subtitle }}
-        </p>
+
       </div>
 
       <!-- SATU Card Landscape 2 Kolom -->
@@ -315,7 +313,7 @@ const metrics = computed(() => [
               class="p-4 rounded-xl bg-off-white border border-cream-light grid grid-cols-3 gap-2 text-center divide-x divide-cream-light">
               <div v-for="metric in metrics" :key="metric.label" class="first:pl-0 px-2 last:pr-0">
                 <span class="block text-[10px] uppercase font-bold tracking-wider text-charcoal-gray">{{ metric.label
-                }}</span>
+                  }}</span>
                 <strong class="block text-xs sm:text-sm font-bold text-forest-deep mt-0.5">{{ metric.value }}</strong>
               </div>
             </div>
