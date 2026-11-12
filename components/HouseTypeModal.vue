@@ -566,7 +566,7 @@ watch(() => props.type, (newType) => {
                   <div
                     v-for="spec in chunk"
                     :key="spec.label"
-                    class="flex min-w-0 items-center gap-1.5 sm:gap-2"
+                    class="flex min-w-0 items-center justify-center gap-1.5 sm:gap-2"
                   >
                     <!-- Icon 18px Outline dengan warna emas SIP #c9a84c -->
                     <div class="flex h-[18px] w-[18px] shrink-0 items-center justify-center text-[#c9a84c]">
@@ -624,7 +624,7 @@ watch(() => props.type, (newType) => {
                     </div>
 
                     <!-- Teks Spesifikasi -->
-                    <div class="min-w-0 flex-1">
+                    <div class="min-w-0">
                       <span class="block font-body text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-charcoal-gray leading-tight">
                         {{ spec.label }}
                       </span>

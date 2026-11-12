@@ -32,7 +32,7 @@ function closeModal() {
 </script>
 
 <template>
-  <section id="tipe" class="scroll-mt-20 bg-off-white py-12 md:py-16">
+  <section id="tipe" class="scroll-mt-20 bg-off-white pt-12 pb-6 md:pt-16 md:pb-8">
     <div class="container mx-auto px-4 md:px-20">
       <!-- Heading - Hijau -->
       <h2 class="font-display font-semibold text-3xl md:text-4xl text-center text-[#142b20] mb-10">
@@ -124,7 +124,7 @@ function closeModal() {
            Pengantarnya sengaja dikecilkan dan dibuat kapital berjarak supaya
            berperan sebagai label, sehingga angka harganyalah yang dibaca lebih
            dulu. Tetap satu <h2> agar struktur judul halaman tidak berubah. -->
-      <h2 class="mb-10 text-center">
+      <h2 class="mb-2 text-center">
         <span class="block font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.16em] text-charcoal-gray">
           {{ content.products.priceHeadline }}
         </span>

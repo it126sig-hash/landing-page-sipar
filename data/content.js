@@ -579,12 +579,13 @@ export default {
   // ============================================================
   calculator: {
     id: 'kalkulator',
-    eyebrow: 'Simulasi Angsuran',
+    eyebrow: '',
     titleLines: ['Hitung Simulasi', 'Cicilan Rumah Anda'],
     subtitle: 'Rencanakan pembelian rumah impian Anda dengan mudah menggunakan kalkulator cicilan berikut.',
     defaultPrice: 166000000,
     defaultDpPercent: 5,
     defaultTenor: 20,
+    defaultInterestRatePercent: 5,
     annualInterestRate: 0.05,
     provisionRate: 0.005,
     adminFee: 500000,
@@ -605,7 +606,7 @@ export default {
       name: 'Bank BCA',
       logo: '/assets/images/bank/bca.webp',
     },
-    footnote: '*Simulasi cicilan bunga anuitas 5% ini khusus berlaku untuk KPR Bank BCA. Persetujuan kredit dan biaya riil mengikuti ketentuan bank.',
+    footnote: '*Perhitungan simulasi ini hanya sebagai patokan/estimasi. Perhitungan riil dan suku bunga di bank dapat berbeda sesuai kebijakan bank yang berlaku.',
     ctaLabel: 'Konsultasi Simulasi via WhatsApp',
     badge: 'Bunga 5% Anuitas',
     presets: [
@@ -617,6 +618,7 @@ export default {
     imageAlt: 'Ilustrasi Hunian Modern Sanggar Indah Parahyangan',
     labels: {
       housePrice: 'Harga Rumah',
+      interestRate: 'Suku Bunga (% per tahun)',
       downPayment: 'Uang Muka (DP)',
       downPaymentNominal: 'Uang Muka Nominal',
       downPaymentPercent: 'Persentase DP',
