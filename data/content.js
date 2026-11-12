@@ -606,7 +606,7 @@ export default {
       name: 'Bank BCA',
       logo: '/assets/images/bank/bca.webp',
     },
-    footnote: '*Perhitungan simulasi ini hanya sebagai patokan/estimasi. Perhitungan riil dan suku bunga di bank dapat berbeda sesuai kebijakan bank yang berlaku.',
+    footnote: '*Perhitungan simulasi ini hanya sebagai estimasi. Perhitungan riil dan suku bunga di bank dapat berbeda sesuai kebijakan bank yang berlaku.',
     ctaLabel: 'Konsultasi Simulasi via WhatsApp',
     badge: 'Bunga 5% Anuitas',
     presets: [

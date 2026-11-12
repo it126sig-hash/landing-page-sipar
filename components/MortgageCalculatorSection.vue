@@ -315,7 +315,7 @@ const metrics = computed(() => [
               class="p-4 rounded-xl bg-off-white border border-cream-light grid grid-cols-3 gap-2 text-center divide-x divide-cream-light">
               <div v-for="metric in metrics" :key="metric.label" class="first:pl-0 px-2 last:pr-0">
                 <span class="block text-[10px] uppercase font-bold tracking-wider text-charcoal-gray">{{ metric.label
-                  }}</span>
+                }}</span>
                 <strong class="block text-xs sm:text-sm font-bold text-forest-deep mt-0.5">{{ metric.value }}</strong>
               </div>
             </div>
@@ -335,7 +335,7 @@ const metrics = computed(() => [
       <!-- Pill Disclaimer di Luar Card -->
       <div v-if="calcData.footnote" class="mt-8 flex justify-center">
         <div
-          class="inline-flex items-center px-5 py-2.5 rounded-2xl sm:rounded-full bg-white/80 backdrop-blur-sm border border-cream-light shadow-sm max-w-[820px] text-center">
+          class="inline-flex items-center px-5 py-2.5 rounded-2xl sm:rounded-full bg-white/80 backdrop-blur-sm border border-cream-light shadow-sm max-w-[100%] text-center">
           <p class="text-[11px] sm:text-xs leading-relaxed text-charcoal-gray">
             {{ calcData.footnote }}
           </p>
